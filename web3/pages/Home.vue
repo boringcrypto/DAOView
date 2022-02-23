@@ -101,7 +101,7 @@ updateAll()
                 <tbody>
                     <tr v-for="router in app.routers">
                         <td>
-                            {{ new connectors[router.network]().chainName }}
+                            {{ connectors[router.network].chainName }}
                         </td>
                         <td>
                             {{ router.address }}
