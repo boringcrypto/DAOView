@@ -61,16 +61,28 @@ updateAll()
                     <tr v-for="wallet in app.wallets">
                         <td>{{ connectors[wallet.network].chainName }} {{ wallet.name }}</td>
                         <td>
-                            <a :href="new GnosisSafe(wallet.network, wallet.address).transactionHistoryUrl" target="_blank">
+                            <a :href="'#'" target="_blank">
                                 {{ wallet.address }}
                             </a>
                         </td>
+                        <td>{{ wallet.threshold }} of {{ wallet.owners?.length || 0 }}</td>
                         <td>
-                            {{ wallet.threshold }} of {{ wallet.owners?.length || 0 }}
-                        </td>
-                        <td>
-                            <span v-for="owner in wallet.owners"> 
-                                <span :class="['0x3027a0c4E35272c0707dE2651A0638c3dF1c37AC', '0x4bb4c1B0745ef7B4642fEECcd0740deC417ca0a0', '0xFBb3a85603C398Ff22435DD40873EC190134e1f6', '0xb2701351a2c1c6E30BFA2699d25f85a5100e39D3', '0x6b83270726342E02a11E755e8CC35275712122eC', '0x8620D3edd67Ed411CCb314F3CFFF5a27A7C74A74'].includes(owner) ? '' : 'text-danger'"><SmartAddress :address="owner" />&nbsp; </span>
+                            <span v-for="owner in wallet.owners">
+                                <span
+                                    :class="
+                                        [
+                                            '0x3027a0c4E35272c0707dE2651A0638c3dF1c37AC',
+                                            '0x4bb4c1B0745ef7B4642fEECcd0740deC417ca0a0',
+                                            '0xFBb3a85603C398Ff22435DD40873EC190134e1f6',
+                                            '0xb2701351a2c1c6E30BFA2699d25f85a5100e39D3',
+                                            '0x6b83270726342E02a11E755e8CC35275712122eC',
+                                            '0x8620D3edd67Ed411CCb314F3CFFF5a27A7C74A74',
+                                        ].includes(owner)
+                                            ? ''
+                                            : 'text-danger'
+                                    "
+                                    ><SmartAddress :address="owner" />&nbsp;
+                                </span>
                             </span>
                         </td>
                     </tr>
