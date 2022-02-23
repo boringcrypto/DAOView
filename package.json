@@ -1,0 +1,26 @@
+{
+    "dependencies": {
+        "@boringcrypto/hardhat-framework": "file:../hardhat-framework",
+        "@popperjs/core": "2.10.2",
+        "bootstrap": "^5.0.2",
+        "bootstrap-icons": "^1.7.2",
+        "bootstrap-vue-3": "^0.1.0",
+        "bootswatch": "^5.1.0",
+        "decimal.js-light": "^2.5.1",
+        "vue-router": "^4.0.12"
+    },
+    "scripts": {
+        "compile": "hardhat compile",
+        "test": "hardhat test",
+        "coverage": "hardhat coverage && open-cli ./coverage/index.html",
+        "prettier": "prettier --write *.js *.ts *.json test/**/*.ts web3/**/*.ts contracts/**/*.sol web3/**/*.vue",
+        "flat": "hardhat run scripts/flat.ts Greeter.sol",
+        "dev": "vite --config web3/vite.config.ts",
+        "build": "vue-tsc --noEmit && vite build",
+        "preview": "vite preview",
+        "prepare": "husky install"
+    },
+    "devDependencies": {
+        "husky": "^7.0.0"
+    }
+}
