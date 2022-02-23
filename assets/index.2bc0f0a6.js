@@ -2522,7 +2522,7 @@ const Le = ["href"],
                                                 (b) => (
                                                     p(),
                                                     m("tr", null, [
-                                                        s("td", null, y(new h(A)[b.network]().chainName), 1),
+                                                        s("td", null, y(h(A)[b.network].chainName), 1),
                                                         s("td", null, y(b.address), 1),
                                                         s("td", null, [w(N, { address: b.factory }, null, 8, ["address"])]),
                                                     ])
