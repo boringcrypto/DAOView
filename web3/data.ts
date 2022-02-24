@@ -1,8 +1,8 @@
 import { reactive } from "vue"
 import Web3, { Network, connectors } from "./classes/Web3"
-import { BigNumber, PopulatedTransaction } from "ethers"
-import { GnosisTokenBalances } from "./classes/GnosisSafe"
-import { IUniswapV2Factory__factory } from "../typechain-types"
+import { BigNumber } from "ethers"
+import { GnosisSafe, GnosisTokenBalances } from "./classes/GnosisSafe"
+import { IUniswapV2Factory__factory, IUniswapV2Router01__factory, IWethMaker__factory } from "../typechain-types"
 import { Multicall } from "./classes/NetworkConnector"
 import { Token } from "./classes/TokenManager"
 import Decimal from "decimal.js-light"
@@ -15,6 +15,7 @@ export type MultiSig = {
     threshold?: number
     nativeBalance?: BigNumber
     tokens?: GnosisTokenBalances
+    safe?: GnosisSafe
 }
 
 export type RouterInfo = {
@@ -37,7 +38,7 @@ export type WethMakerTokenInfo = {
     balance?: BigNumber
     token0?: Token
     token1?: Token
-    totalSupply?:BigNumber
+    totalSupply?: BigNumber
     reserve0?: BigNumber
     reserve1?: BigNumber
     value0?: Decimal
@@ -62,7 +63,7 @@ export type MasterChefInfo = {
     poolCount: number
 }
 
-const wallets = [
+const multisigs = [
     { name: "Ops", network: Network.ETHEREUM, address: "0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7" },
     { name: "Fees", network: Network.POLYGON, address: "0x850a57630A2012B2494779fBc86bBc24F2a7baeF" },
     { name: "Ops", network: Network.POLYGON, address: "0x2B23D9B02FffA1F5441Ef951B4B95c09faa57EBA" },
@@ -106,9 +107,10 @@ const factories = [
 ] as FactoryInfo[]
 
 export default reactive({
+    title: "DAOView",
     name: "SushiView",
     web3: new Web3(),
-    wallets: wallets,
+    multisigs: multisigs,
     masterchefs: [
         { network: Network.ETHEREUM, address: "0xc2EdaD668740f1aA35E4D8f227fB8E17dcA888Cd" },
         { network: Network.XDAI, address: "0x80C7DD17B01855a6D2347444a0FCC36136a314de" },
@@ -187,12 +189,9 @@ export const known_addresses = {
     "0x285b7EEa81a5B66B62e7276a24c1e0F83F7409c1": "Maki",
     "0x8620D3edd67Ed411CCb314F3CFFF5a27A7C74A74": "Sarang",
     "0xCc159BCb6a466DA442D254Ad934125f05DAB66b5": "Matt Deployer (Ledger)",
-    /*"0xEda2f39D1fA6C7E3eFDFd28eC8A38e808CB062e7": "Keno Alt?",
-    "0x10025a49f69ba9445e9b81d0003b235ee629115f": "???",
-    "0x8f54C8c2df62c94772ac14CcFc85603742976312": "Matt Alt?",*/
 } as { [address: string]: string }
 
-wallets.forEach((wallet) => {
+multisigs.forEach((wallet) => {
     known_addresses[wallet.address] = "MultiSig: " + wallet.name
 })
 
@@ -221,11 +220,35 @@ export async function updateFactory(factory: FactoryInfo) {
     if (factory.pairs.length < factory.pairCount) {
         const call = new Multicall(connector)
         for (let i = factory.pairs.length; i < factory.pairCount; i++) {
-            call.queue(contract.populateTransaction.allPairs(i))
+            call.queue(contract.populateTransaction.allPairs(i), contract.interface, (result) => factory.pairs?.push(result))
         }
-        const items = await call.callAndDecode(250, contract.interface)
-        factory.pairs.push(...items.map((item) => item.result[0]))
+        await call.call(250)
 
         localStorage.setItem(storageKey, JSON.stringify(factory.pairs))
     }
+}
+
+export async function updateMultiSig(multisig: MultiSig) {
+    const connector = new connectors[multisig.network]()
+
+    multisig.safe = new GnosisSafe(multisig.network, multisig.address)
+    multisig.owners = await multisig.safe.getOwners()
+    multisig.threshold = await multisig.safe.getThreshold()
+    multisig.tokens = await multisig.safe.getTokenBalances()
+
+    multisig.nativeBalance = await connector.provider.getBalance(multisig.address)
+}
+
+export async function updateRouter(router: RouterInfo) {
+    const connector = new connectors[router.network]()
+
+    const contract = IUniswapV2Router01__factory.connect(router.address, connector.provider)
+    router.factory = await contract.factory()
+}
+
+export async function updateWethMaker(maker: WethMakerInfo) {
+    const connector = new connectors[maker.network]()
+
+    const contract = IWethMaker__factory.connect(maker.address, connector.provider)
+    maker.owner = await contract.owner()
 }

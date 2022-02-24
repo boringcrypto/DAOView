@@ -45,7 +45,7 @@ export class NetworkConnector {
             blockExplorerUrls: this.blockExplorerUrls,
         }
     }
-    
+
     static get coinGeckoId(): string {
         return ""
     }
@@ -89,13 +89,18 @@ export class NetworkConnector {
     }
 }
 
+type MulticallCallback = (result: any, transaction: PopulatedTransaction) => void
+
+type MulticallItem = {
+    transactionPromise: Promise<PopulatedTransaction>
+    transaction?: PopulatedTransaction
+    callback?: MulticallCallback
+    contractInterface?: utils.Interface
+}
+
 export class Multicall {
     connector: NetworkConnector
-    items: {
-        transactionPromise: Promise<PopulatedTransaction>
-        transaction?: PopulatedTransaction
-        info: any
-    }[] = []
+    items: MulticallItem[] = []
 
     constructor(connector: NetworkConnector, items?: any[][] | Promise<PopulatedTransaction>[]) {
         this.connector = connector
@@ -110,19 +115,12 @@ export class Multicall {
         }
     }
 
-    queue(transaction: Promise<PopulatedTransaction>, info?: any) {
-        this.items.push({
-            transactionPromise: transaction,
-            info: info,
-        })
+    queue(transactionPromise: Promise<PopulatedTransaction>, contractInterface?: utils.Interface, callback?: MulticallCallback) {
+        this.items.push({ transactionPromise, contractInterface, callback })
     }
 
     async call(batchSize: number = 0) {
-        const results: {
-            result: any
-            info: any
-            callData: string
-        }[] = []
+        const results: any[] = []
 
         for (let i in this.items) {
             this.items[i].transaction = await this.items[i].transactionPromise
@@ -139,29 +137,20 @@ export class Multicall {
                 }
             })
             const callResult = (await contract.callStatic.aggregate(calls)).returnData
-            results.push(
-                ...callResult.map((result, i) => ({
-                    result,
-                    info: batch[i].info,
-                    callData: batch[i].transaction!.data!,
-                }))
-            )
+            batch.forEach((item, i) => {
+                const result = item.contractInterface
+                    ? item.contractInterface.decodeFunctionResult(
+                          item.contractInterface.parseTransaction({ data: item.transaction?.data || "" }).name,
+                          callResult[i]
+                      )
+                    : callResult[i]
+
+                if (item.callback) {
+                    item.callback(result.length === 1 ? result[0] : result, item.transaction!)
+                }
+                return result
+            })
         }
         return results
-    }
-
-    async callAndDecode(batchSize: number = 0, contract_interface: utils.Interface) {
-        const result = await this.call(batchSize)
-
-        return result.map((item) => ({
-            result: contract_interface.decodeFunctionResult(
-                contract_interface.parseTransaction({
-                    data: item.callData,
-                }).name,
-                item.result
-            ),
-            info: item.info,
-            callData: item.callData,
-        }))
     }
 }

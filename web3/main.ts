@@ -8,6 +8,13 @@ import "bootstrap-vue-3/dist/bootstrap-vue-3.css"
 
 import App from "./App.vue"
 import Home from "./pages/Home.vue"
+import MultiSigs from "./pages/MultiSigs.vue"
+import Routers from "./pages/Routers.vue"
+import Factories from "./pages/Factories.vue"
+import Makers from "./pages/Makers.vue"
+import Chefs from "./pages/Chefs.vue"
+
+import MultiSig from "./pages/MultiSig.vue"
 import WethMaker from "./pages/WethMaker.vue"
 import Data from "./data"
 import Decimal from "decimal.js-light"
@@ -23,7 +30,7 @@ declare module "decimal.js-light" {
 }
 
 Decimal.prototype.toInt = function (decimals: number) {
-    return BigNumber.from(this.times(new Decimal("10").pow(new Decimal(decimals.toString()))).todp(0));
+    return BigNumber.from(this.times(new Decimal("10").pow(new Decimal(decimals.toString()))).todp(0))
 }
 
 declare module "ethers" {
@@ -33,10 +40,10 @@ declare module "ethers" {
 }
 
 BigNumber.prototype.toDec = function (decimals?: number) {
-    return new Decimal(this.toString()).dividedBy(new Decimal(10).toPower((decimals || 0).toString()));
+    return new Decimal(this.toString()).dividedBy(new Decimal(10).toPower((decimals || 0).toString()))
 }
-const BigNumberMax = (...args: BigNumber[]) => args.reduce((m, e) => e > m ? e : m);
-const BigNumberMin = (...args: BigNumber[]) => args.reduce((m, e) => e < m ? e : m);
+const BigNumberMax = (...args: BigNumber[]) => args.reduce((m, e) => (e > m ? e : m))
+const BigNumberMin = (...args: BigNumber[]) => args.reduce((m, e) => (e < m ? e : m))
 
 declare module "@vue/runtime-core" {
     interface ComponentCustomProperties {
@@ -60,6 +67,12 @@ async function main() {
             history: createWebHashHistory(),
             routes: [
                 { path: "/", component: Home },
+                { path: "/multisigs", component: MultiSigs },
+                { path: "/routers", component: Routers },
+                { path: "/factories", component: Factories },
+                { path: "/makers", component: Makers },
+                { path: "/chefs", component: Chefs },
+                { path: "/multisig/:network/:address", component: MultiSig },
                 { path: "/wethmaker/:network/:address", component: WethMaker },
                 //{ path: '/address/:address', component: Address },
             ],

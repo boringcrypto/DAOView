@@ -4,7 +4,7 @@ import { BigNumber } from "ethers"
 import Decimal from "decimal.js-light"
 import { Token } from "../classes/TokenManager"
 
-const props = defineProps<{ token?: Token, amount?: BigNumber }>()
+const props = defineProps<{ token?: Token; amount?: BigNumber }>()
 const display = computed(() => {
     const decimal = props.amount?.toDec(props.token?.decimals || 0) || new Decimal(0)
     if (decimal.gt(10000)) {
@@ -15,4 +15,6 @@ const display = computed(() => {
 })
 </script>
 
-<template>{{ display }}<span v-if="token">&nbsp;{{ token?.symbol }}</span></template>
+<template>
+    {{ display }}<span v-if="token?.symbol"> {{ " " + token?.symbol }}</span>
+</template>

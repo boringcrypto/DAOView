@@ -23,10 +23,16 @@ export class Token {
     }
 }
 
+export class SLPToken extends Token {}
+
 class TokenManager {
     tokenList: Token[] = reactive([])
     tokens: { [network in Network]?: { [address: string]: Token } } = reactive({})
     web3?: Web3
+
+    constructor() {
+        this.load()
+    }
 
     get(network: Network, address: string) {
         address = ethers.utils.getAddress(address)
@@ -41,42 +47,53 @@ class TokenManager {
         return this.tokens[network]![address]
     }
 
-    async load(toLoad?: Token[]) {
+    async loadInfo(toLoad?: Token[]) {
         if (toLoad) {
             toLoad = [...new Set(toLoad)]
         } else {
-            toLoad = this.tokenList.filter(token => !token.loaded)
+            toLoad = this.tokenList
         }
+        toLoad = toLoad.filter((token) => !token.loaded)
         const loadsByNetwork: { [network in Network]?: Token[] } = {}
-        toLoad.forEach(token => {
+        toLoad.forEach((token) => {
             if (!loadsByNetwork[token.network]) {
                 loadsByNetwork[token.network] = []
             }
             loadsByNetwork[token.network]?.push(token)
         })
-        for(const tokensToLoad of Object.values(loadsByNetwork).filter(t => t.length)) {
+        for (const tokensToLoad of Object.values(loadsByNetwork).filter((t) => t.length)) {
+            console.log("load", tokensToLoad)
             const connector = new connectors[tokensToLoad[0].network]()
             const call = new Multicall(connector)
 
             for (const token of tokensToLoad) {
                 const contract = IERC20__factory.connect(token.address, connector.provider)
-                call.queue(contract.populateTransaction.name(), { field: "name", token: token })
-                call.queue(contract.populateTransaction.symbol(), { field: "symbol", token: token })
-                call.queue(contract.populateTransaction.decimals(), { field: "decimals", token: token })
+                call.queue(contract.populateTransaction.name(), IERC20__factory.createInterface(), (result) => (token.name = result))
+                call.queue(contract.populateTransaction.symbol(), IERC20__factory.createInterface(), (result) => (token.symbol = result))
+                call.queue(contract.populateTransaction.decimals(), IERC20__factory.createInterface(), (result) => (token.decimals = result))
             }
 
-            for(const item of await call.callAndDecode(100, IERC20__factory.createInterface())) {
-                item.info.token[item.info.field] = item.result[0]
-            }
+            await call.call(100)
 
-            for(const token of tokensToLoad) { token.loaded = true }
+            for (const token of tokensToLoad) {
+                token.loaded = true
+            }
         }
-        console.log(this.tokens)
+        this.save()
+    }
+
+    load() {
+        const data = JSON.parse(localStorage.getItem("tokens") || "[]")
+        for (const token of data) {
+            Object.assign(this.get(token.network, token.address), token)
+        }
+    }
+
+    save() {
+        localStorage.setItem("tokens", JSON.stringify(this.tokenList))
     }
 }
 
 const tokens = new TokenManager()
 
-export {
-    tokens
-}
+export { tokens }

@@ -8,7 +8,6 @@ const props = defineProps<{
 }>()
 const connector = computed(() => (props.network ? connectors[props.network] : null))
 const slots = useSlots()
-console.log(slots.default)
 </script>
 
 <template>

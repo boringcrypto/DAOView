@@ -4,7 +4,7 @@
         "@popperjs/core": "2.10.2",
         "bootstrap": "^5.0.2",
         "bootstrap-icons": "^1.7.2",
-        "bootstrap-vue-3": "^0.1.0",
+        "bootstrap-vue-3": "^0.1.6",
         "bootswatch": "^5.1.0",
         "decimal.js-light": "^2.5.1",
         "vue-router": "^4.0.12"
@@ -18,7 +18,8 @@
         "dev": "vite --config web3/vite.config.ts",
         "build": "vue-tsc --noEmit && vite build --config web3/vite.config.ts",
         "preview": "vite preview",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "deploy": "git subtree push --prefix web3/dist origin gh-pages"
     },
     "devDependencies": {
         "husky": "^7.0.0"

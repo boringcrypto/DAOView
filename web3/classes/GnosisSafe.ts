@@ -115,7 +115,6 @@ export class GnosisSafe {
                     "/balances/USD?exclude_spam=true&trusted=false"
             }
             const result = await (await fetch(gnosis_balances_url)).json()
-            console.log("OK", this.connector.chainName, this.address, result)
             return {
                 total: parseFloat(result.fiatTotal),
                 tokens: result.items,
