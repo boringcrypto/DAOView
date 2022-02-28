@@ -3,7 +3,7 @@
 /* eslint-disable */
 import { Signer, utils, Contract, ContractFactory, Overrides } from "ethers"
 import { Provider, TransactionRequest } from "@ethersproject/providers"
-import type { Multicall2, Multicall2Interface } from "./Multicall2"
+import type { Multicall2, Multicall2Interface } from "../Multicall2"
 
 const _abi = [
     {

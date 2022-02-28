@@ -13,6 +13,7 @@ import Routers from "./pages/Routers.vue"
 import Factories from "./pages/Factories.vue"
 import Makers from "./pages/Makers.vue"
 import Chefs from "./pages/Chefs.vue"
+import BentoBoxes from "./pages/BentoBoxes.vue"
 
 import MultiSig from "./pages/MultiSig.vue"
 import WethMaker from "./pages/WethMaker.vue"
@@ -22,6 +23,13 @@ import Decimal from "decimal.js-light"
 Decimal.config({ precision: 36 })
 Decimal.config({ toExpNeg: -1000 })
 Decimal.config({ toExpPos: 1000 })
+
+// this is just for debugging
+declare global {
+    interface Window {
+        data: any
+    }
+}
 
 declare module "decimal.js-light" {
     interface Decimal {
@@ -51,14 +59,10 @@ declare module "@vue/runtime-core" {
     }
 }
 
-const original_error = console.error
-console.error = function (...args) {
-    console.log(...args)
-}
-
 async function main() {
     const app = createApp(App)
     await Data.web3.setup()
+    window.data = Data
     app.config.globalProperties.app = reactive(Data)
     app.provide("app", app.config.globalProperties.app)
 
@@ -68,10 +72,12 @@ async function main() {
             routes: [
                 { path: "/", component: Home },
                 { path: "/multisigs", component: MultiSigs },
-                { path: "/routers", component: Routers },
-                { path: "/factories", component: Factories },
                 { path: "/makers", component: Makers },
+                { path: "/factories", component: Factories },
                 { path: "/chefs", component: Chefs },
+                { path: "/bentoboxes", component: BentoBoxes },
+                { path: "/kashimasters", component: Makers },
+                { path: "/routers", component: Routers },
                 { path: "/multisig/:network/:address", component: MultiSig },
                 { path: "/wethmaker/:network/:address", component: WethMaker },
                 //{ path: '/address/:address', component: Address },

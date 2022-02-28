@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue"
+import { computed, ComputedRef } from "vue"
 import { BigNumber } from "ethers"
 import Decimal from "decimal.js-light"
 import { Token } from "../classes/TokenManager"

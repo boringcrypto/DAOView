@@ -20,7 +20,9 @@ class EthereumConnector extends NetworkConnector {
     static get multiCallAddress() {
         return "0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"
     }
-    static get coinGeckoId() { return "ethereum" }
+    static get coinGeckoId() {
+        return "ethereum"
+    }
 }
 
 class RopstenConnector extends EthereumConnector {
@@ -36,7 +38,9 @@ class RopstenConnector extends EthereumConnector {
     static get blockExplorerUrls() {
         return ["https://ropsten.etherscan.io/"]
     }
-    static get coinGeckoId() { return "ethereum" }
+    static get coinGeckoId() {
+        return "ethereum"
+    }
 }
 
 class KovanConnector extends EthereumConnector {
@@ -103,7 +107,9 @@ class BinanceConnector extends NetworkConnector {
     static get multiCallAddress() {
         return "0xa9193376D09C7f31283C54e56D013fCF370Cd9D9"
     }
-    static get coinGeckoId() { return "binance-smart-chain" }
+    static get coinGeckoId() {
+        return "binance-smart-chain"
+    }
 }
 
 class BinanceTestConnector extends BinanceConnector {
@@ -143,7 +149,9 @@ class FuseConnector extends NetworkConnector {
     static get multiCallAddress() {
         return "0x0769fd68dFb93167989C6f7254cd0D766Fb2841F"
     }
-    static get coinGeckoId() { return "fuse" }
+    static get coinGeckoId() {
+        return "fuse"
+    }
 }
 
 class PolygonConnector extends NetworkConnector {
@@ -178,7 +186,9 @@ class PolygonConnector extends NetworkConnector {
     static get multiCallAddress() {
         return "0x02817C1e3543c2d908a590F5dB6bc97f933dB4BD"
     }
-    static get coinGeckoId() { return "polygon-pos" }
+    static get coinGeckoId() {
+        return "polygon-pos"
+    }
 }
 
 class PolygonTestConnector extends PolygonConnector {
@@ -229,7 +239,9 @@ class GnosisConnector extends NetworkConnector {
     static get multiCallAddress() {
         return "0x67dA5f2FfaDDfF067AB9d5F025F8810634d84287"
     }
-    static get coinGeckoId() { return "xdai" }
+    static get coinGeckoId() {
+        return "xdai"
+    }
 }
 
 class HuobiConnector extends NetworkConnector {
@@ -251,7 +263,9 @@ class HuobiConnector extends NetworkConnector {
     static get multiCallAddress() {
         return "0xdDCbf776dF3dE60163066A5ddDF2277cB445E0F3"
     }
-    static get coinGeckoId() { return "huobi-token" }
+    static get coinGeckoId() {
+        return "huobi-token"
+    }
 }
 
 class HuobiTestConnector extends HuobiConnector {
@@ -288,7 +302,9 @@ class ArbitrumConnector extends EthereumConnector {
     static get multiCallAddress() {
         return "0x80C7DD17B01855a6D2347444a0FCC36136a314de"
     }
-    static get coinGeckoId() { return "arbitrum-one" }
+    static get coinGeckoId() {
+        return "arbitrum-one"
+    }
 }
 
 class ArbitrumTestConnector extends ArbitrumConnector {
@@ -367,7 +383,9 @@ class TomoConnector extends NetworkConnector {
     static get blockExplorerUrls() {
         return ["https://scan.tomochain.com/"]
     }
-    static get coinGeckoId() { return "tomochain" }
+    static get coinGeckoId() {
+        return "tomochain"
+    }
 }
 
 class TomoTestConnector extends TomoConnector {
@@ -404,7 +422,9 @@ class FantomConnector extends NetworkConnector {
     static get multiCallAddress() {
         return "0x22D4cF72C45F8198CfbF4B568dBdB5A85e8DC0B5"
     }
-    static get coinGeckoId() { return "fantom" }
+    static get coinGeckoId() {
+        return "fantom"
+    }
 }
 
 class FantomTestConnector extends FantomConnector {
@@ -422,6 +442,27 @@ class FantomTestConnector extends FantomConnector {
     }
     static get multiCallAddress() {
         return ""
+    }
+}
+
+class MoonbeamConnector extends NetworkConnector {
+    static get chainId() {
+        return Network.MOONBEAM
+    }
+    static get chainName() {
+        return "Moonbeam"
+    }
+    static get nativeCurrency() {
+        return { name: "Moonbeam", symbol: "GLMR", decimals: 18 }
+    }
+    static get rpcUrls() {
+        return ["https://rpc.api.moonbeam.network"]
+    }
+    static get blockExplorerUrls() {
+        return ["https://moonscan.io/"]
+    }
+    static get multiCallAddress() {
+        return "0x0769fd68dFb93167989C6f7254cd0D766Fb2841F"
     }
 }
 
@@ -462,7 +503,9 @@ class MoonbeamKusamaConnector extends NetworkConnector {
     static get multiCallAddress() {
         return "0x270f2F35bED92B7A59eA5F08F6B3fd34c8D9D9b5"
     }
-    static get coinGeckoId() { return "moonriver" }
+    static get coinGeckoId() {
+        return "moonriver"
+    }
 }
 
 class HardhatConnector extends EthereumConnector {
@@ -499,7 +542,9 @@ class CeloConnector extends NetworkConnector {
     static get multiCallAddress() {
         return "0x9aac9048fC8139667D6a2597B902865bfdc225d3"
     }
-    static get coinGeckoId() { return "celo" }
+    static get coinGeckoId() {
+        return "celo"
+    }
 }
 
 class HarmonyConnector extends NetworkConnector {
@@ -560,7 +605,9 @@ class OKExConnector extends NetworkConnector {
     static get multiCallAddress() {
         return "0xF4d73326C13a4Fc5FD7A064217e12780e9Bd62c3"
     }
-    static get coinGeckoId() { return "okex-chain" }
+    static get coinGeckoId() {
+        return "okex-chain"
+    }
 }
 
 class OKExTestConnector extends OKExConnector {
@@ -646,6 +693,7 @@ export const connectors: { [network: string]: typeof NetworkConnector } = {
     [Network.TOMO_TEST]: TomoTestConnector,
     [Network.FANTOM]: FantomConnector,
     [Network.FANTOM_TEST]: FantomTestConnector,
+    [Network.MOONBEAM]: MoonbeamConnector,
     [Network.MOONBEAM_TEST]: MoonbeamTestConnector,
     [Network.MOONBEAM_KUSAMA]: MoonbeamKusamaConnector,
     [Network.HARDHAT]: HardhatConnector,

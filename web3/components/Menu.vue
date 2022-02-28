@@ -37,6 +37,7 @@
                             <li><router-link class="dropdown-item" aria-current="page" to="/factories">Factories</router-link></li>
                             <li><router-link class="dropdown-item" aria-current="page" to="/makers">Makers</router-link></li>
                             <li><router-link class="dropdown-item" aria-current="page" to="/chefs">Chefs</router-link></li>
+                            <li><router-link class="dropdown-item" aria-current="page" to="/bentoboxes">BentoBoxes</router-link></li>
                         </ul>
                     </li>
                 </ul>

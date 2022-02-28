@@ -1,5 +1,5 @@
 import { ethers, PopulatedTransaction, providers, ContractInterface, utils } from "ethers"
-import { Multicall2__factory } from "./types/Multicall2__factory"
+import { Multicall2__factory } from "./types/factories/Multicall2__factory"
 import { Multicall2 } from "../../typechain-types"
 import { Network } from "./Network"
 

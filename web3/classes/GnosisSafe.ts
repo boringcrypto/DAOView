@@ -1,6 +1,7 @@
 import { Network, NetworkConnector } from "./Web3"
-import { IGnosisSafe__factory, IGnosisSafe } from "../../typechain-types"
+import { IGnosisSafe__factory, IGnosisSafe } from "./types"
 import { connectors } from "./NetworkConnectors"
+import { markRaw } from "vue"
 
 export type GnosisTokenBalances = {
     total: number
@@ -25,9 +26,9 @@ export class GnosisSafe {
     safe: IGnosisSafe
 
     constructor(network: Network, address: string) {
-        this.connector = new connectors[network]()
+        this.connector = markRaw(new connectors[network]())
         this.address = address
-        this.safe = IGnosisSafe__factory.connect(address, this.connector.provider)
+        this.safe = markRaw(IGnosisSafe__factory.connect(address, this.connector.provider))
     }
 
     get chainID() {
@@ -58,6 +59,9 @@ export class GnosisSafe {
         }
         if (this.connector.chainId == Network.CELO) {
             return "https://ui.celo-safe.io/#/safes/" + this.address + "/transactions"
+        }
+        if (this.connector.chainId == Network.MOONBEAM) {
+            return "https://multisig.moonbeam.network/moonbeam:" + this.address + "/transactions/history"
         }
         if (this.connector.chainId == Network.MOONBEAM_KUSAMA) {
             return "https://multisig.moonbeam.network/mriver:" + this.address + "/transactions/history"

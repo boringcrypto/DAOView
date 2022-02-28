@@ -2,9 +2,15 @@ import { reactive } from "vue"
 import Web3, { Network, connectors } from "./classes/Web3"
 import { BigNumber } from "ethers"
 import { GnosisSafe, GnosisTokenBalances } from "./classes/GnosisSafe"
-import { IUniswapV2Factory__factory, IUniswapV2Router01__factory, IWethMaker__factory } from "../typechain-types"
+import {
+    IBentoBoxV1__factory,
+    IMasterChef__factory,
+    IUniswapV2Factory__factory,
+    IUniswapV2Router01__factory,
+    IWethMaker__factory,
+} from "../typechain-types"
 import { Multicall } from "./classes/NetworkConnector"
-import { Token } from "./classes/TokenManager"
+import { Account, SLPToken, Token } from "./classes/TokenManager"
 import Decimal from "decimal.js-light"
 
 export type MultiSig = {
@@ -33,34 +39,13 @@ export type FactoryInfo = {
     pairs?: string[]
 }
 
-export type WethMakerTokenInfo = {
-    address: string
-    balance?: BigNumber
-    token0?: Token
-    token1?: Token
-    totalSupply?: BigNumber
-    reserve0?: BigNumber
-    reserve1?: BigNumber
-    value0?: Decimal
-    value1?: Decimal
-    value?: Decimal
-    bridge0?: string
-    bridge1?: string
-}
-
-export type WethMakerInfo = {
-    network: Network
-    address: string
-    owner?: string
-    tokens?: WethMakerTokenInfo[]
-}
-
 export type MasterChefInfo = {
     network: Network
     address: string
     owner?: string
-    migrator: string
-    poolCount: number
+    devaddr?: string
+    migrator?: string
+    poolLength?: number
 }
 
 const multisigs = [
@@ -78,14 +63,22 @@ const multisigs = [
     { name: "Fees", network: Network.MOONBEAM_KUSAMA, address: "0x6669cc35031A84fAc1Efe30bB586B9ADdf223Fbc" },
     { name: "Ops", network: Network.FUSE, address: "0x33b6beb37837459Ee84a1Ffed2C6a4ca22e5F316" },
     { name: "Ops", network: Network.ARBITRUM, address: "0x978982772b8e4055B921bf9295c0d74eB36Bc54e" },
+    { name: "Ops", network: Network.MOONBEAM, address: "0x87AEb22b7BB02AC42204eB312C08A22FC3f077F3" },
 ] as MultiSig[]
 
 const sushiMakers = [{ network: Network.ETHEREUM, address: "0x5ad6211CD3fdE39A9cECB5df6f380b8263d1e277" }]
 
+export type WethMakerInfo = {
+    network: Network
+    address: string
+    owner?: string
+    account: Account
+}
+
 const wethMakers = [
-    { network: Network.ARBITRUM, address: "0xa19b3b22f29E23e4c04678C94CFC3e8f202137d8" },
-    { network: Network.POLYGON, address: "0xf1c9881Be22EBF108B8927c4d197d126346b5036" },
-    { network: Network.AVALANCHE, address: "0x560C759A11cd026405F6f2e19c65Da1181995fA2" },
+    { network: Network.ARBITRUM, address: "0xa19b3b22f29E23e4c04678C94CFC3e8f202137d8", account: new Account() },
+    { network: Network.POLYGON, address: "0xf1c9881Be22EBF108B8927c4d197d126346b5036", account: new Account() },
+    { network: Network.AVALANCHE, address: "0x560C759A11cd026405F6f2e19c65Da1181995fA2", account: new Account() },
 ] as WethMakerInfo[]
 
 const factories = [
@@ -104,19 +97,36 @@ const factories = [
     { network: Network.OKEX, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
     { network: Network.HUOBI, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
     { network: Network.PALM, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+    { network: Network.MOONBEAM, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
 ] as FactoryInfo[]
+
+export type BentoBoxInfo = {
+    network: Network
+    address: string
+    owner?: string
+    account: Account
+}
+
+const bentoBoxes = [
+    { network: Network.ETHEREUM, address: "0xF5BCE5077908a1b7370B9ae04AdC565EBd643966" },
+    { network: Network.POLYGON, address: "0x0319000133d3AdA02600f0875d2cf03D442C3367" },
+    { network: Network.ARBITRUM, address: "0x74c764d41b77dbbb4fe771dab1939b00b146894a" },
+    { network: Network.BINANCE, address: "0xf5bce5077908a1b7370b9ae04adc565ebd643966" },
+    { network: Network.MOONBEAM, address: "0x80C7DD17B01855a6D2347444a0FCC36136a314de" },
+    { network: Network.FANTOM, address: "0xF5BCE5077908a1b7370B9ae04AdC565EBd643966" },
+    { network: Network.XDAI, address: "0xE2d7F5dd869Fc7c126D21b13a9080e75a4bDb324" },
+    { network: Network.AVALANCHE, address: "0x0711B6026068f736bae6B213031fCE978D48E026" },
+    { network: Network.HUOBI, address: "0xF5BCE5077908a1b7370B9ae04AdC565EBd643966" },
+    { network: Network.CELO, address: "0x0711B6026068f736bae6B213031fCE978D48E026" },
+] as BentoBoxInfo[]
 
 export default reactive({
     title: "DAOView",
     name: "SushiView",
     web3: new Web3(),
     multisigs: multisigs,
-    masterchefs: [
-        { network: Network.ETHEREUM, address: "0xc2EdaD668740f1aA35E4D8f227fB8E17dcA888Cd" },
-        { network: Network.XDAI, address: "0x80C7DD17B01855a6D2347444a0FCC36136a314de" },
-        { network: Network.BINANCE, address: "0x80C7DD17B01855a6D2347444a0FCC36136a314de" },
-    ],
-    masterchefsV2: [{ network: Network.ETHEREUM, address: "0xef0881ec094552b2e128cf945ef17a6752b4ec5d" }],
+    masterchefs: [{ network: Network.ETHEREUM, address: "0xc2EdaD668740f1aA35E4D8f227fB8E17dcA888Cd" }] as MasterChefInfo[],
+    masterchefsV2: [{ network: Network.ETHEREUM, address: "0xef0881ec094552b2e128cf945ef17a6752b4ec5d" }] as MasterChefInfo[],
     minichefs: [
         { network: Network.FANTOM, address: "0xf731202A3cf7EfA9368C2d7bD613926f7A144dB5" },
         { network: Network.POLYGON, address: "0x0769fd68dFb93167989C6f7254cd0D766Fb2841F" },
@@ -127,7 +137,8 @@ export default reactive({
         { network: Network.CELO, address: "0x8084936982D089130e001b470eDf58faCA445008" },
         { network: Network.MOONBEAM_KUSAMA, address: "0x3dB01570D97631f69bbb0ba39796865456Cf89A5" },
         { network: Network.FUSE, address: "0x182CD0C6F1FaEc0aED2eA83cd0e160c8Bd4cb063" },
-    ],
+        { network: Network.MOONBEAM, address: "0x011E52E4E40CF9498c79273329E8827b21E2e581" },
+    ] as MasterChefInfo[],
     complexRewarders: [
         { network: Network.FANTOM, address: "0xeaf76e3bD36680D98d254B378ED706cb0DFBfc1B" },
         { network: Network.POLYGON, address: "0xa3378Ca78633B3b9b2255EAa26748770211163AE" },
@@ -155,16 +166,12 @@ export default reactive({
         { network: Network.OKEX, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
         { network: Network.HUOBI, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
         { network: Network.PALM, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
+        { network: Network.MOONBEAM, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
     ] as RouterInfo[],
     factories,
     sushiMakers: sushiMakers,
     wethMakers,
-    bentoBoxes: [
-        { network: Network.ETHEREUM, address: "0xa19b3b22f29E23e4c04678C94CFC3e8f202137d8" },
-        { network: Network.POLYGON, address: "0x0319000133d3AdA02600f0875d2cf03D442C3367" },
-        { network: Network.ARBITRUM, address: "0x74c764d41b77dbbb4fe771dab1939b00b146894a" },
-        { network: Network.BINANCE, address: "0xf5bce5077908a1b7370b9ae04adc565ebd643966" },
-    ],
+    bentoBoxes,
     kashiMasters: [
         { network: Network.ETHEREUM, address: "0x2cba6ab6574646badc84f0544d05059e57a5dc42" },
         { network: Network.POLYGON, address: "0xb527c5295c4bc348cbb3a2e96b2494fd292075a7" },
@@ -172,6 +179,7 @@ export default reactive({
         { network: Network.AVALANCHE, address: "0x513037395fa0c9c35e41f89189cedfe3bd42fadb" },
         { network: Network.BINANCE, address: "0x2cba6ab6574646badc84f0544d05059e57a5dc42" },
         { network: Network.XDAI, address: "0x7a6da9903d0a481f40b8336c1463487bc8c0407e" },
+        { network: Network.HUOBI, address: "0x2cBA6Ab6574646Badc84F0544d05059e57a5dc42" },
     ],
     kashiSushiMakers: [{ network: Network.ETHEREUM, address: "0x08C82f7513C7952A95029FE3B1587B1FA52DACed" }],
 })
@@ -189,6 +197,8 @@ export const known_addresses = {
     "0x285b7EEa81a5B66B62e7276a24c1e0F83F7409c1": "Maki",
     "0x8620D3edd67Ed411CCb314F3CFFF5a27A7C74A74": "Sarang",
     "0xCc159BCb6a466DA442D254Ad934125f05DAB66b5": "Matt Deployer (Ledger)",
+    "0xe94B5EEC1fA96CEecbD33EF5Baa8d00E4493F4f3": "Treasury Multisig",
+    "0x9a8541Ddf3a932a9A922B607e9CF7301f1d47bD1": "Timelock",
 } as { [address: string]: string }
 
 multisigs.forEach((wallet) => {
@@ -232,7 +242,7 @@ export async function updateMultiSig(multisig: MultiSig) {
     const connector = new connectors[multisig.network]()
 
     multisig.safe = new GnosisSafe(multisig.network, multisig.address)
-    multisig.owners = await multisig.safe.getOwners()
+    multisig.owners = [...(await multisig.safe.getOwners())].sort()
     multisig.threshold = await multisig.safe.getThreshold()
     multisig.tokens = await multisig.safe.getTokenBalances()
 
@@ -251,4 +261,36 @@ export async function updateWethMaker(maker: WethMakerInfo) {
 
     const contract = IWethMaker__factory.connect(maker.address, connector.provider)
     maker.owner = await contract.owner()
+}
+
+export async function updateBentobox(box: BentoBoxInfo) {
+    const connector = new connectors[box.network]()
+
+    const contract = IBentoBoxV1__factory.connect(box.address, connector.provider)
+    box.owner = await contract.owner()
+}
+
+export async function updateMasterChef(chef: MasterChefInfo) {
+    const connector = new connectors[chef.network]()
+
+    const contract = IMasterChef__factory.connect(chef.address, connector.provider)
+    chef.owner = await contract.owner()
+    chef.devaddr = await contract.devaddr()
+    chef.poolLength = (await contract.poolLength()).toNumber()
+}
+
+export async function updateMasterChefV2(chef: MasterChefInfo) {
+    const connector = new connectors[chef.network]()
+
+    const contract = IMasterChef__factory.connect(chef.address, connector.provider)
+    chef.owner = await contract.owner()
+    chef.poolLength = (await contract.poolLength()).toNumber()
+}
+
+export async function updateMiniChef(chef: MasterChefInfo) {
+    const connector = new connectors[chef.network]()
+
+    const contract = IMasterChef__factory.connect(chef.address, connector.provider)
+    chef.owner = await contract.owner()
+    chef.poolLength = (await contract.poolLength()).toNumber()
 }
