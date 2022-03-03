@@ -7,4 +7,17 @@ interface IWethMaker {
     function bridges(address) external view returns (address);
 
     function owner() external view returns (address);
+
+    function withdraw(
+        address token,
+        address to,
+        uint256 _value
+    ) external;
+
+    function burnPairs(
+        address[] calldata lpTokens,
+        uint256[] calldata amounts,
+        uint256[] calldata minimumOut0,
+        uint256[] calldata minimumOut1
+    ) external;
 }

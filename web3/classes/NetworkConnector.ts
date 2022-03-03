@@ -16,6 +16,17 @@ interface AddEthereumChainParameter {
     iconUrls?: string[] // Currently ignored.
 }
 
+type MulticallCallback = (result: any, transaction: PopulatedTransaction) => void
+type MulticallFailCallback = (transaction: PopulatedTransaction) => void
+
+type MulticallItem = {
+    transactionPromise: Promise<PopulatedTransaction>
+    transaction?: PopulatedTransaction
+    callback?: MulticallCallback
+    failcallback?: MulticallFailCallback
+    contractInterface?: utils.Interface
+}
+
 export class NetworkConnector {
     provider: providers.Provider
     static get chainId(): Network {
@@ -87,68 +98,59 @@ export class NetworkConnector {
             })
         }
     }
-}
 
-type MulticallCallback = (result: any, transaction: PopulatedTransaction) => void
-
-type MulticallItem = {
-    transactionPromise: Promise<PopulatedTransaction>
-    transaction?: PopulatedTransaction
-    callback?: MulticallCallback
-    contractInterface?: utils.Interface
-}
-
-export class Multicall {
-    connector: NetworkConnector
     items: MulticallItem[] = []
 
-    constructor(connector: NetworkConnector, items?: any[][] | Promise<PopulatedTransaction>[]) {
-        this.connector = connector
-        if (items && items.length) {
-            for (const item of items) {
-                if (Array.isArray(item)) {
-                    this.queue(item[0], item[1])
-                } else {
-                    this.queue(item)
-                }
-            }
-        }
-    }
-
-    queue(transactionPromise: Promise<PopulatedTransaction>, contractInterface?: utils.Interface, callback?: MulticallCallback) {
-        this.items.push({ transactionPromise, contractInterface, callback })
+    queue(
+        transactionPromise: Promise<PopulatedTransaction>,
+        contractInterface?: utils.Interface,
+        callback?: MulticallCallback,
+        failcallback?: MulticallFailCallback
+    ) {
+        this.items.push({ transactionPromise, contractInterface, callback, failcallback })
     }
 
     async call(batchSize: number = 0) {
         const results: any[] = []
 
-        for (let i in this.items) {
-            this.items[i].transaction = await this.items[i].transactionPromise
-        }
-
         while (this.items.length) {
-            const contract = Multicall2__factory.connect(this.connector.multiCallAddress, this.connector.provider)
+            const contract = Multicall2__factory.connect(this.multiCallAddress, this.provider)
 
             const batch = this.items.splice(0, batchSize || this.items.length)
+            for (let i in batch) {
+                batch[i].transaction = await batch[i].transactionPromise
+            }
+
             const calls: Multicall2.CallStruct[] = batch.map((item) => {
                 return {
                     target: item.transaction!.to!,
                     callData: item.transaction!.data!,
                 }
             })
-            const callResult = (await contract.callStatic.aggregate(calls)).returnData
+            const callResult = await contract.callStatic.tryAggregate(false, calls)
             batch.forEach((item, i) => {
-                const result = item.contractInterface
-                    ? item.contractInterface.decodeFunctionResult(
-                          item.contractInterface.parseTransaction({ data: item.transaction?.data || "" }).name,
-                          callResult[i]
-                      )
-                    : callResult[i]
+                if (callResult[i].success) {
+                    let result: any = callResult[i].returnData
+                    if (item.contractInterface) {
+                        try {
+                            result = item.contractInterface.decodeFunctionResult(
+                                item.contractInterface.parseTransaction({ data: item.transaction?.data || "" }).name,
+                                callResult[i].returnData
+                            )
+                        } catch {}
+                    }
 
-                if (item.callback) {
-                    item.callback(result.length === 1 ? result[0] : result, item.transaction!)
+                    if (item.callback) {
+                        item.callback(result.length === 1 ? result[0] : result, item.transaction!)
+                    }
+                    results.push(result.length === 1 ? result[0] : result)
+                } else {
+                    if (item.failcallback) {
+                        item.failcallback(item.transaction!)
+                    }
+                    console.log("Fail")
+                    results.push(new Error("Failed"))
                 }
-                return result
             })
         }
         return results

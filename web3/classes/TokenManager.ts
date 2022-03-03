@@ -4,113 +4,182 @@ import { ethers, BigNumber } from "ethers"
 import Web3 from "./Web3"
 import { connectors } from "./NetworkConnectors"
 import { IERC20__factory, IUniswapV2Pair__factory } from "./types"
-import { Multicall, NetworkConnector } from "./NetworkConnector"
+import { NetworkConnector } from "./NetworkConnector"
 import Decimal from "decimal.js-light"
 
-export class Account {
-    balances: { [tokenAddress: string]: BigNumber } = {}
-    tokens: Token[] = []
-
-    get SLPTokens(): SLPToken[] {
-        return this.tokens.filter((token) => token instanceof SLPToken) as SLPToken[]
-    }
-}
-
 export class Token {
-    type = "Token"
     network: Network
     address: string
     loaded = false
 
-    name: string
-    _symbol: string
-    decimals: number
-
-    price: Decimal
+    details: BaseToken
 
     constructor(network: Network, address: string) {
         this.network = network
         this.address = address
-        this.name = ""
-        this._symbol = ""
-        this.decimals = 0
-        this.price = new Decimal(0)
+        this.details = new ERC20Token(this)
+    }
+
+    get type() {
+        return this.details.type
+    }
+
+    get name() {
+        return this.details.name
+    }
+
+    get symbol() {
+        return this.details.symbol
+    }
+
+    get decimals() {
+        return this.details.decimals
+    }
+
+    get price() {
+        return this.details.price
+    }
+
+    value(balance: BigNumber) {
+        return this.details.value(balance)
+    }
+}
+
+class BaseToken {
+    token: Token
+    type = ""
+
+    constructor(token: Token) {
+        this.token = token
+    }
+
+    get name() {
+        return ""
+    }
+
+    get symbol() {
+        return ""
+    }
+
+    get decimals() {
+        return 0
+    }
+
+    get price() {
+        return new Decimal(0)
+    }
+
+    value(balance: BigNumber) {
+        return new Decimal(0)
+    }
+}
+
+export class ERC20Token extends BaseToken {
+    type = "ERC20"
+    _name = ""
+    _symbol = ""
+    _decimals = 0
+    _price = new Decimal(0)
+
+    get name() {
+        return this._name
+    }
+
+    set name(value) {
+        this._name = value
     }
 
     get symbol() {
         return this._symbol
     }
 
-    balance(account: Account) {
-        return account.balances[this.address] || BigNumber.from(0)
+    set symbol(value) {
+        this._symbol = value
     }
 
-    value(account: Account) {
+    get decimals() {
+        return this._decimals
+    }
+
+    set decimals(value) {
+        this._decimals = value
+    }
+
+    get price() {
+        return this._price
+    }
+
+    set price(value) {
+        this._price = value
+    }
+
+    value(balance: BigNumber) {
         if (this.price) {
-            return this.balance(account).toDec(this.decimals).mul(this.price)
+            return balance.toDec(this.decimals).mul(this.price)
         } else {
             return new Decimal(0)
         }
     }
 }
 
-export class SLPToken extends Token {
-    type = "SLPToken"
+export class SLPToken extends BaseToken {
+    type = "SLP"
     token0?: Token
     token1?: Token
     totalSupply?: BigNumber
     reserve0?: BigNumber
     reserve1?: BigNumber
 
-    constructor(network: Network, address: string) {
-        super(network, address)
-        this.name = "SushiSwap LP Token"
-        this._symbol = "SLP"
-        this.decimals = 18
+    get name() {
+        return this.token0 && this.token1 ? "SushiSwap " + this.token0.symbol + "/" + this.token1.symbol + " LP (SLP)" : "Sushiswap LP Token"
     }
 
     get symbol() {
-        return this.token0 && this.token1 ? this.token0.symbol + "-" + this.token1.symbol + " SLP" : this._symbol
+        return this.token0 && this.token1 ? this.token0.symbol + "-" + this.token1.symbol + " SLP" : "SLP"
     }
 
-    balance0(account: Account) {
-        if (this.token0 && this.totalSupply && !this.totalSupply.isZero() && account.balances[this.address] && this.reserve0) {
-            return account.balances[this.address].mul(this.reserve0).div(this.totalSupply)
+    get decimals() {
+        return 18
+    }
+
+    balance0(balance: BigNumber) {
+        if (this.token0 && this.totalSupply && !this.totalSupply.isZero() && balance && this.reserve0) {
+            return balance.mul(this.reserve0).div(this.totalSupply)
         } else {
             return BigNumber.from(0)
         }
     }
 
-    balance1(account: Account) {
-        if (this.token1 && this.totalSupply && !this.totalSupply.isZero() && account.balances[this.address] && this.reserve1) {
-            return account.balances[this.address].mul(this.reserve1).div(this.totalSupply)
+    balance1(balance: BigNumber) {
+        if (this.token1 && this.totalSupply && !this.totalSupply.isZero() && balance && this.reserve1) {
+            return balance.mul(this.reserve1).div(this.totalSupply)
         } else {
             return BigNumber.from(0)
         }
     }
 
-    value0(account: Account) {
+    value0(balance: BigNumber) {
         if (this.token0 && this.token0.price) {
-            return this.balance0(account).toDec(this.token0.decimals).mul(this.token0.price)
+            return this.balance0(balance).toDec(this.token0.decimals).mul(this.token0.price)
         } else {
             return new Decimal(0)
         }
     }
 
-    value1(account: Account) {
+    value1(balance: BigNumber) {
         if (this.token1 && this.token1.price) {
-            return this.balance1(account).toDec(this.token1.decimals).mul(this.token1.price)
+            return this.balance1(balance).toDec(this.token1.decimals).mul(this.token1.price)
         } else {
             return new Decimal(0)
         }
     }
 
-    value(account: Account) {
-        return this.value0(account).isZero()
-            ? this.value1(account).mul(2)
-            : this.value1(account).isZero()
-            ? this.value0(account).mul(2)
-            : this.value0(account).add(this.value1(account))
+    value(balance: BigNumber) {
+        return this.value0(balance).isZero()
+            ? this.value1(balance).mul(2)
+            : this.value1(balance).isZero()
+            ? this.value0(balance).mul(2)
+            : this.value0(balance).add(this.value1(balance))
     }
 }
 
@@ -123,13 +192,13 @@ class TokenManager {
         this.load()
     }
 
-    get(network: Network, address: string, tokenClass?: typeof Token | typeof SLPToken) {
+    get(network: Network, address: string) {
         address = ethers.utils.getAddress(address)
         if (!this.tokens[network]) {
             this.tokens[network] = {}
         }
         if (!this.tokens[network]![address]) {
-            const token = new (tokenClass || Token)(network, address)
+            const token = new Token(network, address)
             this.tokenList.push(token)
             this.tokens[network]![address] = token
         }
@@ -138,7 +207,7 @@ class TokenManager {
 
     async _handleToLoad(
         filter: (token: Token) => boolean,
-        handle: (token: Token, connector: NetworkConnector, call: Multicall) => void,
+        handle: (token: Token, connector: NetworkConnector) => void,
         after?: (token: Token) => void,
         toLoad?: Token[]
     ) {
@@ -157,13 +226,12 @@ class TokenManager {
         })
         for (const tokensToLoad of Object.values(loadsByNetwork).filter((t) => t.length)) {
             const connector = new connectors[tokensToLoad[0].network]()
-            const call = new Multicall(connector)
 
             for (const token of tokensToLoad) {
-                handle(token, connector, call)
+                handle(token, connector)
             }
 
-            await call.call(100)
+            await connector.call(100)
 
             if (after) {
                 for (const token of tokensToLoad) {
@@ -173,27 +241,62 @@ class TokenManager {
         }
     }
 
+    queueERC20(token: Token, connector: NetworkConnector) {
+        if (token.loaded) {
+            return
+        }
+        const contract = IERC20__factory.connect(token.address, connector.provider)
+        connector.queue(
+            contract.populateTransaction.name(),
+            IERC20__factory.createInterface(),
+            (result) => ((token.details as ERC20Token).name = result),
+            () => console.log(connector.chainName, token.address, "Name")
+        )
+        connector.queue(
+            contract.populateTransaction.symbol(),
+            IERC20__factory.createInterface(),
+            (result) => ((token.details as ERC20Token).symbol = result),
+            () => console.log(connector.chainName, token.address, "Symbol")
+        )
+        connector.queue(
+            contract.populateTransaction.decimals(),
+            IERC20__factory.createInterface(),
+            (result) => {
+                ;(token.details as ERC20Token).decimals = result
+                if (token.name === "SushiSwap LP Token" && token.symbol === "SLP" && token.decimals === 18) {
+                    token.details = new SLPToken(token)
+                    this.queueSLP(token, connector)
+                    token.loaded = true
+                }
+            },
+            () => console.log(connector.chainName, token.address, "Decimals")
+        )
+    }
+
+    queueSLP(token: Token, connector: NetworkConnector) {
+        if (token.loaded) {
+            return
+        }
+        const pair = IUniswapV2Pair__factory.connect(token.address, connector.provider)
+        connector.queue(pair.populateTransaction.token0(), IUniswapV2Pair__factory.createInterface(), (result) => {
+            ;(token.details as SLPToken).token0 = this.get(connector.chainId, result)
+            this.queueERC20((token.details as SLPToken).token0!, connector)
+        })
+        connector.queue(pair.populateTransaction.token1(), IUniswapV2Pair__factory.createInterface(), (result) => {
+            ;(token.details as SLPToken).token1 = this.get(connector.chainId, result)
+            this.queueERC20((token.details as SLPToken).token1!, connector)
+            token.loaded = true
+        })
+    }
+
     async loadInfo(toLoad?: Token[]) {
         await this._handleToLoad(
             (token) => !token.loaded,
-            (token, connector, call) => {
-                if (token instanceof SLPToken) {
-                    const pair = IUniswapV2Pair__factory.connect(token.address, connector.provider)
-                    call.queue(
-                        pair.populateTransaction.token0(),
-                        IUniswapV2Pair__factory.createInterface(),
-                        (result) => (token.token0 = this.get(connector.chainId, result, Token))
-                    )
-                    call.queue(
-                        pair.populateTransaction.token1(),
-                        IUniswapV2Pair__factory.createInterface(),
-                        (result) => (token.token1 = this.get(connector.chainId, result, Token))
-                    )
+            (token, connector) => {
+                if (token.details instanceof SLPToken) {
+                    this.queueSLP(token, connector)
                 } else {
-                    const contract = IERC20__factory.connect(token.address, connector.provider)
-                    call.queue(contract.populateTransaction.name(), IERC20__factory.createInterface(), (result) => (token.name = result))
-                    call.queue(contract.populateTransaction.symbol(), IERC20__factory.createInterface(), (result) => (token._symbol = result))
-                    call.queue(contract.populateTransaction.decimals(), IERC20__factory.createInterface(), (result) => (token.decimals = result))
+                    this.queueERC20(token, connector)
                 }
             },
             (token) => (token.loaded = true),
@@ -205,17 +308,17 @@ class TokenManager {
 
     async loadSLPInfo(toLoad?: Token[]) {
         await this._handleToLoad(
-            (token) => token instanceof SLPToken,
-            (token, connector, call) => {
+            (token) => token.details instanceof SLPToken,
+            (token, connector) => {
                 const pair = IUniswapV2Pair__factory.connect(token.address, connector.provider)
-                call.queue(pair.populateTransaction.getReserves(), IUniswapV2Pair__factory.createInterface(), (result) => {
-                    ;(token as SLPToken).reserve0 = result.reserve0
-                    ;(token as SLPToken).reserve1 = result.reserve1
+                connector.queue(pair.populateTransaction.getReserves(), IUniswapV2Pair__factory.createInterface(), (result) => {
+                    ;(token.details as SLPToken).reserve0 = result.reserve0
+                    ;(token.details as SLPToken).reserve1 = result.reserve1
                 })
-                call.queue(
+                connector.queue(
                     pair.populateTransaction.totalSupply(),
                     IUniswapV2Pair__factory.createInterface(),
-                    (result) => ((token as SLPToken).totalSupply = result)
+                    (result) => ((token.details as SLPToken).totalSupply = result)
                 )
             },
             undefined,
@@ -226,18 +329,19 @@ class TokenManager {
     load() {
         const data = JSON.parse(localStorage.getItem("Tokens") || "[]")
         for (const token of data) {
-            const t: Token | SLPToken = this.get(token.network, token.address, token.type === "SLPToken" ? SLPToken : Token)
+            const t: Token | SLPToken = this.get(token.network, token.address)
             t.network = token.network
             t.address = token.address
             t.loaded = token.loaded
 
-            if (token.type === "SLPToken") {
-                ;(t as SLPToken).token0 = token.token0 ? this.get(token.network, token.token0, Token) : undefined
-                ;(t as SLPToken).token1 = token.token1 ? this.get(token.network, token.token1, Token) : undefined
+            if (token.type === "SLP") {
+                t.details = new SLPToken(token)
+                ;(t.details as SLPToken).token0 = this.get(token.network, token.token0)
+                ;(t.details as SLPToken).token1 = this.get(token.network, token.token1)
             } else {
-                t.name = token.name
-                t._symbol = token.symbol
-                t.decimals = token.decimals
+                ;(t.details as ERC20Token).name = token.name
+                ;(t.details as ERC20Token).symbol = token.symbol
+                ;(t.details as ERC20Token).decimals = token.decimals
             }
         }
     }
@@ -247,15 +351,15 @@ class TokenManager {
             "Tokens",
             JSON.stringify(
                 this.tokenList.map((token) => {
-                    if (token instanceof SLPToken) {
+                    if (token.details instanceof SLPToken) {
                         return {
                             type: token.type,
                             network: token.network,
                             address: token.address,
                             loaded: token.loaded,
 
-                            token0: token.token0?.address,
-                            token1: token.token1?.address,
+                            token0: (token.details as SLPToken).token0?.address,
+                            token1: (token.details as SLPToken).token1?.address,
                         }
                     } else {
                         return {

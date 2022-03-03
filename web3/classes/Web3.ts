@@ -4,6 +4,8 @@ import { computed, ComputedRef, markRaw } from "vue"
 import { NetworkConnector } from "./NetworkConnector"
 import { Network } from "./Network"
 import { connectors } from "./NetworkConnectors"
+import SafeAppsSDK, { SafeInfo } from "@gnosis.pm/safe-apps-sdk"
+import { SafeAppProvider } from "@gnosis.pm/safe-apps-provider"
 
 export interface EthereumEvent {
     connect: ProviderConnectInfo
@@ -39,14 +41,51 @@ interface ConnectInfo {
     chainId: string
 }
 
+enum WalletProvider {
+    METAMASK = 1,
+    WALLETCONNECT = 2,
+    GNOSIS_SAFE = 3,
+}
+
+class MetaMaskProvider {
+    provider?: ethers.providers.JsonRpcProvider
+
+    detect(): boolean {
+        return window.ethereum && window.ethereum.request && window.ethereum.isMetaMask ? true : false
+    }
+
+    connect(force: boolean) {}
+}
+
+class GnosisSafeAppProvider {
+    provider?: ethers.providers.Web3Provider
+
+    async detect(): Promise<boolean> {
+        console.log("Gnosis")
+
+        const sdk = new SafeAppsSDK()
+        const safe = await sdk.safe.getInfo()
+
+        console.log(safe)
+        const provider = new ethers.providers.Web3Provider(new SafeAppProvider(safe, sdk))
+        console.log(await provider.getBlockNumber())
+        return false
+    }
+
+    connect(force: boolean) {}
+}
+
 export default class Web3 {
     name = "Loading..."
+    walletProvider: WalletProvider = WalletProvider.METAMASK
     connected = false
     chainId = Network.NONE
     address = ""
     addresses = [] as string[]
     block = 0
     provider?: ethers.providers.JsonRpcProvider
+    gnosis?: ethers.providers.Web3Provider
+    safe?: SafeInfo
     update?: ComputedRef<string>
     connector?: ComputedRef<NetworkConnector | null>
 
@@ -57,6 +96,7 @@ export default class Web3 {
     }
 
     switch(chain: Network) {
+        console.log(chain, window.ethereum)
         if (window.ethereum && window.ethereum.request) {
             window.ethereum
                 .request({
@@ -76,11 +116,17 @@ export default class Web3 {
     }
 
     setup() {
+        const sdk = new SafeAppsSDK()
+        sdk.safe.getInfo().then((safe) => {
+            console.log("Gnosis safe found:", safe)
+            this.safe = safe
+            this.gnosis = markRaw(new ethers.providers.Web3Provider(new SafeAppProvider(safe, sdk)))
+        })
+
         this.update = computed(() => this.chainId + "|" + this.block + "|" + this.address)
         this.connector = computed(() => (this.provider ? new connectors[this.chainId](this.provider) : null))
         if (window.ethereum && window.ethereum.request) {
             this.provider = markRaw(new ethers.providers.Web3Provider(window.ethereum))
-            this.connector
             if (window.ethereum.isMetaMask) {
                 this.name = "MetaMask"
             } else {

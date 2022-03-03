@@ -33,6 +33,8 @@ interface IMasterChef is IOwnable {
 
     function sushiPerBlock() external view returns (uint256);
 
+    function sushiPerSecond() external view returns (uint256); // for MiniChef
+
     function BONUS_MULTIPLIER() external view returns (uint256);
 
     function migrator() external view returns (address);

@@ -1,13 +1,17 @@
 {
     "dependencies": {
         "@boringcrypto/hardhat-framework": "file:../hardhat-framework",
+        "@gnosis.pm/safe-apps-provider": "^0.10.1",
+        "@gnosis.pm/safe-apps-sdk": "^7.0.0",
         "@popperjs/core": "2.10.2",
+        "@walletconnect/web3-provider": "^1.7.3",
         "bootstrap": "^5.0.2",
         "bootstrap-icons": "^1.7.2",
         "bootstrap-vue-3": "^0.1.6",
         "bootswatch": "^5.1.0",
         "decimal.js-light": "^2.5.1",
-        "vue-router": "^4.0.12"
+        "vue-router": "^4.0.12",
+        "web3": "^1.7.0"
     },
     "scripts": {
         "compile": "hardhat compile",

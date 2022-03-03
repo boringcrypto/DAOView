@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, useSlots } from "vue"
+import { computed, useSlots, PropType, toRefs } from "vue"
 import { connectors } from "../classes/NetworkConnectors"
 
 const props = defineProps<{
-    address: string | undefined | null
-    network: number | undefined | null
+    address: String | undefined | null
+    network: number
 }>()
 const connector = computed(() => (props.network ? connectors[props.network] : null))
 const slots = useSlots()

@@ -1,17 +1,19 @@
-import { reactive } from "vue"
+import { reactive, computed, ComputedRef } from "vue"
 import Web3, { Network, connectors } from "./classes/Web3"
 import { BigNumber } from "ethers"
 import { GnosisSafe, GnosisTokenBalances } from "./classes/GnosisSafe"
 import {
     IBentoBoxV1__factory,
+    IMasterChefV2__factory,
     IMasterChef__factory,
     IUniswapV2Factory__factory,
     IUniswapV2Router01__factory,
     IWethMaker__factory,
 } from "../typechain-types"
-import { Multicall } from "./classes/NetworkConnector"
-import { Account, SLPToken, Token } from "./classes/TokenManager"
+import { SLPToken, Token, tokens } from "./classes/TokenManager"
 import Decimal from "decimal.js-light"
+import { applyStyles } from "@popperjs/core"
+import { Account } from "./classes/Account"
 
 export type MultiSig = {
     name: string
@@ -42,10 +44,24 @@ export type FactoryInfo = {
 export type MasterChefInfo = {
     network: Network
     address: string
+    account: Account
     owner?: string
     devaddr?: string
     migrator?: string
     poolLength?: number
+    totalAllocPoint: BigNumber
+    currentBlock: BigNumber
+    sushiPerDay?: BigNumber
+}
+
+export type PoolInfo = {
+    chef: MasterChefInfo
+    poolId: number
+    token?: Token
+    allocPoint: BigNumber
+    lastRewardBlock: BigNumber
+    accSushiPerShare: BigNumber
+    sushiPerDay?: BigNumber
 }
 
 const multisigs = [
@@ -76,9 +92,21 @@ export type WethMakerInfo = {
 }
 
 const wethMakers = [
-    { network: Network.ARBITRUM, address: "0xa19b3b22f29E23e4c04678C94CFC3e8f202137d8", account: new Account() },
-    { network: Network.POLYGON, address: "0xf1c9881Be22EBF108B8927c4d197d126346b5036", account: new Account() },
-    { network: Network.AVALANCHE, address: "0x560C759A11cd026405F6f2e19c65Da1181995fA2", account: new Account() },
+    {
+        network: Network.ARBITRUM,
+        address: "0xa19b3b22f29E23e4c04678C94CFC3e8f202137d8",
+        account: new Account("0xa19b3b22f29E23e4c04678C94CFC3e8f202137d8"),
+    },
+    {
+        network: Network.POLYGON,
+        address: "0xf1c9881Be22EBF108B8927c4d197d126346b5036",
+        account: new Account("0xf1c9881Be22EBF108B8927c4d197d126346b5036"),
+    },
+    {
+        network: Network.AVALANCHE,
+        address: "0x560C759A11cd026405F6f2e19c65Da1181995fA2",
+        account: new Account("0x560C759A11cd026405F6f2e19c65Da1181995fA2"),
+    },
 ] as WethMakerInfo[]
 
 const factories = [
@@ -120,6 +148,8 @@ const bentoBoxes = [
     { network: Network.CELO, address: "0x0711B6026068f736bae6B213031fCE978D48E026" },
 ] as BentoBoxInfo[]
 
+const pools = reactive([]) as PoolInfo[]
+
 export default reactive({
     title: "DAOView",
     name: "SushiView",
@@ -139,6 +169,7 @@ export default reactive({
         { network: Network.FUSE, address: "0x182CD0C6F1FaEc0aED2eA83cd0e160c8Bd4cb063" },
         { network: Network.MOONBEAM, address: "0x011E52E4E40CF9498c79273329E8827b21E2e581" },
     ] as MasterChefInfo[],
+    pools,
     complexRewarders: [
         { network: Network.FANTOM, address: "0xeaf76e3bD36680D98d254B378ED706cb0DFBfc1B" },
         { network: Network.POLYGON, address: "0xa3378Ca78633B3b9b2255EAa26748770211163AE" },
@@ -228,11 +259,10 @@ export async function updateFactory(factory: FactoryInfo) {
 
     factory.pairs = JSON.parse(localStorage.getItem(storageKey) || "[]") as string[]
     if (factory.pairs.length < factory.pairCount) {
-        const call = new Multicall(connector)
         for (let i = factory.pairs.length; i < factory.pairCount; i++) {
-            call.queue(contract.populateTransaction.allPairs(i), contract.interface, (result) => factory.pairs?.push(result))
+            connector.queue(contract.populateTransaction.allPairs(i), contract.interface, (result) => factory.pairs?.push(result))
         }
-        await call.call(250)
+        await connector.call(250)
 
         localStorage.setItem(storageKey, JSON.stringify(factory.pairs))
     }
@@ -270,6 +300,54 @@ export async function updateBentobox(box: BentoBoxInfo) {
     box.owner = await contract.owner()
 }
 
+export async function loadChefPools(chef: MasterChefInfo) {
+    const connector = new connectors[chef.network]()
+    const contract = IMasterChef__factory.connect(chef.address, connector.provider)
+    for (let i = 0; i < (chef.poolLength || 0); i++) {
+        connector.queue(contract.populateTransaction.poolInfo(i), contract.interface, (result) => {
+            if (!result.allocPoint.isZero()) {
+                pools.push({
+                    poolId: i,
+                    chef,
+                    token: tokens.get(connector.chainId, result.lpToken),
+                    allocPoint: result.allocPoint,
+                    accSushiPerShare: result.accSushiPerShare,
+                    lastRewardBlock: result.lastRewardBlock,
+                    sushiPerDay: chef.sushiPerDay?.mul(result.allocPoint).div(chef.totalAllocPoint),
+                })
+            }
+        })
+    }
+    await connector.call(100)
+}
+
+export async function loadChefV2Pools(chef: MasterChefInfo) {
+    console.log(chef, chef.poolLength)
+    const connector = new connectors[chef.network]()
+    const contract = IMasterChefV2__factory.connect(chef.address, connector.provider)
+    const poolByID: { [poolId: number]: PoolInfo } = {}
+    for (let i = 0; i < (chef.poolLength || 0); i++) {
+        connector.queue(contract.populateTransaction.poolInfo(i), contract.interface, (result) => {
+            poolByID[i] = {
+                poolId: i,
+                chef,
+                token: undefined,
+                allocPoint: result.allocPoint,
+                accSushiPerShare: result.accSushiPerShare,
+                lastRewardBlock: result.lastRewardBlock,
+                sushiPerDay: chef.sushiPerDay?.mul(result.allocPoint).div(chef.totalAllocPoint),
+            }
+        })
+        connector.queue(
+            contract.populateTransaction.lpToken(i),
+            contract.interface,
+            (result) => (poolByID[i].token = tokens.get(connector.chainId, result))
+        )
+    }
+    await connector.call(100)
+    pools.push(...Object.values(poolByID).filter((pool) => !pool.allocPoint.isZero()))
+}
+
 export async function updateMasterChef(chef: MasterChefInfo) {
     const connector = new connectors[chef.network]()
 
@@ -277,6 +355,10 @@ export async function updateMasterChef(chef: MasterChefInfo) {
     chef.owner = await contract.owner()
     chef.devaddr = await contract.devaddr()
     chef.poolLength = (await contract.poolLength()).toNumber()
+    chef.totalAllocPoint = await contract.totalAllocPoint()
+    chef.sushiPerDay = (await contract.sushiPerBlock()).mul(6595)
+
+    await loadChefPools(chef)
 }
 
 export async function updateMasterChefV2(chef: MasterChefInfo) {
@@ -285,6 +367,9 @@ export async function updateMasterChefV2(chef: MasterChefInfo) {
     const contract = IMasterChef__factory.connect(chef.address, connector.provider)
     chef.owner = await contract.owner()
     chef.poolLength = (await contract.poolLength()).toNumber()
+    chef.totalAllocPoint = await contract.totalAllocPoint()
+    chef.sushiPerDay = (await contract.sushiPerBlock()).mul(6595)
+    await loadChefV2Pools(chef)
 }
 
 export async function updateMiniChef(chef: MasterChefInfo) {
@@ -293,4 +378,7 @@ export async function updateMiniChef(chef: MasterChefInfo) {
     const contract = IMasterChef__factory.connect(chef.address, connector.provider)
     chef.owner = await contract.owner()
     chef.poolLength = (await contract.poolLength()).toNumber()
+    chef.totalAllocPoint = await contract.totalAllocPoint()
+    chef.sushiPerDay = (await contract.sushiPerSecond()).mul(24 * 60 * 60)
+    await loadChefV2Pools(chef)
 }

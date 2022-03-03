@@ -48,6 +48,10 @@
                     {{
                         app.web3.address
                     }}
+                    <template v-if="app.web3.safe">
+                        <br />
+                        Gnosis: {{ app.web3.safe.safeAddress }}
+                    </template>
                 </ul>
             </div>
         </div>

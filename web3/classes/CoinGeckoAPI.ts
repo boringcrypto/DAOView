@@ -1,6 +1,6 @@
 import Decimal from "decimal.js-light"
 import { NetworkConnector } from "./NetworkConnector"
-import { SLPToken, Token, tokens } from "./TokenManager"
+import { ERC20Token, SLPToken, Token, tokens } from "./TokenManager"
 
 export class CoinGecko {
     async getPrices(connector: NetworkConnector, _tokens: Token[]) {
@@ -17,7 +17,7 @@ export class CoinGecko {
                 const result = await (await fetch(url)).json()
                 for (const price of Object.entries(result)) {
                     const token = tokens.get(connector.chainId, price[0])
-                    token.price = new Decimal((price[1] as any).usd as string)
+                    ;(token.details as ERC20Token).price = new Decimal((price[1] as any).usd as string)
                 }
             } catch (e) {
                 console.log(e)
