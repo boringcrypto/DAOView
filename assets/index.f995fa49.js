@@ -1,86 +1,88 @@
-var it = Object.defineProperty
-var ot = (e, t, a) => (t in e ? it(e, t, { enumerable: !0, configurable: !0, writable: !0, value: a }) : (e[t] = a))
-var l = (e, t, a) => (ot(e, typeof t != "symbol" ? t + "" : t, a), a)
+var ut = Object.defineProperty
+var lt = (e, t, n) => (t in e ? ut(e, t, { enumerable: !0, configurable: !0, writable: !0, value: n }) : (e[t] = n))
+var b = (e, t, n) => (lt(e, typeof t != "symbol" ? t + "" : t, n), n)
 import {
-    r as $,
-    o as c,
-    c as y,
+    r as P,
+    o as p,
+    c as f,
     a as s,
-    t as f,
-    b as p,
+    t as m,
+    b as c,
     w as T,
-    d as m,
-    e as _,
-    F as M,
-    f as ve,
-    g as ut,
-    S as dt,
-    i as F,
-    C as Me,
-    I as x,
-    h as k,
-    j as Ie,
-    k as De,
-    l as pt,
-    m as P,
-    n as te,
-    W as Ce,
-    B as V,
-    D as E,
-    p as ne,
-    q as lt,
-    u as b,
-    s as D,
-    v as Se,
-    x as ct,
-    y as yt,
-    z as Fe,
-    A as be,
-    E as ae,
-    G as ie,
-    H as bt,
-    J as ft,
-    K as mt,
-    L as Tt,
-} from "./vendor.55821603.js"
-const ht = function () {
+    d as h,
+    F as C,
+    e as V,
+    f as x,
+    g as re,
+    h as ct,
+    S as pt,
+    i as U,
+    C as Ae,
+    I as O,
+    j as I,
+    k as ve,
+    l as Be,
+    m as bt,
+    n as yt,
+    p as X,
+    W as ie,
+    q as ft,
+    s as L,
+    B as Y,
+    u as j,
+    v as mt,
+    D as _,
+    x as y,
+    y as S,
+    z as Oe,
+    A as ht,
+    E as Ie,
+    G as De,
+    H as be,
+    J as ke,
+    K as Tt,
+    L as gt,
+    M as wt,
+    N as At,
+} from "./vendor.5efd37f7.js"
+const _t = function () {
     const t = document.createElement("link").relList
     if (t && t.supports && t.supports("modulepreload")) return
-    for (const i of document.querySelectorAll('link[rel="modulepreload"]')) o(i)
-    new MutationObserver((i) => {
-        for (const r of i) if (r.type === "childList") for (const u of r.addedNodes) u.tagName === "LINK" && u.rel === "modulepreload" && o(u)
+    for (const r of document.querySelectorAll('link[rel="modulepreload"]')) o(r)
+    new MutationObserver((r) => {
+        for (const i of r) if (i.type === "childList") for (const u of i.addedNodes) u.tagName === "LINK" && u.rel === "modulepreload" && o(u)
     }).observe(document, { childList: !0, subtree: !0 })
-    function a(i) {
-        const r = {}
+    function n(r) {
+        const i = {}
         return (
-            i.integrity && (r.integrity = i.integrity),
-            i.referrerpolicy && (r.referrerPolicy = i.referrerpolicy),
-            i.crossorigin === "use-credentials"
-                ? (r.credentials = "include")
-                : i.crossorigin === "anonymous"
-                ? (r.credentials = "omit")
-                : (r.credentials = "same-origin"),
-            r
+            r.integrity && (i.integrity = r.integrity),
+            r.referrerpolicy && (i.referrerPolicy = r.referrerpolicy),
+            r.crossorigin === "use-credentials"
+                ? (i.credentials = "include")
+                : r.crossorigin === "anonymous"
+                ? (i.credentials = "omit")
+                : (i.credentials = "same-origin"),
+            i
         )
     }
-    function o(i) {
-        if (i.ep) return
-        i.ep = !0
-        const r = a(i)
-        fetch(i.href, r)
+    function o(r) {
+        if (r.ep) return
+        r.ep = !0
+        const i = n(r)
+        fetch(r.href, i)
     }
 }
-ht()
-var gt = (e, t) => {
-    const a = e.__vccOpts || e
-    for (const [o, i] of t) a[o] = i
-    return a
+_t()
+var Et = (e, t) => {
+    const n = e.__vccOpts || e
+    for (const [o, r] of t) n[o] = r
+    return n
 }
-const wt = {},
-    At = { class: "navbar navbar-expand-lg navbar-light bg-light sticky-top" },
-    Et = { class: "container-fluid" },
-    Mt = { class: "navbar-brand", href: "#" },
-    _t = s(
+const kt = {},
+    Ct = { class: "navbar navbar-expand-lg navbar-light bg-light sticky-top" },
+    Mt = { class: "container-fluid" },
+    xt = { class: "navbar-brand", href: "#" },
+    vt = s(
         "button",
         {
             class: "navbar-toggler",
@@ -94,12 +96,12 @@ const wt = {},
         [s("span", { class: "navbar-toggler-icon" })],
         -1
     ),
-    xt = { class: "collapse navbar-collapse", id: "navbarSupportedContent" },
-    kt = { class: "navbar-nav me-auto mb-2 mb-lg-0" },
-    vt = { class: "nav-item" },
-    Ct = m("Home"),
-    Ot = { class: "nav-item dropdown" },
-    Bt = s(
+    Bt = { class: "collapse navbar-collapse", id: "navbarSupportedContent" },
+    Ot = { class: "navbar-nav me-auto mb-2 mb-lg-0" },
+    It = { class: "nav-item" },
+    Dt = h("Home"),
+    St = { class: "nav-item dropdown" },
+    Ft = s(
         "a",
         {
             class: "nav-link dropdown-toggle",
@@ -112,80 +114,84 @@ const wt = {},
         " Sushi ",
         -1
     ),
-    It = { class: "dropdown-menu", "aria-labelledby": "navbarDropdown" },
-    Dt = m("Multi Sigs"),
-    St = m("Routers"),
-    Ft = m("Factories"),
-    Ut = m("Makers"),
-    Nt = m("Chefs"),
-    Rt = m("BentoBoxes"),
-    Lt = { class: "navbar-nav d-flex" }
-function Ht(e, t) {
+    Nt = { class: "dropdown-menu", "aria-labelledby": "navbarDropdown" },
+    Ut = h("Multi Sigs"),
+    Rt = h("Routers"),
+    Lt = h("Factories"),
+    Pt = h("Makers"),
+    Ht = h("Chefs"),
+    $t = h("BentoBoxes"),
+    Gt = { class: "navbar-nav d-flex" },
+    qt = s("br", null, null, -1)
+function Vt(e, t) {
     var o
-    const a = $("router-link")
+    const n = P("router-link")
     return (
-        c(),
-        y("nav", At, [
-            s("div", Et, [
-                s("a", Mt, f(e.app.name), 1),
-                _t,
-                s("div", xt, [
-                    s("ul", kt, [
-                        s("li", vt, [p(a, { class: "nav-link active", "aria-current": "page", to: "/" }, { default: T(() => [Ct]), _: 1 })]),
-                        s("li", Ot, [
-                            Bt,
-                            s("ul", It, [
+        p(),
+        f("nav", Ct, [
+            s("div", Mt, [
+                s("a", xt, m(e.app.name), 1),
+                vt,
+                s("div", Bt, [
+                    s("ul", Ot, [
+                        s("li", It, [c(n, { class: "nav-link active", "aria-current": "page", to: "/" }, { default: T(() => [Dt]), _: 1 })]),
+                        s("li", St, [
+                            Ft,
+                            s("ul", Nt, [
                                 s("li", null, [
-                                    p(a, { class: "dropdown-item", "aria-current": "page", to: "/multisigs" }, { default: T(() => [Dt]), _: 1 }),
+                                    c(n, { class: "dropdown-item", "aria-current": "page", to: "/multisigs" }, { default: T(() => [Ut]), _: 1 }),
                                 ]),
                                 s("li", null, [
-                                    p(a, { class: "dropdown-item", "aria-current": "page", to: "/routers" }, { default: T(() => [St]), _: 1 }),
+                                    c(n, { class: "dropdown-item", "aria-current": "page", to: "/routers" }, { default: T(() => [Rt]), _: 1 }),
                                 ]),
                                 s("li", null, [
-                                    p(a, { class: "dropdown-item", "aria-current": "page", to: "/factories" }, { default: T(() => [Ft]), _: 1 }),
+                                    c(n, { class: "dropdown-item", "aria-current": "page", to: "/factories" }, { default: T(() => [Lt]), _: 1 }),
                                 ]),
                                 s("li", null, [
-                                    p(a, { class: "dropdown-item", "aria-current": "page", to: "/makers" }, { default: T(() => [Ut]), _: 1 }),
+                                    c(n, { class: "dropdown-item", "aria-current": "page", to: "/makers" }, { default: T(() => [Pt]), _: 1 }),
                                 ]),
                                 s("li", null, [
-                                    p(a, { class: "dropdown-item", "aria-current": "page", to: "/chefs" }, { default: T(() => [Nt]), _: 1 }),
+                                    c(n, { class: "dropdown-item", "aria-current": "page", to: "/chefs" }, { default: T(() => [Ht]), _: 1 }),
                                 ]),
                                 s("li", null, [
-                                    p(
-                                        a,
+                                    c(
+                                        n,
                                         { class: "dropdown-item", "aria-current": "page", to: "/bentoboxes" },
-                                        { default: T(() => [Rt]), _: 1 }
+                                        { default: T(() => [$t]), _: 1 }
                                     ),
                                 ]),
                             ]),
                         ]),
                     ]),
-                    s("ul", Lt, f((o = e.app.web3.connector) == null ? void 0 : o.chainName) + " " + f(e.app.web3.address), 1),
+                    s("ul", Gt, [
+                        h(m((o = e.app.web3.connector) == null ? void 0 : o.chainName) + " " + m(e.app.web3.address) + " ", 1),
+                        e.app.web3.safe ? (p(), f(C, { key: 0 }, [qt, h(" Gnosis: " + m(e.app.web3.safe.safeAddress), 1)], 64)) : V("", !0),
+                    ]),
                 ]),
             ]),
         ])
     )
 }
-var Pt = gt(wt, [["render", Ht]])
-const $t = m(" Loading... "),
-    Gt = _({
+var Yt = Et(kt, [["render", Vt]])
+const Kt = h(" Loading... "),
+    Xt = x({
         setup(e) {
-            return (t, a) => {
-                const o = $("router-view")
+            return (t, n) => {
+                const o = P("router-view")
                 return (
-                    c(),
-                    y(
-                        M,
+                    p(),
+                    f(
+                        C,
                         null,
                         [
-                            p(Pt),
-                            p(o, null, {
-                                default: T(({ Component: i }) => [
-                                    (c(),
-                                    ve(
-                                        dt,
+                            c(Yt),
+                            c(o, null, {
+                                default: T(({ Component: r }) => [
+                                    (p(),
+                                    re(
+                                        pt,
                                         null,
-                                        { fallback: T(() => [$t]), default: T(() => [s("div", null, [(c(), ve(ut(i)))])]), _: 2 },
+                                        { fallback: T(() => [Kt]), default: T(() => [s("div", null, [(p(), re(ct(r)))])]), _: 2 },
                                         1024
                                     )),
                                 ]),
@@ -198,15 +204,15 @@ const $t = m(" Loading... "),
             }
         },
     }),
-    Yt = { class: "row mt-3" },
-    Vt = s("div", { class: "col-10 mx-auto" }, null, -1),
-    qt = [Vt],
-    Kt = _({
+    Wt = { class: "row mt-3" },
+    jt = s("div", { class: "col-10 mx-auto" }, null, -1),
+    Jt = [jt],
+    Zt = x({
         setup(e) {
-            return F("app"), (t, a) => (c(), y("div", Yt, qt))
+            return U("app"), (t, n) => (p(), f("div", Wt, Jt))
         },
     }),
-    J = [
+    ee = [
         {
             inputs: [
                 {
@@ -371,13 +377,13 @@ const $t = m(" Loading... "),
             type: "function",
         },
     ],
-    Oe =
+    Ce =
         "0x608060405234801561001057600080fd5b506110ee806100206000396000f3fe608060405234801561001057600080fd5b50600436106100b45760003560e01c806372425d9d1161007157806372425d9d146101a657806386d516e8146101c4578063a8b0574e146101e2578063bce38bd714610200578063c3077fa914610230578063ee82ac5e14610262576100b4565b80630f28c97d146100b9578063252dba42146100d757806327e86d6e14610108578063399542e91461012657806342cbb15c146101585780634d2301cc14610176575b600080fd5b6100c1610292565b6040516100ce91906106a3565b60405180910390f35b6100f160048036038101906100ec91906109d2565b61029a565b6040516100ff929190610b65565b60405180910390f35b610110610423565b60405161011d9190610bae565b60405180910390f35b610140600480360381019061013b9190610c01565b610438565b60405161014f93929190610d6b565b60405180910390f35b610160610457565b60405161016d91906106a3565b60405180910390f35b610190600480360381019061018b9190610da9565b61045f565b60405161019d91906106a3565b60405180910390f35b6101ae610480565b6040516101bb91906106a3565b60405180910390f35b6101cc610488565b6040516101d991906106a3565b60405180910390f35b6101ea610490565b6040516101f79190610de5565b60405180910390f35b61021a60048036038101906102159190610c01565b610498565b6040516102279190610e00565b60405180910390f35b61024a600480360381019061024591906109d2565b610640565b60405161025993929190610d6b565b60405180910390f35b61027c60048036038101906102779190610e4e565b610663565b6040516102899190610bae565b60405180910390f35b600042905090565b60006060439150825167ffffffffffffffff8111156102bc576102bb6106e8565b5b6040519080825280602002602001820160405280156102ef57816020015b60608152602001906001900390816102da5790505b50905060005b835181101561041d5760008085838151811061031457610313610e7b565b5b60200260200101516000015173ffffffffffffffffffffffffffffffffffffffff1686848151811061034957610348610e7b565b5b6020026020010151602001516040516103629190610ee6565b6000604051808303816000865af19150503d806000811461039f576040519150601f19603f3d011682016040523d82523d6000602084013e6103a4565b606091505b5091509150816103e9576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016103e090610f5a565b60405180910390fd5b808484815181106103fd576103fc610e7b565b5b60200260200101819052505050808061041590610fa9565b9150506102f5565b50915091565b60006001436104329190610ff2565b40905090565b60008060604392504340915061044e8585610498565b90509250925092565b600043905090565b60008173ffffffffffffffffffffffffffffffffffffffff16319050919050565b600044905090565b600045905090565b600041905090565b6060815167ffffffffffffffff8111156104b5576104b46106e8565b5b6040519080825280602002602001820160405280156104ee57816020015b6104db61066e565b8152602001906001900390816104d35790505b50905060005b82518110156106395760008084838151811061051357610512610e7b565b5b60200260200101516000015173ffffffffffffffffffffffffffffffffffffffff1685848151811061054857610547610e7b565b5b6020026020010151602001516040516105619190610ee6565b6000604051808303816000865af19150503d806000811461059e576040519150601f19603f3d011682016040523d82523d6000602084013e6105a3565b606091505b509150915085156105ef57816105ee576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016105e590611098565b60405180910390fd5b5b604051806040016040528083151581526020018281525084848151811061061957610618610e7b565b5b60200260200101819052505050808061063190610fa9565b9150506104f4565b5092915050565b6000806060610650600185610438565b8093508194508295505050509193909250565b600081409050919050565b6040518060400160405280600015158152602001606081525090565b6000819050919050565b61069d8161068a565b82525050565b60006020820190506106b86000830184610694565b92915050565b6000604051905090565b600080fd5b600080fd5b600080fd5b6000601f19601f8301169050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b610720826106d7565b810181811067ffffffffffffffff8211171561073f5761073e6106e8565b5b80604052505050565b60006107526106be565b905061075e8282610717565b919050565b600067ffffffffffffffff82111561077e5761077d6106e8565b5b602082029050602081019050919050565b600080fd5b600080fd5b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006107c98261079e565b9050919050565b6107d9816107be565b81146107e457600080fd5b50565b6000813590506107f6816107d0565b92915050565b600080fd5b600067ffffffffffffffff82111561081c5761081b6106e8565b5b610825826106d7565b9050602081019050919050565b82818337600083830152505050565b600061085461084f84610801565b610748565b9050828152602081018484840111156108705761086f6107fc565b5b61087b848285610832565b509392505050565b600082601f830112610898576108976106d2565b5b81356108a8848260208601610841565b91505092915050565b6000604082840312156108c7576108c6610794565b5b6108d16040610748565b905060006108e1848285016107e7565b600083015250602082013567ffffffffffffffff81111561090557610904610799565b5b61091184828501610883565b60208301525092915050565b600061093061092b84610763565b610748565b905080838252602082019050602084028301858111156109535761095261078f565b5b835b8181101561099a57803567ffffffffffffffff811115610978576109776106d2565b5b80860161098589826108b1565b85526020850194505050602081019050610955565b5050509392505050565b600082601f8301126109b9576109b86106d2565b5b81356109c984826020860161091d565b91505092915050565b6000602082840312156109e8576109e76106c8565b5b600082013567ffffffffffffffff811115610a0657610a056106cd565b5b610a12848285016109a4565b91505092915050565b600081519050919050565b600082825260208201905092915050565b6000819050602082019050919050565b600081519050919050565b600082825260208201905092915050565b60005b83811015610a81578082015181840152602081019050610a66565b83811115610a90576000848401525b50505050565b6000610aa182610a47565b610aab8185610a52565b9350610abb818560208601610a63565b610ac4816106d7565b840191505092915050565b6000610adb8383610a96565b905092915050565b6000602082019050919050565b6000610afb82610a1b565b610b058185610a26565b935083602082028501610b1785610a37565b8060005b85811015610b535784840389528151610b348582610acf565b9450610b3f83610ae3565b925060208a01995050600181019050610b1b565b50829750879550505050505092915050565b6000604082019050610b7a6000830185610694565b8181036020830152610b8c8184610af0565b90509392505050565b6000819050919050565b610ba881610b95565b82525050565b6000602082019050610bc36000830184610b9f565b92915050565b60008115159050919050565b610bde81610bc9565b8114610be957600080fd5b50565b600081359050610bfb81610bd5565b92915050565b60008060408385031215610c1857610c176106c8565b5b6000610c2685828601610bec565b925050602083013567ffffffffffffffff811115610c4757610c466106cd565b5b610c53858286016109a4565b9150509250929050565b600081519050919050565b600082825260208201905092915050565b6000819050602082019050919050565b610c9281610bc9565b82525050565b6000604083016000830151610cb06000860182610c89565b5060208301518482036020860152610cc88282610a96565b9150508091505092915050565b6000610ce18383610c98565b905092915050565b6000602082019050919050565b6000610d0182610c5d565b610d0b8185610c68565b935083602082028501610d1d85610c79565b8060005b85811015610d595784840389528151610d3a8582610cd5565b9450610d4583610ce9565b925060208a01995050600181019050610d21565b50829750879550505050505092915050565b6000606082019050610d806000830186610694565b610d8d6020830185610b9f565b8181036040830152610d9f8184610cf6565b9050949350505050565b600060208284031215610dbf57610dbe6106c8565b5b6000610dcd848285016107e7565b91505092915050565b610ddf816107be565b82525050565b6000602082019050610dfa6000830184610dd6565b92915050565b60006020820190508181036000830152610e1a8184610cf6565b905092915050565b610e2b8161068a565b8114610e3657600080fd5b50565b600081359050610e4881610e22565b92915050565b600060208284031215610e6457610e636106c8565b5b6000610e7284828501610e39565b91505092915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b600081905092915050565b6000610ec082610a47565b610eca8185610eaa565b9350610eda818560208601610a63565b80840191505092915050565b6000610ef28284610eb5565b915081905092915050565b600082825260208201905092915050565b7f4d756c746963616c6c206167677265676174653a2063616c6c206661696c6564600082015250565b6000610f44602083610efd565b9150610f4f82610f0e565b602082019050919050565b60006020820190508181036000830152610f7381610f37565b9050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b6000610fb48261068a565b91507fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff821415610fe757610fe6610f7a565b5b600182019050919050565b6000610ffd8261068a565b91506110088361068a565b92508282101561101b5761101a610f7a565b5b828203905092915050565b7f4d756c746963616c6c32206167677265676174653a2063616c6c206661696c6560008201527f6400000000000000000000000000000000000000000000000000000000000000602082015250565b6000611082602183610efd565b915061108d82611026565b604082019050919050565b600060208201905081810360008301526110b181611075565b905091905056fea26469706673582212202ad79168f7d1dfe0e32b590efa8eefaaaf0c61e9f6257161be30bcbab1ad332264736f6c63430008090033",
-    Xt = (e) => e.length > 1
-class Q extends Me {
+    Qt = (e) => e.length > 1
+class te extends Ae {
     constructor(...t) {
-        l(this, "contractName")
-        Xt(t) ? super(...t) : super(J, Oe, t[0]), (this.contractName = "Multicall2")
+        b(this, "contractName")
+        Qt(t) ? super(...t) : super(ee, Ce, t[0]), (this.contractName = "Multicall2")
     }
     deploy(t) {
         return super.deploy(t || {})
@@ -392,14 +398,14 @@ class Q extends Me {
         return super.connect(t)
     }
     static createInterface() {
-        return new x(J)
+        return new O(ee)
     }
-    static connect(t, a) {
-        return new k(t, J, a)
+    static connect(t, n) {
+        return new I(t, ee, n)
     }
 }
-l(Q, "contractName"), l(Q, "bytecode", Oe), l(Q, "abi", J)
-var n = ((e) => (
+b(te, "contractName"), b(te, "bytecode", Ce), b(te, "abi", ee)
+var a = ((e) => (
     (e[(e.NONE = 0)] = "NONE"),
     (e[(e.ETHEREUM = 1)] = "ETHEREUM"),
     (e[(e.ROPSTEN = 3)] = "ROPSTEN"),
@@ -447,14 +453,15 @@ var n = ((e) => (
     (e[(e.METIS = 1088)] = "METIS"),
     (e[(e.METIS_TEST = 588)] = "METIS_TEST"),
     e
-))(n || {})
-class w {
+))(a || {})
+class E {
     constructor(t) {
-        l(this, "provider")
-        t ? (this.provider = t) : (this.provider = new pt({ url: this.rpcUrls[0] }))
+        b(this, "provider")
+        b(this, "items", [])
+        t ? (this.provider = t) : (this.provider = new bt({ url: this.rpcUrls[0] }))
     }
     static get chainId() {
-        return n.NONE
+        return a.NONE
     }
     static get chainName() {
         return "None"
@@ -473,7 +480,7 @@ class w {
     }
     static get chainParams() {
         return {
-            chainId: Ie(De(this.chainId)),
+            chainId: ve(Be(this.chainId)),
             chainName: this.chainName,
             nativeCurrency: this.nativeCurrency,
             rpcUrls: this.rpcUrls,
@@ -507,41 +514,38 @@ class w {
     get coinGeckoId() {
         return this.type.coinGeckoId
     }
-}
-class _e {
-    constructor(t, a) {
-        l(this, "connector")
-        l(this, "items", [])
-        if (((this.connector = t), a && a.length)) for (const o of a) Array.isArray(o) ? this.queue(o[0], o[1]) : this.queue(o)
-    }
-    queue(t, a, o) {
-        this.items.push({ transactionPromise: t, contractInterface: a, callback: o })
+    queue(t, n, o, r) {
+        this.items.push({ transactionPromise: t, contractInterface: n, callback: o, failcallback: r })
     }
     async call(t = 0) {
-        const a = []
-        for (let o in this.items) this.items[o].transaction = await this.items[o].transactionPromise
+        const n = []
         for (; this.items.length; ) {
-            const o = Q.connect(this.connector.multiCallAddress, this.connector.provider),
-                i = this.items.splice(0, t || this.items.length),
-                r = i.map((d) => ({ target: d.transaction.to, callData: d.transaction.data })),
-                u = (await o.callStatic.aggregate(r)).returnData
-            i.forEach((d, v) => {
-                var S
-                const O = d.contractInterface
-                    ? d.contractInterface.decodeFunctionResult(
-                          d.contractInterface.parseTransaction({ data: ((S = d.transaction) == null ? void 0 : S.data) || "" }).name,
-                          u[v]
-                      )
-                    : u[v]
-                return d.callback && d.callback(O.length === 1 ? O[0] : O, d.transaction), O
+            const o = te.connect(this.multiCallAddress, this.provider),
+                r = this.items.splice(0, t || this.items.length)
+            for (let d in r) r[d].transaction = await r[d].transactionPromise
+            const i = r.map((d) => ({ target: d.transaction.to, callData: d.transaction.data })),
+                u = await o.callStatic.tryAggregate(!1, i)
+            r.forEach((d, l) => {
+                var N
+                if (u[l].success) {
+                    let k = u[l].returnData
+                    if (d.contractInterface)
+                        try {
+                            k = d.contractInterface.decodeFunctionResult(
+                                d.contractInterface.parseTransaction({ data: ((N = d.transaction) == null ? void 0 : N.data) || "" }).name,
+                                u[l].returnData
+                            )
+                        } catch {}
+                    d.callback && d.callback(k.length === 1 ? k[0] : k, d.transaction), n.push(k.length === 1 ? k[0] : k)
+                } else d.failcallback && d.failcallback(d.transaction), console.log("Fail"), n.push(new Error("Failed"))
             })
         }
-        return a
+        return n
     }
 }
-class G extends w {
+class G extends E {
     static get chainId() {
-        return n.ETHEREUM
+        return a.ETHEREUM
     }
     static get chainName() {
         return "Ethereum"
@@ -562,9 +566,9 @@ class G extends w {
         return "ethereum"
     }
 }
-class Wt extends G {
+class zt extends G {
     static get chainId() {
-        return n.ROPSTEN
+        return a.ROPSTEN
     }
     static get chainName() {
         return "Ropsten"
@@ -579,9 +583,9 @@ class Wt extends G {
         return "ethereum"
     }
 }
-class jt extends G {
+class e0 extends G {
     static get chainId() {
-        return n.KOVAN
+        return a.KOVAN
     }
     static get chainName() {
         return "Kovan"
@@ -593,9 +597,9 @@ class jt extends G {
         return ["https://kovan.etherscan.io/"]
     }
 }
-class Jt extends G {
+class t0 extends G {
     static get chainId() {
-        return n.RINKEBY
+        return a.RINKEBY
     }
     static get chainName() {
         return "Rinkeby"
@@ -607,9 +611,9 @@ class Jt extends G {
         return ["https://rinkeby.etherscan.io/"]
     }
 }
-class Qt extends G {
+class n0 extends G {
     static get chainId() {
-        return n.GOERLI
+        return a.GOERLI
     }
     static get chainName() {
         return "G\xF6rli"
@@ -621,9 +625,9 @@ class Qt extends G {
         return ["https://goerli.etherscan.io/"]
     }
 }
-class Ue extends w {
+class Se extends E {
     static get chainId() {
-        return n.BINANCE
+        return a.BINANCE
     }
     static get chainName() {
         return "Binance Smart Chain"
@@ -644,9 +648,9 @@ class Ue extends w {
         return "binance-smart-chain"
     }
 }
-class Zt extends Ue {
+class a0 extends Se {
     static get chainId() {
-        return n.BINANCE_TEST
+        return a.BINANCE_TEST
     }
     static get chainName() {
         return "Binance Smart Chain Testnet"
@@ -661,9 +665,9 @@ class Zt extends Ue {
         return ""
     }
 }
-class zt extends w {
+class s0 extends E {
     static get chainId() {
-        return n.FUSE
+        return a.FUSE
     }
     static get chainName() {
         return "Fuse"
@@ -684,9 +688,9 @@ class zt extends w {
         return "fuse"
     }
 }
-class Ne extends w {
+class Fe extends E {
     static get chainId() {
-        return n.POLYGON
+        return a.POLYGON
     }
     static get chainName() {
         return "Polygon"
@@ -720,9 +724,9 @@ class Ne extends w {
         return "polygon-pos"
     }
 }
-class en extends Ne {
+class r0 extends Fe {
     static get chainId() {
-        return n.POLYGON_TEST
+        return a.POLYGON_TEST
     }
     static get chainName() {
         return "Mumbai (Polygon Testnet)"
@@ -748,9 +752,9 @@ class en extends Ne {
         return "0xc1400d49baa8e307B4462cD46E0a20109D25F50f"
     }
 }
-class tn extends w {
+class i0 extends E {
     static get chainId() {
-        return n.XDAI
+        return a.XDAI
     }
     static get chainName() {
         return "Gnosis (xDai)"
@@ -771,9 +775,9 @@ class tn extends w {
         return "xdai"
     }
 }
-class Re extends w {
+class Ne extends E {
     static get chainId() {
-        return n.HUOBI
+        return a.HUOBI
     }
     static get chainName() {
         return "Heco"
@@ -794,9 +798,9 @@ class Re extends w {
         return "huobi-token"
     }
 }
-class nn extends Re {
+class o0 extends Ne {
     static get chainId() {
-        return n.HUOBI_TEST
+        return a.HUOBI_TEST
     }
     static get chainName() {
         return "Heco Testnet"
@@ -811,9 +815,9 @@ class nn extends Re {
         return ""
     }
 }
-class Le extends G {
+class Ue extends G {
     static get chainId() {
-        return n.ARBITRUM
+        return a.ARBITRUM
     }
     static get chainName() {
         return "Arbitrum"
@@ -831,9 +835,9 @@ class Le extends G {
         return "arbitrum-one"
     }
 }
-class an extends Le {
+class d0 extends Ue {
     static get chainId() {
-        return n.ARBITRUM_TEST
+        return a.ARBITRUM_TEST
     }
     static get chainName() {
         return "Arbitrum Testnet"
@@ -848,9 +852,9 @@ class an extends Le {
         return "0xa501c031958F579dB7676fF1CE78AD305794d579"
     }
 }
-class He extends w {
+class Re extends E {
     static get chainId() {
-        return n.AVALANCHE
+        return a.AVALANCHE
     }
     static get chainName() {
         return "Avalanche Mainnet C-Chain"
@@ -871,9 +875,9 @@ class He extends w {
         return "avalanche"
     }
 }
-class sn extends He {
+class u0 extends Re {
     static get chainId() {
-        return n.AVALANCHE_TEST
+        return a.AVALANCHE_TEST
     }
     static get chainName() {
         return "Avalanche Testnet C-Chain"
@@ -888,9 +892,9 @@ class sn extends He {
         return ""
     }
 }
-class Pe extends w {
+class Le extends E {
     static get chainId() {
-        return n.TOMO
+        return a.TOMO
     }
     static get chainName() {
         return "TomoChain"
@@ -908,9 +912,9 @@ class Pe extends w {
         return "tomochain"
     }
 }
-class rn extends Pe {
+class l0 extends Le {
     static get chainId() {
-        return n.TOMO_TEST
+        return a.TOMO_TEST
     }
     static get chainName() {
         return "TomoChain Testnet"
@@ -922,9 +926,9 @@ class rn extends Pe {
         return ["https://scan.testnet.tomochain.com/"]
     }
 }
-class $e extends w {
+class Pe extends E {
     static get chainId() {
-        return n.FANTOM
+        return a.FANTOM
     }
     static get chainName() {
         return "Fantom Opera"
@@ -945,9 +949,9 @@ class $e extends w {
         return "fantom"
     }
 }
-class on extends $e {
+class c0 extends Pe {
     static get chainId() {
-        return n.FANTOM
+        return a.FANTOM
     }
     static get chainName() {
         return "Fantom Testnet"
@@ -962,9 +966,9 @@ class on extends $e {
         return ""
     }
 }
-class un extends w {
+class p0 extends E {
     static get chainId() {
-        return n.MOONBEAM
+        return a.MOONBEAM
     }
     static get chainName() {
         return "Moonbeam"
@@ -982,9 +986,9 @@ class un extends w {
         return "0x0769fd68dFb93167989C6f7254cd0D766Fb2841F"
     }
 }
-class dn extends w {
+class b0 extends E {
     static get chainId() {
-        return n.MOONBEAM_TEST
+        return a.MOONBEAM_TEST
     }
     static get chainName() {
         return "Moonbase Alpha"
@@ -999,9 +1003,9 @@ class dn extends w {
         return ["https://moonbase-blockscout.testnet.moonbeam.network/"]
     }
 }
-class pn extends w {
+class y0 extends E {
     static get chainId() {
-        return n.MOONBEAM_KUSAMA
+        return a.MOONBEAM_KUSAMA
     }
     static get chainName() {
         return "Moonriver"
@@ -1022,9 +1026,9 @@ class pn extends w {
         return "moonriver"
     }
 }
-class ln extends G {
+class f0 extends G {
     static get chainId() {
-        return n.HARDHAT
+        return a.HARDHAT
     }
     static get chainName() {
         return "Hardhat"
@@ -1036,9 +1040,9 @@ class ln extends G {
         return []
     }
 }
-class cn extends w {
+class m0 extends E {
     static get chainId() {
-        return n.CELO
+        return a.CELO
     }
     static get chainName() {
         return "Celo"
@@ -1059,9 +1063,9 @@ class cn extends w {
         return "celo"
     }
 }
-class Ge extends w {
+class He extends E {
     static get chainId() {
-        return n.HARMONY
+        return a.HARMONY
     }
     static get chainName() {
         return "Harmony"
@@ -1079,9 +1083,9 @@ class Ge extends w {
         return "0xdDCbf776dF3dE60163066A5ddDF2277cB445E0F3"
     }
 }
-class yn extends Ge {
+class h0 extends He {
     static get chainId() {
-        return n.HARMONY_TEST
+        return a.HARMONY_TEST
     }
     static get chainName() {
         return "Harmony Testnet"
@@ -1096,9 +1100,9 @@ class yn extends Ge {
         return ""
     }
 }
-class Ye extends w {
+class $e extends E {
     static get chainId() {
-        return n.OKEX
+        return a.OKEX
     }
     static get chainName() {
         return "OKExChain"
@@ -1119,9 +1123,9 @@ class Ye extends w {
         return "okex-chain"
     }
 }
-class bn extends Ye {
+class T0 extends $e {
     static get chainId() {
-        return n.OKEX_TEST
+        return a.OKEX_TEST
     }
     static get chainName() {
         return "OKExChain Testnet"
@@ -1136,9 +1140,9 @@ class bn extends Ye {
         return ""
     }
 }
-class fn extends w {
+class g0 extends E {
     static get chainId() {
-        return n.PALM
+        return a.PALM
     }
     static get chainName() {
         return "Palm"
@@ -1156,9 +1160,9 @@ class fn extends w {
         return "0x0769fd68dFb93167989C6f7254cd0D766Fb2841F"
     }
 }
-class mn extends w {
+class w0 extends E {
     static get chainId() {
-        return n.TELOS
+        return a.TELOS
     }
     static get chainName() {
         return "Telos"
@@ -1176,108 +1180,115 @@ class mn extends w {
         return "0xdDCbf776dF3dE60163066A5ddDF2277cB445E0F3"
     }
 }
-const h = {
-    [n.NONE]: w,
-    [n.ETHEREUM]: G,
-    [n.ROPSTEN]: Wt,
-    [n.KOVAN]: jt,
-    [n.RINKEBY]: Jt,
-    [n.GOERLI]: Qt,
-    [n.BINANCE]: Ue,
-    [n.BINANCE_TEST]: Zt,
-    [n.FUSE]: zt,
-    [n.POLYGON]: Ne,
-    [n.POLYGON_TEST]: en,
-    [n.XDAI]: tn,
-    [n.HUOBI]: Re,
-    [n.HUOBI_TEST]: nn,
-    [n.ARBITRUM]: Le,
-    [n.ARBITRUM_TEST]: an,
-    [n.AVALANCHE]: He,
-    [n.AVALANCHE_TEST]: sn,
-    [n.TOMO]: Pe,
-    [n.TOMO_TEST]: rn,
-    [n.FANTOM]: $e,
-    [n.FANTOM_TEST]: on,
-    [n.MOONBEAM]: un,
-    [n.MOONBEAM_TEST]: dn,
-    [n.MOONBEAM_KUSAMA]: pn,
-    [n.HARDHAT]: ln,
-    [n.CELO]: cn,
-    [n.HARMONY]: Ge,
-    [n.HARMONY_TEST]: yn,
-    [n.OKEX]: Ye,
-    [n.OKEX_TEST]: bn,
-    [n.PALM]: fn,
-    [n.TELOS]: mn,
+const g = {
+    [a.NONE]: E,
+    [a.ETHEREUM]: G,
+    [a.ROPSTEN]: zt,
+    [a.KOVAN]: e0,
+    [a.RINKEBY]: t0,
+    [a.GOERLI]: n0,
+    [a.BINANCE]: Se,
+    [a.BINANCE_TEST]: a0,
+    [a.FUSE]: s0,
+    [a.POLYGON]: Fe,
+    [a.POLYGON_TEST]: r0,
+    [a.XDAI]: i0,
+    [a.HUOBI]: Ne,
+    [a.HUOBI_TEST]: o0,
+    [a.ARBITRUM]: Ue,
+    [a.ARBITRUM_TEST]: d0,
+    [a.AVALANCHE]: Re,
+    [a.AVALANCHE_TEST]: u0,
+    [a.TOMO]: Le,
+    [a.TOMO_TEST]: l0,
+    [a.FANTOM]: Pe,
+    [a.FANTOM_TEST]: c0,
+    [a.MOONBEAM]: p0,
+    [a.MOONBEAM_TEST]: b0,
+    [a.MOONBEAM_KUSAMA]: y0,
+    [a.HARDHAT]: f0,
+    [a.CELO]: m0,
+    [a.HARMONY]: He,
+    [a.HARMONY_TEST]: h0,
+    [a.OKEX]: $e,
+    [a.OKEX_TEST]: T0,
+    [a.PALM]: g0,
+    [a.TELOS]: w0,
 }
-class Tn {
+class A0 {
     constructor() {
-        l(this, "name", "Loading...")
-        l(this, "connected", !1)
-        l(this, "chainId", n.NONE)
-        l(this, "address", "")
-        l(this, "addresses", [])
-        l(this, "block", 0)
-        l(this, "provider")
-        l(this, "update")
-        l(this, "connector")
+        b(this, "name", "Loading...")
+        b(this, "walletProvider", 1)
+        b(this, "connected", !1)
+        b(this, "chainId", a.NONE)
+        b(this, "address", "")
+        b(this, "addresses", [])
+        b(this, "block", 0)
+        b(this, "provider")
+        b(this, "gnosis")
+        b(this, "safe")
+        b(this, "update")
+        b(this, "connector")
     }
     connect() {
         this.connected && window.ethereum.request && window.ethereum.request({ method: "eth_requestAccounts" })
     }
     switch(t) {
-        window.ethereum &&
-            window.ethereum.request &&
-            window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: Ie(De(t)) }] }).catch((a) => {
-                console.log(a),
-                    a.code == 4902 &&
-                        window.ethereum &&
-                        window.ethereum.request &&
-                        window.ethereum.request({ method: "wallet_addEthereumChain", params: [h[t].chainParams] })
-            })
+        console.log(t, window.ethereum),
+            window.ethereum &&
+                window.ethereum.request &&
+                window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: ve(Be(t)) }] }).catch((n) => {
+                    console.log(n),
+                        n.code == 4902 &&
+                            window.ethereum &&
+                            window.ethereum.request &&
+                            window.ethereum.request({ method: "wallet_addEthereumChain", params: [g[t].chainParams] })
+                })
     }
     setup() {
+        const t = new yt()
         if (
-            ((this.update = P(() => this.chainId + "|" + this.block + "|" + this.address)),
-            (this.connector = P(() => (this.provider ? new h[this.chainId](this.provider) : null))),
+            (t.safe.getInfo().then((n) => {
+                console.log("Gnosis safe found:", n), (this.safe = n), (this.gnosis = X(new ie(new ft.SafeAppProvider(n, t))))
+            }),
+            (this.update = L(() => this.chainId + "|" + this.block + "|" + this.address)),
+            (this.connector = L(() => (this.provider ? new g[this.chainId](this.provider) : null))),
             window.ethereum && window.ethereum.request)
         ) {
-            ;(this.provider = te(new Ce(window.ethereum))),
-                this.connector,
+            ;(this.provider = X(new ie(window.ethereum))),
                 window.ethereum.isMetaMask ? (this.name = "MetaMask") : (this.name = "Other"),
                 (window.ethereum.autoRefreshOnNetworkChange = !1)
-            const t = (r) => {
-                    this.block = r
+            const n = (u) => {
+                    this.block = u
                 },
-                a = (r) => {
-                    var u
-                    ;(this.chainId = Number(V.from(r))),
+                o = (u) => {
+                    var d
+                    ;(this.chainId = Number(Y.from(u))),
                         (this.connected = !0),
-                        (u = this.provider) == null || u.off("block"),
-                        (this.provider = te(new Ce(window.ethereum))),
-                        this.provider.on("block", t)
+                        (d = this.provider) == null || d.off("block"),
+                        (this.provider = X(new ie(window.ethereum))),
+                        this.provider.on("block", n)
                 },
-                o = (r) => {
-                    a(r.chainId)
+                r = (u) => {
+                    o(u.chainId)
                 },
-                i = (r) => {
-                    ;(this.addresses = r || []), r && r.length ? (this.address = r[0]) : (this.address = "")
+                i = (u) => {
+                    ;(this.addresses = u || []), u && u.length ? (this.address = u[0]) : (this.address = "")
                 }
             window.ethereum.on("accountsChanged", i),
-                window.ethereum.on("chainChanged", a),
-                window.ethereum.on("connect", o),
-                window.ethereum.on("disconnect", (r) => {
+                window.ethereum.on("chainChanged", o),
+                window.ethereum.on("connect", r),
+                window.ethereum.on("disconnect", (u) => {
                     ;(this.connected = !1), (this.block = 0)
                 }),
-                this.provider.on("block", t),
+                this.provider.on("block", n),
                 window.ethereum
                     .request({ method: "eth_accounts" })
-                    .then((r) => {
-                        i(r), o({ chainId: window.ethereum.chainId })
+                    .then((u) => {
+                        i(u), r({ chainId: window.ethereum.chainId })
                     })
-                    .catch((r) => {
-                        console.log("Error", r)
+                    .catch((u) => {
+                        console.log("Error", u)
                     })
         } else this.name = "None"
     }
@@ -1356,16 +1367,16 @@ const oe = [
         type: "function",
     },
 ]
-class K {
+class $ {
     static createInterface() {
-        return new x(oe)
+        return new O(oe)
     }
-    static connect(t, a) {
-        return new k(t, oe, a)
+    static connect(t, n) {
+        return new I(t, oe, n)
     }
 }
-l(K, "abi", oe)
-const ue = [
+b($, "abi", oe)
+const de = [
     {
         inputs: [],
         name: "getOwners",
@@ -1381,16 +1392,16 @@ const ue = [
         type: "function",
     },
 ]
-class Ve {
+class Ge {
     static createInterface() {
-        return new x(ue)
+        return new O(de)
     }
-    static connect(t, a) {
-        return new k(t, ue, a)
+    static connect(t, n) {
+        return new I(t, de, n)
     }
 }
-l(Ve, "abi", ue)
-const de = [
+b(Ge, "abi", de)
+const ue = [
     {
         anonymous: !1,
         inputs: [
@@ -1638,37 +1649,37 @@ const de = [
         type: "function",
     },
 ]
-class R {
+class H {
     static createInterface() {
-        return new x(de)
+        return new O(ue)
     }
-    static connect(t, a) {
-        return new k(t, de, a)
+    static connect(t, n) {
+        return new I(t, ue, n)
     }
 }
-l(R, "abi", de)
+b(H, "abi", ue)
 class qe {
-    constructor(t, a) {
-        l(this, "connector")
-        l(this, "address")
-        l(this, "safe")
-        ;(this.connector = te(new h[t]())), (this.address = a), (this.safe = te(Ve.connect(a, this.connector.provider)))
+    constructor(t, n) {
+        b(this, "connector")
+        b(this, "address")
+        b(this, "safe")
+        ;(this.connector = X(new g[t]())), (this.address = n), (this.safe = X(Ge.connect(n, this.connector.provider)))
     }
     get chainID() {
-        return { [n.ETHEREUM]: "eth", [n.XDAI]: "gno", [n.POLYGON]: "matic", [n.BINANCE]: "bnb", [n.ARBITRUM]: "arb1", [n.AVALANCHE]: "avax" }[
+        return { [a.ETHEREUM]: "eth", [a.XDAI]: "gno", [a.POLYGON]: "matic", [a.BINANCE]: "bnb", [a.ARBITRUM]: "arb1", [a.AVALANCHE]: "avax" }[
             this.connector.chainId
         ]
     }
     get transactionHistoryUrl() {
-        if ([n.ETHEREUM, n.XDAI, n.POLYGON, n.BINANCE, n.ARBITRUM, n.AVALANCHE].includes(this.connector.chainId))
+        if ([a.ETHEREUM, a.XDAI, a.POLYGON, a.BINANCE, a.ARBITRUM, a.AVALANCHE].includes(this.connector.chainId))
             return "https://gnosis-safe.io/app/" + this.chainID + ":" + this.address + "/transactions/history"
-        if (this.connector.chainId == n.HARMONY) return "https://multisig.harmony.one/#/safes/" + this.address + "/transactions"
-        if (this.connector.chainId == n.FANTOM) return "https://safe.fantom.network/#/safes/" + this.address + "/transactions"
-        if (this.connector.chainId == n.CELO) return "https://ui.celo-safe.io/#/safes/" + this.address + "/transactions"
-        if (this.connector.chainId == n.MOONBEAM) return "https://multisig.moonbeam.network/moonbeam:" + this.address + "/transactions/history"
-        if (this.connector.chainId == n.MOONBEAM_KUSAMA)
+        if (this.connector.chainId == a.HARMONY) return "https://multisig.harmony.one/#/safes/" + this.address + "/transactions"
+        if (this.connector.chainId == a.FANTOM) return "https://safe.fantom.network/#/safes/" + this.address + "/transactions"
+        if (this.connector.chainId == a.CELO) return "https://ui.celo-safe.io/#/safes/" + this.address + "/transactions"
+        if (this.connector.chainId == a.MOONBEAM) return "https://multisig.moonbeam.network/moonbeam:" + this.address + "/transactions/history"
+        if (this.connector.chainId == a.MOONBEAM_KUSAMA)
             return "https://multisig.moonbeam.network/mriver:" + this.address + "/transactions/history"
-        if (this.connector.chainId == n.FUSE) return "https://safe.fuse.io/fuse:" + this.address + "/transactions/history"
+        if (this.connector.chainId == a.FUSE) return "https://safe.fuse.io/fuse:" + this.address + "/transactions/history"
     }
     async getOwners() {
         return await this.safe.getOwners()
@@ -1677,38 +1688,38 @@ class qe {
         return (await this.safe.getThreshold()).toNumber()
     }
     async getTokenBalances() {
-        if ([n.ETHEREUM, n.BINANCE, n.ARBITRUM, n.POLYGON, n.XDAI, n.FUSE, n.CELO, n.FANTOM].indexOf(this.connector.chainId) !== -1) {
+        if ([a.ETHEREUM, a.BINANCE, a.ARBITRUM, a.POLYGON, a.XDAI, a.FUSE, a.CELO, a.FANTOM].indexOf(this.connector.chainId) !== -1) {
             let t =
                 "https://safe-client.gnosis.io/v1/chains/" +
                 this.connector.chainId +
                 "/safes/" +
                 this.address +
                 "/balances/USD?exclude_spam=true&trusted=false"
-            this.connector.chainId === n.FUSE &&
+            this.connector.chainId === a.FUSE &&
                 (t = "https://safe-service.fuse.io/cgw/v1/chains/122/safes/" + this.address + "/balances/USD/?exclude_spam=true&trusted=false"),
-                this.connector.chainId === n.CELO &&
+                this.connector.chainId === a.CELO &&
                     (t =
                         "https://client-gateway.celo-safe.io/v1/chains/" +
                         this.connector.chainId +
                         "/safes/" +
                         this.address +
                         "/balances/USD?exclude_spam=true&trusted=false"),
-                this.connector.chainId === n.FANTOM &&
+                this.connector.chainId === a.FANTOM &&
                     (t =
                         "https://safe.fantom.network/v1/chains/" +
                         this.connector.chainId +
                         "/safes/" +
                         this.address +
                         "/balances/USD?exclude_spam=true&trusted=false")
-            const a = await (await fetch(t)).json()
-            return { total: parseFloat(a.fiatTotal), tokens: a.items }
+            const n = await (await fetch(t)).json()
+            return { total: parseFloat(n.fiatTotal), tokens: n.items }
         }
-        return this.connector.chainId === n.HARMONY
+        return this.connector.chainId === a.HARMONY
             ? { total: 0, tokens: [] }
             : (console.log("TODO:", this.connector.chainName), { total: 0, tokens: [] })
     }
 }
-const Z = [
+const ne = [
         { inputs: [{ internalType: "string", name: "_greeting", type: "string" }], stateMutability: "nonpayable", type: "constructor" },
         {
             inputs: [],
@@ -1725,18 +1736,18 @@ const Z = [
             type: "function",
         },
     ],
-    Ke =
+    Ve =
         "0x60806040523480156200001157600080fd5b5060405162000812380380620008128339818101604052810190620000379190620002a4565b80600090805190602001906200004f92919062000057565b50506200035a565b828054620000659062000324565b90600052602060002090601f016020900481019282620000895760008555620000d5565b82601f10620000a457805160ff1916838001178555620000d5565b82800160010185558215620000d5579182015b82811115620000d4578251825591602001919060010190620000b7565b5b509050620000e49190620000e8565b5090565b5b8082111562000103576000816000905550600101620000e9565b5090565b6000604051905090565b600080fd5b600080fd5b600080fd5b600080fd5b6000601f19601f8301169050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b620001708262000125565b810181811067ffffffffffffffff8211171562000192576200019162000136565b5b80604052505050565b6000620001a762000107565b9050620001b5828262000165565b919050565b600067ffffffffffffffff821115620001d857620001d762000136565b5b620001e38262000125565b9050602081019050919050565b60005b8381101562000210578082015181840152602081019050620001f3565b8381111562000220576000848401525b50505050565b60006200023d6200023784620001ba565b6200019b565b9050828152602081018484840111156200025c576200025b62000120565b5b62000269848285620001f0565b509392505050565b600082601f8301126200028957620002886200011b565b5b81516200029b84826020860162000226565b91505092915050565b600060208284031215620002bd57620002bc62000111565b5b600082015167ffffffffffffffff811115620002de57620002dd62000116565b5b620002ec8482850162000271565b91505092915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602260045260246000fd5b600060028204905060018216806200033d57607f821691505b60208210811415620003545762000353620002f5565b5b50919050565b6104a8806200036a6000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c8063a41368621461003b578063cfae321714610057575b600080fd5b6100556004803603810190610050919061031e565b610075565b005b61005f61008f565b60405161006c91906103ef565b60405180910390f35b806000908051906020019061008b929190610121565b5050565b60606000805461009e90610440565b80601f01602080910402602001604051908101604052809291908181526020018280546100ca90610440565b80156101175780601f106100ec57610100808354040283529160200191610117565b820191906000526020600020905b8154815290600101906020018083116100fa57829003601f168201915b5050505050905090565b82805461012d90610440565b90600052602060002090601f01602090048101928261014f5760008555610196565b82601f1061016857805160ff1916838001178555610196565b82800160010185558215610196579182015b8281111561019557825182559160200191906001019061017a565b5b5090506101a391906101a7565b5090565b5b808211156101c05760008160009055506001016101a8565b5090565b6000604051905090565b600080fd5b600080fd5b600080fd5b600080fd5b6000601f19601f8301169050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b61022b826101e2565b810181811067ffffffffffffffff8211171561024a576102496101f3565b5b80604052505050565b600061025d6101c4565b90506102698282610222565b919050565b600067ffffffffffffffff821115610289576102886101f3565b5b610292826101e2565b9050602081019050919050565b82818337600083830152505050565b60006102c16102bc8461026e565b610253565b9050828152602081018484840111156102dd576102dc6101dd565b5b6102e884828561029f565b509392505050565b600082601f830112610305576103046101d8565b5b81356103158482602086016102ae565b91505092915050565b600060208284031215610334576103336101ce565b5b600082013567ffffffffffffffff811115610352576103516101d3565b5b61035e848285016102f0565b91505092915050565b600081519050919050565b600082825260208201905092915050565b60005b838110156103a1578082015181840152602081019050610386565b838111156103b0576000848401525b50505050565b60006103c182610367565b6103cb8185610372565b93506103db818560208601610383565b6103e4816101e2565b840191505092915050565b6000602082019050818103600083015261040981846103b6565b905092915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602260045260246000fd5b6000600282049050600182168061045857607f821691505b6020821081141561046c5761046b610411565b5b5091905056fea26469706673582212202df62d8852bcb0e0db2e0c936670271d826d4c7f8be6532ea5f14d364c5fc86364736f6c63430008090033",
-    hn = (e) => e.length > 1
-class Xe extends Me {
+    _0 = (e) => e.length > 1
+class Ye extends Ae {
     constructor(...t) {
-        hn(t) ? super(...t) : super(Z, Ke, t[0]), (this.contractName = "Greeter")
+        _0(t) ? super(...t) : super(ne, Ve, t[0]), (this.contractName = "Greeter")
     }
-    deploy(t, a) {
-        return super.deploy(t, a || {})
+    deploy(t, n) {
+        return super.deploy(t, n || {})
     }
-    getDeployTransaction(t, a) {
-        return super.getDeployTransaction(t, a || {})
+    getDeployTransaction(t, n) {
+        return super.getDeployTransaction(t, n || {})
     }
     attach(t) {
         return super.attach(t)
@@ -1745,15 +1756,15 @@ class Xe extends Me {
         return super.connect(t)
     }
     static createInterface() {
-        return new x(Z)
+        return new O(ne)
     }
-    static connect(t, a) {
-        return new k(t, Z, a)
+    static connect(t, n) {
+        return new I(t, ne, n)
     }
 }
-Xe.bytecode = Ke
-Xe.abi = Z
-const fe = [
+Ye.bytecode = Ve
+Ye.abi = ne
+const ye = [
     {
         anonymous: !1,
         inputs: [
@@ -2186,99 +2197,16 @@ const fe = [
         type: "function",
     },
 ]
-class We {
+class Ke {
     static createInterface() {
-        return new x(fe)
+        return new O(ye)
     }
-    static connect(t, a) {
-        return new k(t, fe, a)
+    static connect(t, n) {
+        return new I(t, ye, n)
     }
 }
-We.abi = fe
-const me = [
-    {
-        anonymous: !1,
-        inputs: [
-            { indexed: !0, internalType: "address", name: "owner", type: "address" },
-            { indexed: !0, internalType: "address", name: "spender", type: "address" },
-            { indexed: !1, internalType: "uint256", name: "value", type: "uint256" },
-        ],
-        name: "Approval",
-        type: "event",
-    },
-    {
-        anonymous: !1,
-        inputs: [
-            { indexed: !0, internalType: "address", name: "from", type: "address" },
-            { indexed: !0, internalType: "address", name: "to", type: "address" },
-            { indexed: !1, internalType: "uint256", name: "value", type: "uint256" },
-        ],
-        name: "Transfer",
-        type: "event",
-    },
-    {
-        inputs: [
-            { internalType: "address", name: "owner", type: "address" },
-            { internalType: "address", name: "spender", type: "address" },
-        ],
-        name: "allowance",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            { internalType: "address", name: "spender", type: "address" },
-            { internalType: "uint256", name: "amount", type: "uint256" },
-        ],
-        name: "approve",
-        outputs: [{ internalType: "bool", name: "", type: "bool" }],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [{ internalType: "address", name: "account", type: "address" }],
-        name: "balanceOf",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    { inputs: [], name: "decimals", outputs: [{ internalType: "uint8", name: "", type: "uint8" }], stateMutability: "view", type: "function" },
-    { inputs: [], name: "name", outputs: [{ internalType: "string", name: "", type: "string" }], stateMutability: "view", type: "function" },
-    {
-        inputs: [
-            { internalType: "address", name: "owner", type: "address" },
-            { internalType: "address", name: "spender", type: "address" },
-            { internalType: "uint256", name: "value", type: "uint256" },
-            { internalType: "uint256", name: "deadline", type: "uint256" },
-            { internalType: "uint8", name: "v", type: "uint8" },
-            { internalType: "bytes32", name: "r", type: "bytes32" },
-            { internalType: "bytes32", name: "s", type: "bytes32" },
-        ],
-        name: "permit",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    { inputs: [], name: "symbol", outputs: [{ internalType: "string", name: "", type: "string" }], stateMutability: "view", type: "function" },
-    {
-        inputs: [],
-        name: "totalSupply",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "view",
-        type: "function",
-    },
-]
-class z {
-    static createInterface() {
-        return new x(me)
-    }
-    static connect(t, a) {
-        return new k(t, me, a)
-    }
-}
-z.abi = me
-const Te = [
+Ke.abi = ye
+const fe = [
     {
         inputs: [],
         name: "getOwners",
@@ -2294,16 +2222,16 @@ const Te = [
         type: "function",
     },
 ]
-class je {
+class Xe {
     static createInterface() {
-        return new x(Te)
+        return new O(fe)
     }
-    static connect(t, a) {
-        return new k(t, Te, a)
+    static connect(t, n) {
+        return new I(t, fe, n)
     }
 }
-je.abi = Te
-const he = [
+Xe.abi = fe
+const me = [
     {
         anonymous: !1,
         inputs: [
@@ -2503,6 +2431,13 @@ const he = [
     },
     {
         inputs: [],
+        name: "sushiPerSecond",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [],
         name: "totalAllocPoint",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
@@ -2553,16 +2488,52 @@ const he = [
         type: "function",
     },
 ]
-class se {
+class J {
     static createInterface() {
-        return new x(he)
+        return new O(me)
     }
-    static connect(t, a) {
-        return new k(t, he, a)
+    static connect(t, n) {
+        return new I(t, me, n)
     }
 }
-se.abi = he
-const ge = [
+J.abi = me
+const he = [
+    {
+        inputs: [{ internalType: "uint256", name: "poolId", type: "uint256" }],
+        name: "lpToken",
+        outputs: [{ internalType: "address", name: "", type: "address" }],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [{ internalType: "uint256", name: "poolId", type: "uint256" }],
+        name: "poolInfo",
+        outputs: [
+            {
+                components: [
+                    { internalType: "uint128", name: "accSushiPerShare", type: "uint128" },
+                    { internalType: "uint64", name: "lastRewardBlock", type: "uint64" },
+                    { internalType: "uint64", name: "allocPoint", type: "uint64" },
+                ],
+                internalType: "struct IMasterChefV2.PoolInfo",
+                name: "",
+                type: "tuple",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+]
+class We {
+    static createInterface() {
+        return new O(he)
+    }
+    static connect(t, n) {
+        return new I(t, he, n)
+    }
+}
+We.abi = he
+const Te = [
     {
         anonymous: !1,
         inputs: [
@@ -2645,273 +2616,16 @@ const ge = [
         type: "function",
     },
 ]
-class Je {
+class je {
     static createInterface() {
-        return new x(ge)
+        return new O(Te)
     }
-    static connect(t, a) {
-        return new k(t, ge, a)
+    static connect(t, n) {
+        return new I(t, Te, n)
     }
 }
-Je.abi = ge
-const we = [
-    {
-        anonymous: !1,
-        inputs: [
-            { indexed: !0, internalType: "address", name: "owner", type: "address" },
-            { indexed: !0, internalType: "address", name: "spender", type: "address" },
-            { indexed: !1, internalType: "uint256", name: "value", type: "uint256" },
-        ],
-        name: "Approval",
-        type: "event",
-    },
-    {
-        anonymous: !1,
-        inputs: [
-            { indexed: !0, internalType: "address", name: "sender", type: "address" },
-            { indexed: !1, internalType: "uint256", name: "amount0", type: "uint256" },
-            { indexed: !1, internalType: "uint256", name: "amount1", type: "uint256" },
-            { indexed: !0, internalType: "address", name: "to", type: "address" },
-        ],
-        name: "Burn",
-        type: "event",
-    },
-    {
-        anonymous: !1,
-        inputs: [
-            { indexed: !0, internalType: "address", name: "sender", type: "address" },
-            { indexed: !1, internalType: "uint256", name: "amount0", type: "uint256" },
-            { indexed: !1, internalType: "uint256", name: "amount1", type: "uint256" },
-        ],
-        name: "Mint",
-        type: "event",
-    },
-    {
-        anonymous: !1,
-        inputs: [
-            { indexed: !0, internalType: "address", name: "sender", type: "address" },
-            { indexed: !1, internalType: "uint256", name: "amount0In", type: "uint256" },
-            { indexed: !1, internalType: "uint256", name: "amount1In", type: "uint256" },
-            { indexed: !1, internalType: "uint256", name: "amount0Out", type: "uint256" },
-            { indexed: !1, internalType: "uint256", name: "amount1Out", type: "uint256" },
-            { indexed: !0, internalType: "address", name: "to", type: "address" },
-        ],
-        name: "Swap",
-        type: "event",
-    },
-    {
-        anonymous: !1,
-        inputs: [
-            { indexed: !1, internalType: "uint112", name: "reserve0", type: "uint112" },
-            { indexed: !1, internalType: "uint112", name: "reserve1", type: "uint112" },
-        ],
-        name: "Sync",
-        type: "event",
-    },
-    {
-        anonymous: !1,
-        inputs: [
-            { indexed: !0, internalType: "address", name: "from", type: "address" },
-            { indexed: !0, internalType: "address", name: "to", type: "address" },
-            { indexed: !1, internalType: "uint256", name: "value", type: "uint256" },
-        ],
-        name: "Transfer",
-        type: "event",
-    },
-    {
-        inputs: [],
-        name: "DOMAIN_SEPARATOR",
-        outputs: [{ internalType: "bytes32", name: "", type: "bytes32" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "MINIMUM_LIQUIDITY",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "pure",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "PERMIT_TYPEHASH",
-        outputs: [{ internalType: "bytes32", name: "", type: "bytes32" }],
-        stateMutability: "pure",
-        type: "function",
-    },
-    {
-        inputs: [
-            { internalType: "address", name: "owner", type: "address" },
-            { internalType: "address", name: "spender", type: "address" },
-        ],
-        name: "allowance",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            { internalType: "address", name: "spender", type: "address" },
-            { internalType: "uint256", name: "value", type: "uint256" },
-        ],
-        name: "approve",
-        outputs: [{ internalType: "bool", name: "", type: "bool" }],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [{ internalType: "address", name: "owner", type: "address" }],
-        name: "balanceOf",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [{ internalType: "address", name: "to", type: "address" }],
-        name: "burn",
-        outputs: [
-            { internalType: "uint256", name: "amount0", type: "uint256" },
-            { internalType: "uint256", name: "amount1", type: "uint256" },
-        ],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    { inputs: [], name: "decimals", outputs: [{ internalType: "uint8", name: "", type: "uint8" }], stateMutability: "pure", type: "function" },
-    {
-        inputs: [],
-        name: "factory",
-        outputs: [{ internalType: "address", name: "", type: "address" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "getReserves",
-        outputs: [
-            { internalType: "uint112", name: "reserve0", type: "uint112" },
-            { internalType: "uint112", name: "reserve1", type: "uint112" },
-            { internalType: "uint32", name: "blockTimestampLast", type: "uint32" },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            { internalType: "address", name: "", type: "address" },
-            { internalType: "address", name: "", type: "address" },
-        ],
-        name: "initialize",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    { inputs: [], name: "kLast", outputs: [{ internalType: "uint256", name: "", type: "uint256" }], stateMutability: "view", type: "function" },
-    {
-        inputs: [{ internalType: "address", name: "to", type: "address" }],
-        name: "mint",
-        outputs: [{ internalType: "uint256", name: "liquidity", type: "uint256" }],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    { inputs: [], name: "name", outputs: [{ internalType: "string", name: "", type: "string" }], stateMutability: "pure", type: "function" },
-    {
-        inputs: [{ internalType: "address", name: "owner", type: "address" }],
-        name: "nonces",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            { internalType: "address", name: "owner", type: "address" },
-            { internalType: "address", name: "spender", type: "address" },
-            { internalType: "uint256", name: "value", type: "uint256" },
-            { internalType: "uint256", name: "deadline", type: "uint256" },
-            { internalType: "uint8", name: "v", type: "uint8" },
-            { internalType: "bytes32", name: "r", type: "bytes32" },
-            { internalType: "bytes32", name: "s", type: "bytes32" },
-        ],
-        name: "permit",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "price0CumulativeLast",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "price1CumulativeLast",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [{ internalType: "address", name: "to", type: "address" }],
-        name: "skim",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [
-            { internalType: "uint256", name: "amount0Out", type: "uint256" },
-            { internalType: "uint256", name: "amount1Out", type: "uint256" },
-            { internalType: "address", name: "to", type: "address" },
-            { internalType: "bytes", name: "data", type: "bytes" },
-        ],
-        name: "swap",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    { inputs: [], name: "symbol", outputs: [{ internalType: "string", name: "", type: "string" }], stateMutability: "pure", type: "function" },
-    { inputs: [], name: "sync", outputs: [], stateMutability: "nonpayable", type: "function" },
-    { inputs: [], name: "token0", outputs: [{ internalType: "address", name: "", type: "address" }], stateMutability: "view", type: "function" },
-    { inputs: [], name: "token1", outputs: [{ internalType: "address", name: "", type: "address" }], stateMutability: "view", type: "function" },
-    {
-        inputs: [],
-        name: "totalSupply",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            { internalType: "address", name: "to", type: "address" },
-            { internalType: "uint256", name: "value", type: "uint256" },
-        ],
-        name: "transfer",
-        outputs: [{ internalType: "bool", name: "", type: "bool" }],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [
-            { internalType: "address", name: "from", type: "address" },
-            { internalType: "address", name: "to", type: "address" },
-            { internalType: "uint256", name: "value", type: "uint256" },
-        ],
-        name: "transferFrom",
-        outputs: [{ internalType: "bool", name: "", type: "bool" }],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-]
-class Qe {
-    static createInterface() {
-        return new x(we)
-    }
-    static connect(t, a) {
-        return new k(t, we, a)
-    }
-}
-Qe.abi = we
-const Ae = [
+je.abi = Te
+const ge = [
     { inputs: [], name: "WETH", outputs: [{ internalType: "address", name: "", type: "address" }], stateMutability: "pure", type: "function" },
     {
         inputs: [
@@ -3166,16 +2880,16 @@ const Ae = [
         type: "function",
     },
 ]
-class Ze {
+class Je {
     static createInterface() {
-        return new x(Ae)
+        return new O(ge)
     }
-    static connect(t, a) {
-        return new k(t, Ae, a)
+    static connect(t, n) {
+        return new I(t, ge, n)
     }
 }
-Ze.abi = Ae
-const Ee = [
+Je.abi = ge
+const we = [
     {
         anonymous: !1,
         inputs: [
@@ -3192,18 +2906,41 @@ const Ee = [
         stateMutability: "view",
         type: "function",
     },
+    {
+        inputs: [
+            { internalType: "address[]", name: "lpTokens", type: "address[]" },
+            { internalType: "uint256[]", name: "amounts", type: "uint256[]" },
+            { internalType: "uint256[]", name: "minimumOut0", type: "uint256[]" },
+            { internalType: "uint256[]", name: "minimumOut1", type: "uint256[]" },
+        ],
+        name: "burnPairs",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+    },
     { inputs: [], name: "owner", outputs: [{ internalType: "address", name: "", type: "address" }], stateMutability: "view", type: "function" },
+    {
+        inputs: [
+            { internalType: "address", name: "token", type: "address" },
+            { internalType: "address", name: "to", type: "address" },
+            { internalType: "uint256", name: "_value", type: "uint256" },
+        ],
+        name: "withdraw",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+    },
 ]
-class xe {
+class W {
     static createInterface() {
-        return new x(Ee)
+        return new O(we)
     }
-    static connect(t, a) {
-        return new k(t, Ee, a)
+    static connect(t, n) {
+        return new I(t, we, n)
     }
 }
-xe.abi = Ee
-const ee = [
+W.abi = we
+const ae = [
         {
             inputs: [
                 {
@@ -3368,12 +3105,12 @@ const ee = [
             type: "function",
         },
     ],
-    ze =
+    Ze =
         "0x608060405234801561001057600080fd5b506110ee806100206000396000f3fe608060405234801561001057600080fd5b50600436106100b45760003560e01c806372425d9d1161007157806372425d9d146101a657806386d516e8146101c4578063a8b0574e146101e2578063bce38bd714610200578063c3077fa914610230578063ee82ac5e14610262576100b4565b80630f28c97d146100b9578063252dba42146100d757806327e86d6e14610108578063399542e91461012657806342cbb15c146101585780634d2301cc14610176575b600080fd5b6100c1610292565b6040516100ce91906106a3565b60405180910390f35b6100f160048036038101906100ec91906109d2565b61029a565b6040516100ff929190610b65565b60405180910390f35b610110610423565b60405161011d9190610bae565b60405180910390f35b610140600480360381019061013b9190610c01565b610438565b60405161014f93929190610d6b565b60405180910390f35b610160610457565b60405161016d91906106a3565b60405180910390f35b610190600480360381019061018b9190610da9565b61045f565b60405161019d91906106a3565b60405180910390f35b6101ae610480565b6040516101bb91906106a3565b60405180910390f35b6101cc610488565b6040516101d991906106a3565b60405180910390f35b6101ea610490565b6040516101f79190610de5565b60405180910390f35b61021a60048036038101906102159190610c01565b610498565b6040516102279190610e00565b60405180910390f35b61024a600480360381019061024591906109d2565b610640565b60405161025993929190610d6b565b60405180910390f35b61027c60048036038101906102779190610e4e565b610663565b6040516102899190610bae565b60405180910390f35b600042905090565b60006060439150825167ffffffffffffffff8111156102bc576102bb6106e8565b5b6040519080825280602002602001820160405280156102ef57816020015b60608152602001906001900390816102da5790505b50905060005b835181101561041d5760008085838151811061031457610313610e7b565b5b60200260200101516000015173ffffffffffffffffffffffffffffffffffffffff1686848151811061034957610348610e7b565b5b6020026020010151602001516040516103629190610ee6565b6000604051808303816000865af19150503d806000811461039f576040519150601f19603f3d011682016040523d82523d6000602084013e6103a4565b606091505b5091509150816103e9576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016103e090610f5a565b60405180910390fd5b808484815181106103fd576103fc610e7b565b5b60200260200101819052505050808061041590610fa9565b9150506102f5565b50915091565b60006001436104329190610ff2565b40905090565b60008060604392504340915061044e8585610498565b90509250925092565b600043905090565b60008173ffffffffffffffffffffffffffffffffffffffff16319050919050565b600044905090565b600045905090565b600041905090565b6060815167ffffffffffffffff8111156104b5576104b46106e8565b5b6040519080825280602002602001820160405280156104ee57816020015b6104db61066e565b8152602001906001900390816104d35790505b50905060005b82518110156106395760008084838151811061051357610512610e7b565b5b60200260200101516000015173ffffffffffffffffffffffffffffffffffffffff1685848151811061054857610547610e7b565b5b6020026020010151602001516040516105619190610ee6565b6000604051808303816000865af19150503d806000811461059e576040519150601f19603f3d011682016040523d82523d6000602084013e6105a3565b606091505b509150915085156105ef57816105ee576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016105e590611098565b60405180910390fd5b5b604051806040016040528083151581526020018281525084848151811061061957610618610e7b565b5b60200260200101819052505050808061063190610fa9565b9150506104f4565b5092915050565b6000806060610650600185610438565b8093508194508295505050509193909250565b600081409050919050565b6040518060400160405280600015158152602001606081525090565b6000819050919050565b61069d8161068a565b82525050565b60006020820190506106b86000830184610694565b92915050565b6000604051905090565b600080fd5b600080fd5b600080fd5b6000601f19601f8301169050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b610720826106d7565b810181811067ffffffffffffffff8211171561073f5761073e6106e8565b5b80604052505050565b60006107526106be565b905061075e8282610717565b919050565b600067ffffffffffffffff82111561077e5761077d6106e8565b5b602082029050602081019050919050565b600080fd5b600080fd5b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006107c98261079e565b9050919050565b6107d9816107be565b81146107e457600080fd5b50565b6000813590506107f6816107d0565b92915050565b600080fd5b600067ffffffffffffffff82111561081c5761081b6106e8565b5b610825826106d7565b9050602081019050919050565b82818337600083830152505050565b600061085461084f84610801565b610748565b9050828152602081018484840111156108705761086f6107fc565b5b61087b848285610832565b509392505050565b600082601f830112610898576108976106d2565b5b81356108a8848260208601610841565b91505092915050565b6000604082840312156108c7576108c6610794565b5b6108d16040610748565b905060006108e1848285016107e7565b600083015250602082013567ffffffffffffffff81111561090557610904610799565b5b61091184828501610883565b60208301525092915050565b600061093061092b84610763565b610748565b905080838252602082019050602084028301858111156109535761095261078f565b5b835b8181101561099a57803567ffffffffffffffff811115610978576109776106d2565b5b80860161098589826108b1565b85526020850194505050602081019050610955565b5050509392505050565b600082601f8301126109b9576109b86106d2565b5b81356109c984826020860161091d565b91505092915050565b6000602082840312156109e8576109e76106c8565b5b600082013567ffffffffffffffff811115610a0657610a056106cd565b5b610a12848285016109a4565b91505092915050565b600081519050919050565b600082825260208201905092915050565b6000819050602082019050919050565b600081519050919050565b600082825260208201905092915050565b60005b83811015610a81578082015181840152602081019050610a66565b83811115610a90576000848401525b50505050565b6000610aa182610a47565b610aab8185610a52565b9350610abb818560208601610a63565b610ac4816106d7565b840191505092915050565b6000610adb8383610a96565b905092915050565b6000602082019050919050565b6000610afb82610a1b565b610b058185610a26565b935083602082028501610b1785610a37565b8060005b85811015610b535784840389528151610b348582610acf565b9450610b3f83610ae3565b925060208a01995050600181019050610b1b565b50829750879550505050505092915050565b6000604082019050610b7a6000830185610694565b8181036020830152610b8c8184610af0565b90509392505050565b6000819050919050565b610ba881610b95565b82525050565b6000602082019050610bc36000830184610b9f565b92915050565b60008115159050919050565b610bde81610bc9565b8114610be957600080fd5b50565b600081359050610bfb81610bd5565b92915050565b60008060408385031215610c1857610c176106c8565b5b6000610c2685828601610bec565b925050602083013567ffffffffffffffff811115610c4757610c466106cd565b5b610c53858286016109a4565b9150509250929050565b600081519050919050565b600082825260208201905092915050565b6000819050602082019050919050565b610c9281610bc9565b82525050565b6000604083016000830151610cb06000860182610c89565b5060208301518482036020860152610cc88282610a96565b9150508091505092915050565b6000610ce18383610c98565b905092915050565b6000602082019050919050565b6000610d0182610c5d565b610d0b8185610c68565b935083602082028501610d1d85610c79565b8060005b85811015610d595784840389528151610d3a8582610cd5565b9450610d4583610ce9565b925060208a01995050600181019050610d21565b50829750879550505050505092915050565b6000606082019050610d806000830186610694565b610d8d6020830185610b9f565b8181036040830152610d9f8184610cf6565b9050949350505050565b600060208284031215610dbf57610dbe6106c8565b5b6000610dcd848285016107e7565b91505092915050565b610ddf816107be565b82525050565b6000602082019050610dfa6000830184610dd6565b92915050565b60006020820190508181036000830152610e1a8184610cf6565b905092915050565b610e2b8161068a565b8114610e3657600080fd5b50565b600081359050610e4881610e22565b92915050565b600060208284031215610e6457610e636106c8565b5b6000610e7284828501610e39565b91505092915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b600081905092915050565b6000610ec082610a47565b610eca8185610eaa565b9350610eda818560208601610a63565b80840191505092915050565b6000610ef28284610eb5565b915081905092915050565b600082825260208201905092915050565b7f4d756c746963616c6c206167677265676174653a2063616c6c206661696c6564600082015250565b6000610f44602083610efd565b9150610f4f82610f0e565b602082019050919050565b60006020820190508181036000830152610f7381610f37565b9050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b6000610fb48261068a565b91507fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff821415610fe757610fe6610f7a565b5b600182019050919050565b6000610ffd8261068a565b91506110088361068a565b92508282101561101b5761101a610f7a565b5b828203905092915050565b7f4d756c746963616c6c32206167677265676174653a2063616c6c206661696c6560008201527f6400000000000000000000000000000000000000000000000000000000000000602082015250565b6000611082602183610efd565b915061108d82611026565b604082019050919050565b600060208201905081810360008301526110b181611075565b905091905056fea2646970667358221220a6abea822e004150d7df5d59c9ec8933da946cf625db7b082e9dd8936ce2c7b464736f6c63430008090033",
-    gn = (e) => e.length > 1
-class et extends Me {
+    E0 = (e) => e.length > 1
+class Qe extends Ae {
     constructor(...t) {
-        gn(t) ? super(...t) : super(ee, ze, t[0]), (this.contractName = "Multicall2")
+        E0(t) ? super(...t) : super(ae, Ze, t[0]), (this.contractName = "Multicall2")
     }
     deploy(t) {
         return super.deploy(t || {})
@@ -3388,74 +3125,134 @@ class et extends Me {
         return super.connect(t)
     }
     static createInterface() {
-        return new x(ee)
+        return new O(ae)
     }
-    static connect(t, a) {
-        return new k(t, ee, a)
+    static connect(t, n) {
+        return new I(t, ae, n)
     }
 }
-et.bytecode = ze
-et.abi = ee
-class pe {
+Qe.bytecode = Ze
+Qe.abi = ae
+class ze {
+    constructor(t, n) {
+        b(this, "network")
+        b(this, "address")
+        b(this, "loaded", !1)
+        b(this, "details")
+        ;(this.network = t), (this.address = n), (this.details = new k0(this))
+    }
+    get type() {
+        return this.details.type
+    }
+    get name() {
+        return this.details.name
+    }
+    get symbol() {
+        return this.details.symbol
+    }
+    get decimals() {
+        return this.details.decimals
+    }
+    get price() {
+        return this.details.price
+    }
+    value(t) {
+        return this.details.value(t)
+    }
+}
+class et {
+    constructor(t) {
+        b(this, "token")
+        b(this, "type", "")
+        this.token = t
+    }
+    get name() {
+        return ""
+    }
+    get symbol() {
+        return ""
+    }
+    get decimals() {
+        return 0
+    }
+    get price() {
+        return new _(0)
+    }
+    value(t) {
+        return new _(0)
+    }
+}
+class k0 extends et {
     constructor() {
-        l(this, "balances", {})
-        l(this, "tokens", [])
+        super(...arguments)
+        b(this, "type", "ERC20")
+        b(this, "_name", "")
+        b(this, "_symbol", "")
+        b(this, "_decimals", 0)
+        b(this, "_price", new _(0))
     }
-    get SLPTokens() {
-        return this.tokens.filter((t) => t instanceof H)
+    get name() {
+        return this._name
     }
-}
-class U {
-    constructor(t, a) {
-        l(this, "type", "Token")
-        l(this, "network")
-        l(this, "address")
-        l(this, "loaded", !1)
-        l(this, "name")
-        l(this, "_symbol")
-        l(this, "decimals")
-        l(this, "price")
-        ;(this.network = t), (this.address = a), (this.name = ""), (this._symbol = ""), (this.decimals = 0), (this.price = new E(0))
+    set name(t) {
+        this._name = t
     }
     get symbol() {
         return this._symbol
     }
-    balance(t) {
-        return t.balances[this.address] || V.from(0)
+    set symbol(t) {
+        this._symbol = t
+    }
+    get decimals() {
+        return this._decimals
+    }
+    set decimals(t) {
+        this._decimals = t
+    }
+    get price() {
+        return this._price
+    }
+    set price(t) {
+        this._price = t
     }
     value(t) {
-        return this.price ? this.balance(t).toDec(this.decimals).mul(this.price) : new E(0)
+        return this.price ? t.toDec(this.decimals).mul(this.price) : new _(0)
     }
 }
-class H extends U {
-    constructor(t, a) {
-        super(t, a)
-        l(this, "type", "SLPToken")
-        l(this, "token0")
-        l(this, "token1")
-        l(this, "totalSupply")
-        l(this, "reserve0")
-        l(this, "reserve1")
-        ;(this.name = "SushiSwap LP Token"), (this._symbol = "SLP"), (this.decimals = 18)
+class q extends et {
+    constructor() {
+        super(...arguments)
+        b(this, "type", "SLP")
+        b(this, "token0")
+        b(this, "token1")
+        b(this, "totalSupply")
+        b(this, "reserve0")
+        b(this, "reserve1")
+    }
+    get name() {
+        return this.token0 && this.token1 ? "SushiSwap " + this.token0.symbol + "/" + this.token1.symbol + " LP (SLP)" : "Sushiswap LP Token"
     }
     get symbol() {
-        return this.token0 && this.token1 ? this.token0.symbol + "-" + this.token1.symbol + " SLP" : this._symbol
+        return this.token0 && this.token1 ? this.token0.symbol + "-" + this.token1.symbol + " SLP" : "SLP"
+    }
+    get decimals() {
+        return 18
     }
     balance0(t) {
-        return this.token0 && this.totalSupply && !this.totalSupply.isZero() && t.balances[this.address] && this.reserve0
-            ? t.balances[this.address].mul(this.reserve0).div(this.totalSupply)
-            : V.from(0)
+        return this.token0 && this.totalSupply && !this.totalSupply.isZero() && t && this.reserve0
+            ? t.mul(this.reserve0).div(this.totalSupply)
+            : Y.from(0)
     }
     balance1(t) {
-        return this.token1 && this.totalSupply && !this.totalSupply.isZero() && t.balances[this.address] && this.reserve1
-            ? t.balances[this.address].mul(this.reserve1).div(this.totalSupply)
-            : V.from(0)
+        return this.token1 && this.totalSupply && !this.totalSupply.isZero() && t && this.reserve1
+            ? t.mul(this.reserve1).div(this.totalSupply)
+            : Y.from(0)
     }
     value0(t) {
-        return this.token0 && this.token0.price ? this.balance0(t).toDec(this.token0.decimals).mul(this.token0.price) : new E(0)
+        return this.token0 && this.token0.price ? this.balance0(t).toDec(this.token0.decimals).mul(this.token0.price) : new _(0)
     }
     value1(t) {
-        return this.token1 && this.token1.price ? this.balance1(t).toDec(this.token1.decimals).mul(this.token1.price) : new E(0)
+        return this.token1 && this.token1.price ? this.balance1(t).toDec(this.token1.decimals).mul(this.token1.price) : new _(0)
     }
     value(t) {
         return this.value0(t).isZero()
@@ -3465,63 +3262,91 @@ class H extends U {
             : this.value0(t).add(this.value1(t))
     }
 }
-class wn {
+class C0 {
     constructor() {
-        l(this, "tokenList", ne([]))
-        l(this, "tokens", ne({}))
-        l(this, "web3")
+        b(this, "tokenList", j([]))
+        b(this, "tokens", j({}))
+        b(this, "web3")
         this.load()
     }
-    get(t, a, o) {
-        if (((a = lt(a)), this.tokens[t] || (this.tokens[t] = {}), !this.tokens[t][a])) {
-            const i = new (o || U)(t, a)
-            this.tokenList.push(i), (this.tokens[t][a] = i)
+    get(t, n) {
+        if (((n = mt(n)), this.tokens[t] || (this.tokens[t] = {}), !this.tokens[t][n])) {
+            const o = new ze(t, n)
+            this.tokenList.push(o), (this.tokens[t][n] = o)
         }
-        return this.tokens[t][a]
+        return this.tokens[t][n]
     }
-    async _handleToLoad(t, a, o, i) {
-        i ? (i = [...new Set(i)]) : (i = this.tokenList), (i = i.filter(t))
-        const r = {}
-        i.forEach((u) => {
+    async _handleToLoad(t, n, o, r) {
+        r ? (r = [...new Set(r)]) : (r = this.tokenList), (r = r.filter(t))
+        const i = {}
+        r.forEach((u) => {
             var d
-            r[u.network] || (r[u.network] = []), (d = r[u.network]) == null || d.push(u)
+            i[u.network] || (i[u.network] = []), (d = i[u.network]) == null || d.push(u)
         })
-        for (const u of Object.values(r).filter((d) => d.length)) {
-            const d = new h[u[0].network](),
-                v = new _e(d)
-            for (const O of u) a(O, d, v)
-            if ((await v.call(100), o)) for (const O of u) o(O)
+        for (const u of Object.values(i).filter((d) => d.length)) {
+            const d = new g[u[0].network]()
+            for (const l of u) n(l, d)
+            if ((await d.call(100), o)) for (const l of u) o(l)
         }
+    }
+    queueERC20(t, n) {
+        if (t.loaded) return
+        const o = $.connect(t.address, n.provider)
+        n.queue(
+            o.populateTransaction.name(),
+            $.createInterface(),
+            (r) => (t.details.name = r),
+            () => console.log(n.chainName, t.address, "Name")
+        ),
+            n.queue(
+                o.populateTransaction.symbol(),
+                $.createInterface(),
+                (r) => (t.details.symbol = r),
+                () => console.log(n.chainName, t.address, "Symbol")
+            ),
+            n.queue(
+                o.populateTransaction.decimals(),
+                $.createInterface(),
+                (r) => {
+                    ;(t.details.decimals = r),
+                        t.name === "SushiSwap LP Token" &&
+                            t.symbol === "SLP" &&
+                            t.decimals === 18 &&
+                            ((t.details = new q(t)), this.queueSLP(t, n), (t.loaded = !0))
+                },
+                () => console.log(n.chainName, t.address, "Decimals")
+            )
+    }
+    queueSLP(t, n) {
+        if (t.loaded) return
+        const o = H.connect(t.address, n.provider)
+        n.queue(o.populateTransaction.token0(), H.createInterface(), (r) => {
+            ;(t.details.token0 = this.get(n.chainId, r)), this.queueERC20(t.details.token0, n)
+        }),
+            n.queue(o.populateTransaction.token1(), H.createInterface(), (r) => {
+                ;(t.details.token1 = this.get(n.chainId, r)), this.queueERC20(t.details.token1, n), (t.loaded = !0)
+            })
     }
     async loadInfo(t) {
         await this._handleToLoad(
-            (a) => !a.loaded,
-            (a, o, i) => {
-                if (a instanceof H) {
-                    const r = R.connect(a.address, o.provider)
-                    i.queue(r.populateTransaction.token0(), R.createInterface(), (u) => (a.token0 = this.get(o.chainId, u, U))),
-                        i.queue(r.populateTransaction.token1(), R.createInterface(), (u) => (a.token1 = this.get(o.chainId, u, U)))
-                } else {
-                    const r = K.connect(a.address, o.provider)
-                    i.queue(r.populateTransaction.name(), K.createInterface(), (u) => (a.name = u)),
-                        i.queue(r.populateTransaction.symbol(), K.createInterface(), (u) => (a._symbol = u)),
-                        i.queue(r.populateTransaction.decimals(), K.createInterface(), (u) => (a.decimals = u))
-                }
+            (n) => !n.loaded,
+            (n, o) => {
+                n.details instanceof q ? this.queueSLP(n, o) : this.queueERC20(n, o)
             },
-            (a) => (a.loaded = !0),
+            (n) => (n.loaded = !0),
             t
         ),
             this.save()
     }
     async loadSLPInfo(t) {
         await this._handleToLoad(
-            (a) => a instanceof H,
-            (a, o, i) => {
-                const r = R.connect(a.address, o.provider)
-                i.queue(r.populateTransaction.getReserves(), R.createInterface(), (u) => {
-                    ;(a.reserve0 = u.reserve0), (a.reserve1 = u.reserve1)
+            (n) => n.details instanceof q,
+            (n, o) => {
+                const r = H.connect(n.address, o.provider)
+                o.queue(r.populateTransaction.getReserves(), H.createInterface(), (i) => {
+                    ;(n.details.reserve0 = i.reserve0), (n.details.reserve1 = i.reserve1)
                 }),
-                    i.queue(r.populateTransaction.totalSupply(), R.createInterface(), (u) => (a.totalSupply = u))
+                    o.queue(r.populateTransaction.totalSupply(), H.createInterface(), (i) => (n.details.totalSupply = i))
             },
             void 0,
             t
@@ -3529,15 +3354,16 @@ class wn {
     }
     load() {
         const t = JSON.parse(localStorage.getItem("Tokens") || "[]")
-        for (const a of t) {
-            const o = this.get(a.network, a.address, a.type === "SLPToken" ? H : U)
-            ;(o.network = a.network),
-                (o.address = a.address),
-                (o.loaded = a.loaded),
-                a.type === "SLPToken"
-                    ? ((o.token0 = a.token0 ? this.get(a.network, a.token0, U) : void 0),
-                      (o.token1 = a.token1 ? this.get(a.network, a.token1, U) : void 0))
-                    : ((o.name = a.name), (o._symbol = a.symbol), (o.decimals = a.decimals))
+        for (const n of t) {
+            const o = this.get(n.network, n.address)
+            ;(o.network = n.network),
+                (o.address = n.address),
+                (o.loaded = n.loaded),
+                n.type === "SLP"
+                    ? ((o.details = new q(n)),
+                      (o.details.token0 = this.get(n.network, n.token0)),
+                      (o.details.token1 = this.get(n.network, n.token1)))
+                    : ((o.details.name = n.name), (o.details.symbol = n.symbol), (o.details.decimals = n.decimals))
         }
     }
     save() {
@@ -3545,15 +3371,15 @@ class wn {
             "Tokens",
             JSON.stringify(
                 this.tokenList.map((t) => {
-                    var a, o
-                    return t instanceof H
+                    var n, o
+                    return t.details instanceof q
                         ? {
                               type: t.type,
                               network: t.network,
                               address: t.address,
                               loaded: t.loaded,
-                              token0: (a = t.token0) == null ? void 0 : a.address,
-                              token1: (o = t.token1) == null ? void 0 : o.address,
+                              token0: (n = t.details.token0) == null ? void 0 : n.address,
+                              token1: (o = t.details.token1) == null ? void 0 : o.address,
                           }
                         : {
                               type: t.type,
@@ -3569,124 +3395,167 @@ class wn {
         )
     }
 }
-const L = new wn(),
-    tt = [
-        { name: "Ops", network: n.ETHEREUM, address: "0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7" },
-        { name: "Fees", network: n.POLYGON, address: "0x850a57630A2012B2494779fBc86bBc24F2a7baeF" },
-        { name: "Ops", network: n.POLYGON, address: "0x2B23D9B02FffA1F5441Ef951B4B95c09faa57EBA" },
-        { name: "Ops", network: n.XDAI, address: "0xc375411C6597F692Add6a7a3AD5b3C38626B0F26" },
-        { name: "Ops", network: n.HARMONY, address: "0x30af69A3f4a6f266961313Ce0943719dF4A8AA10" },
-        { name: "Ops", network: n.BINANCE, address: "0xc6fD91aD4919Fd91e2c84077ba648092cB499638" },
-        { name: "Ops", network: n.FANTOM, address: "0xF9E7d4c6d36ca311566f46c81E572102A2DC9F52" },
-        { name: "Ops", network: n.AVALANCHE, address: "0x09842Ce338647906B686aBB3B648A6457fbB25DA" },
-        { name: "Ops", network: n.CELO, address: "0x751b01Fa14fD9640a1DF9014e2D0f3a03A198b81" },
-        { name: "Fees", network: n.CELO, address: "0x8b63fcBB752e425e3C4B12F7802BAd1A24c6d7F4" },
-        { name: "Ops", network: n.MOONBEAM_KUSAMA, address: "0x939f7E76cc515cc296dD3ce362D9a52e148A7D5f" },
-        { name: "Fees", network: n.MOONBEAM_KUSAMA, address: "0x6669cc35031A84fAc1Efe30bB586B9ADdf223Fbc" },
-        { name: "Ops", network: n.FUSE, address: "0x33b6beb37837459Ee84a1Ffed2C6a4ca22e5F316" },
-        { name: "Ops", network: n.ARBITRUM, address: "0x978982772b8e4055B921bf9295c0d74eB36Bc54e" },
-        { name: "Ops", network: n.MOONBEAM, address: "0x87AEb22b7BB02AC42204eB312C08A22FC3f077F3" },
+const R = new C0()
+class le {
+    constructor(t) {
+        b(this, "address")
+        b(this, "balances", {})
+        b(this, "tokens", [])
+        this.address = t
+    }
+    balance(t) {
+        return this.balances[t.address] || Y.from(0)
+    }
+    value(t) {
+        return t.value(this.balances[t.address])
+    }
+    get SLPTokens() {
+        return this.tokens.filter((t) => t.details instanceof q)
+    }
+    async loadNetworkBalances(t) {
+        console.log("Getting token balances")
+        const n = new g[t](),
+            o = $.createInterface()
+        Object.values(R.tokens[t] || []).forEach((r) => {
+            n.queue($.connect(r.address, n.provider).populateTransaction.balanceOf(this.address), o, (i) => {
+                const u = i
+                !u.isZero() && !this.balances[r.address] && (this.tokens.push(r), (this.balances[r.address] = u))
+            })
+        }),
+            await n.call(100)
+    }
+}
+const tt = [
+        { name: "Ops", network: a.ETHEREUM, address: "0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7" },
+        { name: "Fees", network: a.POLYGON, address: "0x850a57630A2012B2494779fBc86bBc24F2a7baeF" },
+        { name: "Ops", network: a.POLYGON, address: "0x2B23D9B02FffA1F5441Ef951B4B95c09faa57EBA" },
+        { name: "Ops", network: a.XDAI, address: "0xc375411C6597F692Add6a7a3AD5b3C38626B0F26" },
+        { name: "Ops", network: a.HARMONY, address: "0x30af69A3f4a6f266961313Ce0943719dF4A8AA10" },
+        { name: "Ops", network: a.BINANCE, address: "0xc6fD91aD4919Fd91e2c84077ba648092cB499638" },
+        { name: "Ops", network: a.FANTOM, address: "0xF9E7d4c6d36ca311566f46c81E572102A2DC9F52" },
+        { name: "Ops", network: a.AVALANCHE, address: "0x09842Ce338647906B686aBB3B648A6457fbB25DA" },
+        { name: "Ops", network: a.CELO, address: "0x751b01Fa14fD9640a1DF9014e2D0f3a03A198b81" },
+        { name: "Fees", network: a.CELO, address: "0x8b63fcBB752e425e3C4B12F7802BAd1A24c6d7F4" },
+        { name: "Ops", network: a.MOONBEAM_KUSAMA, address: "0x939f7E76cc515cc296dD3ce362D9a52e148A7D5f" },
+        { name: "Fees", network: a.MOONBEAM_KUSAMA, address: "0x6669cc35031A84fAc1Efe30bB586B9ADdf223Fbc" },
+        { name: "Ops", network: a.FUSE, address: "0x33b6beb37837459Ee84a1Ffed2C6a4ca22e5F316" },
+        { name: "Ops", network: a.ARBITRUM, address: "0x978982772b8e4055B921bf9295c0d74eB36Bc54e" },
+        { name: "Ops", network: a.MOONBEAM, address: "0x87AEb22b7BB02AC42204eB312C08A22FC3f077F3" },
     ],
-    nt = [{ network: n.ETHEREUM, address: "0x5ad6211CD3fdE39A9cECB5df6f380b8263d1e277" }],
+    nt = [{ network: a.ETHEREUM, address: "0x5ad6211CD3fdE39A9cECB5df6f380b8263d1e277" }],
     at = [
-        { network: n.ARBITRUM, address: "0xa19b3b22f29E23e4c04678C94CFC3e8f202137d8", account: new pe() },
-        { network: n.POLYGON, address: "0xf1c9881Be22EBF108B8927c4d197d126346b5036", account: new pe() },
-        { network: n.AVALANCHE, address: "0x560C759A11cd026405F6f2e19c65Da1181995fA2", account: new pe() },
+        {
+            network: a.ARBITRUM,
+            address: "0xa19b3b22f29E23e4c04678C94CFC3e8f202137d8",
+            account: new le("0xa19b3b22f29E23e4c04678C94CFC3e8f202137d8"),
+        },
+        {
+            network: a.POLYGON,
+            address: "0xf1c9881Be22EBF108B8927c4d197d126346b5036",
+            account: new le("0xf1c9881Be22EBF108B8927c4d197d126346b5036"),
+        },
+        {
+            network: a.AVALANCHE,
+            address: "0x560C759A11cd026405F6f2e19c65Da1181995fA2",
+            account: new le("0x560C759A11cd026405F6f2e19c65Da1181995fA2"),
+        },
     ],
     st = [
-        { network: n.ETHEREUM, address: "0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac" },
-        { network: n.POLYGON, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.ARBITRUM, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.AVALANCHE, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.MOONBEAM_KUSAMA, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.FANTOM, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.BINANCE, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.XDAI, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.HARMONY, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.TELOS, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.CELO, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.FUSE, address: "0x43eA90e2b786728520e4f930d2A71a477BF2737C" },
-        { network: n.OKEX, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.HUOBI, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.PALM, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
-        { network: n.MOONBEAM, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.ETHEREUM, address: "0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac" },
+        { network: a.POLYGON, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.ARBITRUM, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.AVALANCHE, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.MOONBEAM_KUSAMA, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.FANTOM, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.BINANCE, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.XDAI, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.HARMONY, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.TELOS, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.CELO, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.FUSE, address: "0x43eA90e2b786728520e4f930d2A71a477BF2737C" },
+        { network: a.OKEX, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.HUOBI, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.PALM, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
+        { network: a.MOONBEAM, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" },
     ],
-    An = [
-        { network: n.ETHEREUM, address: "0xF5BCE5077908a1b7370B9ae04AdC565EBd643966" },
-        { network: n.POLYGON, address: "0x0319000133d3AdA02600f0875d2cf03D442C3367" },
-        { network: n.ARBITRUM, address: "0x74c764d41b77dbbb4fe771dab1939b00b146894a" },
-        { network: n.BINANCE, address: "0xf5bce5077908a1b7370b9ae04adc565ebd643966" },
-        { network: n.MOONBEAM, address: "0x80C7DD17B01855a6D2347444a0FCC36136a314de" },
-        { network: n.FANTOM, address: "0xF5BCE5077908a1b7370B9ae04AdC565EBd643966" },
-        { network: n.XDAI, address: "0xE2d7F5dd869Fc7c126D21b13a9080e75a4bDb324" },
-        { network: n.AVALANCHE, address: "0x0711B6026068f736bae6B213031fCE978D48E026" },
-        { network: n.HUOBI, address: "0xF5BCE5077908a1b7370B9ae04AdC565EBd643966" },
-        { network: n.CELO, address: "0x0711B6026068f736bae6B213031fCE978D48E026" },
-    ]
-var le = ne({
+    M0 = [
+        { network: a.ETHEREUM, address: "0xF5BCE5077908a1b7370B9ae04AdC565EBd643966" },
+        { network: a.POLYGON, address: "0x0319000133d3AdA02600f0875d2cf03D442C3367" },
+        { network: a.ARBITRUM, address: "0x74c764d41b77dbbb4fe771dab1939b00b146894a" },
+        { network: a.BINANCE, address: "0xf5bce5077908a1b7370b9ae04adc565ebd643966" },
+        { network: a.MOONBEAM, address: "0x80C7DD17B01855a6D2347444a0FCC36136a314de" },
+        { network: a.FANTOM, address: "0xF5BCE5077908a1b7370B9ae04AdC565EBd643966" },
+        { network: a.XDAI, address: "0xE2d7F5dd869Fc7c126D21b13a9080e75a4bDb324" },
+        { network: a.AVALANCHE, address: "0x0711B6026068f736bae6B213031fCE978D48E026" },
+        { network: a.HUOBI, address: "0xF5BCE5077908a1b7370B9ae04AdC565EBd643966" },
+        { network: a.CELO, address: "0x0711B6026068f736bae6B213031fCE978D48E026" },
+    ],
+    _e = j([])
+var ce = j({
     title: "DAOView",
     name: "SushiView",
-    web3: new Tn(),
+    web3: new A0(),
     multisigs: tt,
-    masterchefs: [{ network: n.ETHEREUM, address: "0xc2EdaD668740f1aA35E4D8f227fB8E17dcA888Cd" }],
-    masterchefsV2: [{ network: n.ETHEREUM, address: "0xef0881ec094552b2e128cf945ef17a6752b4ec5d" }],
+    masterchefs: [{ network: a.ETHEREUM, address: "0xc2EdaD668740f1aA35E4D8f227fB8E17dcA888Cd" }],
+    masterchefsV2: [{ network: a.ETHEREUM, address: "0xef0881ec094552b2e128cf945ef17a6752b4ec5d" }],
     minichefs: [
-        { network: n.FANTOM, address: "0xf731202A3cf7EfA9368C2d7bD613926f7A144dB5" },
-        { network: n.POLYGON, address: "0x0769fd68dFb93167989C6f7254cd0D766Fb2841F" },
-        { network: n.XDAI, address: "0xdDCbf776dF3dE60163066A5ddDF2277cB445E0F3" },
-        { network: n.ARBITRUM, address: "0xF4d73326C13a4Fc5FD7A064217e12780e9Bd62c3" },
-        { network: n.HARMONY, address: "0x67da5f2ffaddff067ab9d5f025f8810634d84287" },
-        { network: n.CELO, address: "0x0769fd68dFb93167989C6f7254cd0D766Fb2841F" },
-        { network: n.CELO, address: "0x8084936982D089130e001b470eDf58faCA445008" },
-        { network: n.MOONBEAM_KUSAMA, address: "0x3dB01570D97631f69bbb0ba39796865456Cf89A5" },
-        { network: n.FUSE, address: "0x182CD0C6F1FaEc0aED2eA83cd0e160c8Bd4cb063" },
-        { network: n.MOONBEAM, address: "0x011E52E4E40CF9498c79273329E8827b21E2e581" },
+        { network: a.FANTOM, address: "0xf731202A3cf7EfA9368C2d7bD613926f7A144dB5" },
+        { network: a.POLYGON, address: "0x0769fd68dFb93167989C6f7254cd0D766Fb2841F" },
+        { network: a.XDAI, address: "0xdDCbf776dF3dE60163066A5ddDF2277cB445E0F3" },
+        { network: a.ARBITRUM, address: "0xF4d73326C13a4Fc5FD7A064217e12780e9Bd62c3" },
+        { network: a.HARMONY, address: "0x67da5f2ffaddff067ab9d5f025f8810634d84287" },
+        { network: a.CELO, address: "0x0769fd68dFb93167989C6f7254cd0D766Fb2841F" },
+        { network: a.CELO, address: "0x8084936982D089130e001b470eDf58faCA445008" },
+        { network: a.MOONBEAM_KUSAMA, address: "0x3dB01570D97631f69bbb0ba39796865456Cf89A5" },
+        { network: a.FUSE, address: "0x182CD0C6F1FaEc0aED2eA83cd0e160c8Bd4cb063" },
+        { network: a.MOONBEAM, address: "0x011E52E4E40CF9498c79273329E8827b21E2e581" },
     ],
+    pools: _e,
     complexRewarders: [
-        { network: n.FANTOM, address: "0xeaf76e3bD36680D98d254B378ED706cb0DFBfc1B" },
-        { network: n.POLYGON, address: "0xa3378Ca78633B3b9b2255EAa26748770211163AE" },
-        { network: n.XDAI, address: "0x84562cE1a5f3A4A957a5a94Ed0be05BA73fD2665" },
-        { network: n.HARMONY, address: "0x25836011bbc0d5b6db96b20361a474cbc5245b45" },
-        { network: n.CELO, address: "0x1be211D8DA40BC0ae8719c6663307Bfc987b1d6c" },
-        { network: n.CELO, address: "0xFa3de59eDd2500BA725Dad355B98E6a4346Ada7d" },
-        { network: n.MOONBEAM_KUSAMA, address: "0x1334c8e873E1cae8467156e2A81d1C8b566B2da1" },
-        { network: n.FUSE, address: "0xEF502259Dd5d497d082498912031E027c4515563" },
+        { network: a.FANTOM, address: "0xeaf76e3bD36680D98d254B378ED706cb0DFBfc1B" },
+        { network: a.POLYGON, address: "0xa3378Ca78633B3b9b2255EAa26748770211163AE" },
+        { network: a.XDAI, address: "0x84562cE1a5f3A4A957a5a94Ed0be05BA73fD2665" },
+        { network: a.HARMONY, address: "0x25836011bbc0d5b6db96b20361a474cbc5245b45" },
+        { network: a.CELO, address: "0x1be211D8DA40BC0ae8719c6663307Bfc987b1d6c" },
+        { network: a.CELO, address: "0xFa3de59eDd2500BA725Dad355B98E6a4346Ada7d" },
+        { network: a.MOONBEAM_KUSAMA, address: "0x1334c8e873E1cae8467156e2A81d1C8b566B2da1" },
+        { network: a.FUSE, address: "0xEF502259Dd5d497d082498912031E027c4515563" },
     ],
-    timelocks: [{ network: n.ETHEREUM, address: "0x9a8541Ddf3a932a9A922B607e9CF7301f1d47bD1" }],
+    timelocks: [{ network: a.ETHEREUM, address: "0x9a8541Ddf3a932a9A922B607e9CF7301f1d47bD1" }],
     routers: [
-        { network: n.ETHEREUM, address: "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F" },
-        { network: n.POLYGON, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
-        { network: n.ARBITRUM, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
-        { network: n.AVALANCHE, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
-        { network: n.MOONBEAM_KUSAMA, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
-        { network: n.FANTOM, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
-        { network: n.BINANCE, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
-        { network: n.XDAI, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
-        { network: n.HARMONY, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
-        { network: n.TELOS, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
-        { network: n.CELO, address: "0x1421bDe4B10e8dd459b3BCb598810B1337D56842" },
-        { network: n.FUSE, address: "0xF4d73326C13a4Fc5FD7A064217e12780e9Bd62c3" },
-        { network: n.OKEX, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
-        { network: n.HUOBI, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
-        { network: n.PALM, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
-        { network: n.MOONBEAM, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
+        { network: a.ETHEREUM, address: "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F" },
+        { network: a.POLYGON, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
+        { network: a.ARBITRUM, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
+        { network: a.AVALANCHE, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
+        { network: a.MOONBEAM_KUSAMA, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
+        { network: a.FANTOM, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
+        { network: a.BINANCE, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
+        { network: a.XDAI, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
+        { network: a.HARMONY, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
+        { network: a.TELOS, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
+        { network: a.CELO, address: "0x1421bDe4B10e8dd459b3BCb598810B1337D56842" },
+        { network: a.FUSE, address: "0xF4d73326C13a4Fc5FD7A064217e12780e9Bd62c3" },
+        { network: a.OKEX, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
+        { network: a.HUOBI, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
+        { network: a.PALM, address: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506" },
+        { network: a.MOONBEAM, address: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506" },
     ],
     factories: st,
     sushiMakers: nt,
     wethMakers: at,
-    bentoBoxes: An,
+    bentoBoxes: M0,
     kashiMasters: [
-        { network: n.ETHEREUM, address: "0x2cba6ab6574646badc84f0544d05059e57a5dc42" },
-        { network: n.POLYGON, address: "0xb527c5295c4bc348cbb3a2e96b2494fd292075a7" },
-        { network: n.ARBITRUM, address: "0xa010ee0226cd071bebd8919a1f675cae1f1f5d3e" },
-        { network: n.AVALANCHE, address: "0x513037395fa0c9c35e41f89189cedfe3bd42fadb" },
-        { network: n.BINANCE, address: "0x2cba6ab6574646badc84f0544d05059e57a5dc42" },
-        { network: n.XDAI, address: "0x7a6da9903d0a481f40b8336c1463487bc8c0407e" },
-        { network: n.HUOBI, address: "0x2cBA6Ab6574646Badc84F0544d05059e57a5dc42" },
+        { network: a.ETHEREUM, address: "0x2cba6ab6574646badc84f0544d05059e57a5dc42" },
+        { network: a.POLYGON, address: "0xb527c5295c4bc348cbb3a2e96b2494fd292075a7" },
+        { network: a.ARBITRUM, address: "0xa010ee0226cd071bebd8919a1f675cae1f1f5d3e" },
+        { network: a.AVALANCHE, address: "0x513037395fa0c9c35e41f89189cedfe3bd42fadb" },
+        { network: a.BINANCE, address: "0x2cba6ab6574646badc84f0544d05059e57a5dc42" },
+        { network: a.XDAI, address: "0x7a6da9903d0a481f40b8336c1463487bc8c0407e" },
+        { network: a.HUOBI, address: "0x2cBA6Ab6574646Badc84F0544d05059e57a5dc42" },
     ],
-    kashiSushiMakers: [{ network: n.ETHEREUM, address: "0x08C82f7513C7952A95029FE3B1587B1FA52DACed" }],
+    kashiSushiMakers: [{ network: a.ETHEREUM, address: "0x08C82f7513C7952A95029FE3B1587B1FA52DACed" }],
 })
-const X = {
+const Z = {
     "0x3027a0c4E35272c0707dE2651A0638c3dF1c37AC": "Gasper",
     "0x4bb4c1B0745ef7B4642fEECcd0740deC417ca0a0": "Jiro",
     "0xFBb3a85603C398Ff22435DD40873EC190134e1f6": "Matt",
@@ -3703,88 +3572,140 @@ const X = {
     "0x9a8541Ddf3a932a9A922B607e9CF7301f1d47bD1": "Timelock",
 }
 tt.forEach((e) => {
-    X[e.address] = "MultiSig: " + e.name
+    Z[e.address] = "MultiSig: " + e.name
 })
 nt.forEach((e) => {
-    X[e.address] = "SushiMaker"
+    Z[e.address] = "SushiMaker"
 })
 at.forEach((e) => {
-    X[e.address] = "WethMaker"
+    Z[e.address] = "WethMaker"
 })
 st.forEach((e) => {
-    X[e.address] = "Factory"
+    Z[e.address] = "Factory"
 })
 async function rt(e) {
-    const t = new h[e.network](),
-        a = "factory" + t.chainName + e.address,
-        o = Je.connect(e.address, t.provider)
+    const t = new g[e.network](),
+        n = "factory" + t.chainName + e.address,
+        o = je.connect(e.address, t.provider)
     if (
         ((e.pairCount = (await o.allPairsLength()).toNumber()),
         (e.feeTo = await o.feeTo()),
         (e.feeToSetter = await o.feeToSetter()),
-        (e.pairs = JSON.parse(localStorage.getItem(a) || "[]")),
+        (e.pairs = JSON.parse(localStorage.getItem(n) || "[]")),
         e.pairs.length < e.pairCount)
     ) {
-        const i = new _e(t)
         for (let r = e.pairs.length; r < e.pairCount; r++)
-            i.queue(o.populateTransaction.allPairs(r), o.interface, (u) => {
-                var d
-                return (d = e.pairs) == null ? void 0 : d.push(u)
+            t.queue(o.populateTransaction.allPairs(r), o.interface, (i) => {
+                var u
+                return (u = e.pairs) == null ? void 0 : u.push(i)
             })
-        await i.call(250), localStorage.setItem(a, JSON.stringify(e.pairs))
+        await t.call(250), localStorage.setItem(n, JSON.stringify(e.pairs))
     }
 }
-async function En(e) {
-    const t = new h[e.network]()
+async function x0(e) {
+    const t = new g[e.network]()
     ;(e.safe = new qe(e.network, e.address)),
         (e.owners = [...(await e.safe.getOwners())].sort()),
         (e.threshold = await e.safe.getThreshold()),
         (e.tokens = await e.safe.getTokenBalances()),
         (e.nativeBalance = await t.provider.getBalance(e.address))
 }
-async function Mn(e) {
-    const t = new h[e.network](),
-        a = Ze.connect(e.address, t.provider)
-    e.factory = await a.factory()
+async function v0(e) {
+    const t = new g[e.network](),
+        n = Je.connect(e.address, t.provider)
+    e.factory = await n.factory()
 }
-async function _n(e) {
-    const t = new h[e.network](),
-        a = xe.connect(e.address, t.provider)
-    e.owner = await a.owner()
+async function B0(e) {
+    const t = new g[e.network](),
+        n = W.connect(e.address, t.provider)
+    e.owner = await n.owner()
 }
-async function xn(e) {
-    const t = new h[e.network](),
-        a = We.connect(e.address, t.provider)
-    e.owner = await a.owner()
+async function O0(e) {
+    const t = new g[e.network](),
+        n = Ke.connect(e.address, t.provider)
+    e.owner = await n.owner()
 }
-async function kn(e) {
-    const t = new h[e.network](),
-        a = se.connect(e.address, t.provider)
-    ;(e.owner = await a.owner()), (e.devaddr = await a.devaddr()), (e.poolLength = (await a.poolLength()).toNumber())
+async function I0(e) {
+    const t = new g[e.network](),
+        n = J.connect(e.address, t.provider)
+    for (let o = 0; o < (e.poolLength || 0); o++)
+        t.queue(n.populateTransaction.poolInfo(o), n.interface, (r) => {
+            var i
+            r.allocPoint.isZero() ||
+                _e.push({
+                    poolId: o,
+                    chef: e,
+                    token: R.get(t.chainId, r.lpToken),
+                    allocPoint: r.allocPoint,
+                    accSushiPerShare: r.accSushiPerShare,
+                    lastRewardBlock: r.lastRewardBlock,
+                    sushiPerDay: (i = e.sushiPerDay) == null ? void 0 : i.mul(r.allocPoint).div(e.totalAllocPoint),
+                })
+        })
+    await t.call(100)
 }
-async function vn(e) {
-    const t = new h[e.network](),
-        a = se.connect(e.address, t.provider)
-    ;(e.owner = await a.owner()), (e.poolLength = (await a.poolLength()).toNumber())
+async function it(e) {
+    console.log(e, e.poolLength)
+    const t = new g[e.network](),
+        n = We.connect(e.address, t.provider),
+        o = {}
+    for (let r = 0; r < (e.poolLength || 0); r++)
+        t.queue(n.populateTransaction.poolInfo(r), n.interface, (i) => {
+            var u
+            o[r] = {
+                poolId: r,
+                chef: e,
+                token: void 0,
+                allocPoint: i.allocPoint,
+                accSushiPerShare: i.accSushiPerShare,
+                lastRewardBlock: i.lastRewardBlock,
+                sushiPerDay: (u = e.sushiPerDay) == null ? void 0 : u.mul(i.allocPoint).div(e.totalAllocPoint),
+            }
+        }),
+            t.queue(n.populateTransaction.lpToken(r), n.interface, (i) => (o[r].token = R.get(t.chainId, i)))
+    await t.call(100), _e.push(...Object.values(o).filter((r) => !r.allocPoint.isZero()))
 }
-async function Cn(e) {
-    const t = new h[e.network](),
-        a = se.connect(e.address, t.provider)
-    ;(e.owner = await a.owner()), (e.poolLength = (await a.poolLength()).toNumber())
+async function D0(e) {
+    const t = new g[e.network](),
+        n = J.connect(e.address, t.provider)
+    ;(e.owner = await n.owner()),
+        (e.devaddr = await n.devaddr()),
+        (e.poolLength = (await n.poolLength()).toNumber()),
+        (e.totalAllocPoint = await n.totalAllocPoint()),
+        (e.sushiPerDay = (await n.sushiPerBlock()).mul(6595)),
+        await I0(e)
 }
-const I = _({
+async function S0(e) {
+    const t = new g[e.network](),
+        n = J.connect(e.address, t.provider)
+    ;(e.owner = await n.owner()),
+        (e.poolLength = (await n.poolLength()).toNumber()),
+        (e.totalAllocPoint = await n.totalAllocPoint()),
+        (e.sushiPerDay = (await n.sushiPerBlock()).mul(6595)),
+        await it(e)
+}
+async function F0(e) {
+    const t = new g[e.network](),
+        n = J.connect(e.address, t.provider)
+    ;(e.owner = await n.owner()),
+        (e.poolLength = (await n.poolLength()).toNumber()),
+        (e.totalAllocPoint = await n.totalAllocPoint()),
+        (e.sushiPerDay = (await n.sushiPerSecond()).mul(24 * 60 * 60)),
+        await it(e)
+}
+const F = x({
         props: { address: null },
         setup(e) {
             const t = e,
-                a = P(() => (t.address ? X[t.address] || t.address : "<empty>"))
-            return (o, i) => f(b(a))
+                n = L(() => (t.address ? Z[t.address] || t.address : "<empty>"))
+            return (o, r) => m(y(n))
         },
     }),
-    On = { class: "row mt-3" },
-    Bn = { class: "col-10 mx-auto" },
-    In = s("h2", null, "Multi Sigs", -1),
-    Dn = { class: "table" },
-    Sn = s(
+    N0 = { class: "row mt-3" },
+    U0 = { class: "col-10 mx-auto" },
+    R0 = s("h2", null, "Multi Sigs", -1),
+    L0 = { class: "table" },
+    P0 = s(
         "thead",
         null,
         [
@@ -3797,38 +3718,38 @@ const I = _({
         ],
         -1
     ),
-    Fn = ["href"],
-    Un = m("\xA0 "),
-    Nn = _({
+    H0 = ["href"],
+    $0 = h("\xA0 "),
+    G0 = x({
         setup(e) {
-            const t = F("app")
+            const t = U("app")
             return (
-                t.multisigs.map((a) => En(a)),
-                (a, o) => {
-                    const i = $("router-link")
+                t.multisigs.map((n) => x0(n)),
+                (n, o) => {
+                    const r = P("router-link")
                     return (
-                        c(),
-                        y("div", On, [
-                            s("div", Bn, [
-                                In,
-                                s("table", Dn, [
-                                    Sn,
+                        p(),
+                        f("div", N0, [
+                            s("div", U0, [
+                                R0,
+                                s("table", L0, [
+                                    P0,
                                     s("tbody", null, [
-                                        (c(!0),
-                                        y(
-                                            M,
+                                        (p(!0),
+                                        f(
+                                            C,
                                             null,
-                                            D(b(t).multisigs, (r) => {
+                                            S(y(t).multisigs, (i) => {
                                                 var u, d
                                                 return (
-                                                    c(),
-                                                    y("tr", null, [
+                                                    p(),
+                                                    f("tr", null, [
                                                         s("td", null, [
-                                                            p(
-                                                                i,
-                                                                { to: "/multisig/" + r.network + "/" + r.address },
+                                                            c(
+                                                                r,
+                                                                { to: "/multisig/" + i.network + "/" + i.address },
                                                                 {
-                                                                    default: T(() => [m(f(b(h)[r.network].chainName) + " " + f(r.name), 1)]),
+                                                                    default: T(() => [h(m(y(g)[i.network].chainName) + " " + m(i.name), 1)]),
                                                                     _: 2,
                                                                 },
                                                                 1032,
@@ -3839,34 +3760,34 @@ const I = _({
                                                             s(
                                                                 "a",
                                                                 {
-                                                                    href: (u = r.safe) == null ? void 0 : u.transactionHistoryUrl,
+                                                                    href: (u = i.safe) == null ? void 0 : u.transactionHistoryUrl,
                                                                     target: "_blank",
                                                                 },
-                                                                f(r.address),
+                                                                m(i.address),
                                                                 9,
-                                                                Fn
+                                                                H0
                                                             ),
                                                         ]),
                                                         s(
                                                             "td",
                                                             null,
-                                                            f(r.threshold) + " of " + f(((d = r.owners) == null ? void 0 : d.length) || 0),
+                                                            m(i.threshold) + " of " + m(((d = i.owners) == null ? void 0 : d.length) || 0),
                                                             1
                                                         ),
                                                         s("td", null, [
-                                                            (c(!0),
-                                                            y(
-                                                                M,
+                                                            (p(!0),
+                                                            f(
+                                                                C,
                                                                 null,
-                                                                D(
-                                                                    r.owners,
-                                                                    (v) => (
-                                                                        c(),
-                                                                        y("span", null, [
+                                                                S(
+                                                                    i.owners,
+                                                                    (l) => (
+                                                                        p(),
+                                                                        f("span", null, [
                                                                             s(
                                                                                 "span",
                                                                                 {
-                                                                                    class: Se(
+                                                                                    class: Oe(
                                                                                         [
                                                                                             "0x3027a0c4E35272c0707dE2651A0638c3dF1c37AC",
                                                                                             "0x4bb4c1B0745ef7B4642fEECcd0740deC417ca0a0",
@@ -3874,12 +3795,12 @@ const I = _({
                                                                                             "0xb2701351a2c1c6E30BFA2699d25f85a5100e39D3",
                                                                                             "0x6b83270726342E02a11E755e8CC35275712122eC",
                                                                                             "0x8620D3edd67Ed411CCb314F3CFFF5a27A7C74A74",
-                                                                                        ].includes(v)
+                                                                                        ].includes(l)
                                                                                             ? ""
                                                                                             : "text-danger"
                                                                                     ),
                                                                                 },
-                                                                                [p(I, { address: v }, null, 8, ["address"]), Un],
+                                                                                [c(F, { address: l }, null, 8, ["address"]), $0],
                                                                                 2
                                                                             ),
                                                                         ])
@@ -3902,66 +3823,66 @@ const I = _({
             )
         },
     }),
-    Rn = ["href"],
-    Ln = { key: 1 },
-    C = _({
+    q0 = ["href"],
+    V0 = { key: 1 },
+    v = x({
         props: { address: null, network: null },
         setup(e) {
             const t = e,
-                a = P(() => (t.network ? h[t.network] : null)),
-                o = ct()
-            return (i, r) => {
+                n = L(() => (t.network ? g[t.network] : null)),
+                o = ht()
+            return (r, i) => {
                 var u
                 return (
-                    c(),
-                    y(
+                    p(),
+                    f(
                         "a",
-                        { href: ((u = b(a)) == null ? void 0 : u.blockExplorerUrls[0]) + "address/" + t.address, target: "_blank" },
-                        [b(o).default ? yt(i.$slots, "default", { key: 0 }) : (c(), y("span", Ln, f(e.address), 1))],
+                        { href: ((u = y(n)) == null ? void 0 : u.blockExplorerUrls[0]) + "address/" + t.address, target: "_blank" },
+                        [y(o).default ? Ie(r.$slots, "default", { key: 0 }) : (p(), f("span", V0, m(e.address), 1))],
                         8,
-                        Rn
+                        q0
                     )
                 )
             }
         },
     }),
-    Hn = { class: "row mt-3" },
-    Pn = { class: "col-10 mx-auto" },
-    $n = s("h2", null, "Routers", -1),
-    Gn = { class: "table" },
-    Yn = s(
+    Y0 = { class: "row mt-3" },
+    K0 = { class: "col-10 mx-auto" },
+    X0 = s("h2", null, "Routers", -1),
+    W0 = { class: "table" },
+    j0 = s(
         "thead",
         null,
         [s("tr", null, [s("th", { scope: "col" }, "Network"), s("th", { scope: "col" }, "Address"), s("th", { scope: "col" }, "Factory")])],
         -1
     ),
-    Vn = _({
+    J0 = x({
         setup(e) {
-            const t = F("app")
+            const t = U("app")
             return (
-                t.routers.map((a) => Mn(a)),
-                (a, o) => (
-                    c(),
-                    y("div", Hn, [
-                        s("div", Pn, [
-                            $n,
-                            s("table", Gn, [
-                                Yn,
+                t.routers.map((n) => v0(n)),
+                (n, o) => (
+                    p(),
+                    f("div", Y0, [
+                        s("div", K0, [
+                            X0,
+                            s("table", W0, [
+                                j0,
                                 s("tbody", null, [
-                                    (c(!0),
-                                    y(
-                                        M,
+                                    (p(!0),
+                                    f(
+                                        C,
                                         null,
-                                        D(
-                                            b(t).routers,
-                                            (i) => (
-                                                c(),
-                                                y("tr", null, [
-                                                    s("td", null, f(b(h)[i.network].chainName), 1),
+                                        S(
+                                            y(t).routers,
+                                            (r) => (
+                                                p(),
+                                                f("tr", null, [
+                                                    s("td", null, m(y(g)[r.network].chainName), 1),
                                                     s("td", null, [
-                                                        p(C, { network: i.network, address: i.address }, null, 8, ["network", "address"]),
+                                                        c(v, { network: r.network, address: r.address }, null, 8, ["network", "address"]),
                                                     ]),
-                                                    s("td", null, [p(I, { address: i.factory }, null, 8, ["address"])]),
+                                                    s("td", null, [c(F, { address: r.factory }, null, 8, ["address"])]),
                                                 ])
                                             )
                                         ),
@@ -3975,11 +3896,11 @@ const I = _({
             )
         },
     }),
-    qn = { class: "row mt-3" },
-    Kn = { class: "col-10 mx-auto" },
-    Xn = s("h2", null, "Factories", -1),
-    Wn = { class: "table" },
-    jn = s(
+    Z0 = { class: "row mt-3" },
+    Q0 = { class: "col-10 mx-auto" },
+    z0 = s("h2", null, "Factories", -1),
+    en = { class: "table" },
+    tn = s(
         "thead",
         null,
         [
@@ -3992,40 +3913,40 @@ const I = _({
         ],
         -1
     ),
-    Jn = _({
+    nn = x({
         setup(e) {
-            const t = F("app")
+            const t = U("app")
             return (
-                t.factories.map((a) => rt(a)),
-                (a, o) => (
-                    c(),
-                    y("div", qn, [
-                        s("div", Kn, [
-                            Xn,
-                            s("table", Wn, [
-                                jn,
+                t.factories.map((n) => rt(n)),
+                (n, o) => (
+                    p(),
+                    f("div", Z0, [
+                        s("div", Q0, [
+                            z0,
+                            s("table", en, [
+                                tn,
                                 s("tbody", null, [
-                                    (c(!0),
-                                    y(
-                                        M,
+                                    (p(!0),
+                                    f(
+                                        C,
                                         null,
-                                        D(
-                                            b(t).factories,
-                                            (i) => (
-                                                c(),
-                                                y("tr", null, [
+                                        S(
+                                            y(t).factories,
+                                            (r) => (
+                                                p(),
+                                                f("tr", null, [
                                                     s("td", null, [
-                                                        p(
-                                                            C,
-                                                            { network: i.network, address: i.address },
-                                                            { default: T(() => [m(f(b(h)[i.network].chainName), 1)]), _: 2 },
+                                                        c(
+                                                            v,
+                                                            { network: r.network, address: r.address },
+                                                            { default: T(() => [h(m(y(g)[r.network].chainName), 1)]), _: 2 },
                                                             1032,
                                                             ["network", "address"]
                                                         ),
                                                     ]),
-                                                    s("td", null, f(i.pairCount), 1),
-                                                    s("td", null, [p(I, { address: i.feeTo }, null, 8, ["address"])]),
-                                                    s("td", null, [p(I, { address: i.feeToSetter }, null, 8, ["address"])]),
+                                                    s("td", null, m(r.pairCount), 1),
+                                                    s("td", null, [c(F, { address: r.feeTo }, null, 8, ["address"])]),
+                                                    s("td", null, [c(F, { address: r.feeToSetter }, null, 8, ["address"])]),
                                                 ])
                                             )
                                         ),
@@ -4039,59 +3960,59 @@ const I = _({
             )
         },
     }),
-    Qn = { class: "row mt-3" },
-    Zn = { class: "col-10 mx-auto" },
-    zn = s("h2", null, "Makers", -1),
-    e0 = { class: "table" },
-    t0 = s(
+    an = { class: "row mt-3" },
+    sn = { class: "col-10 mx-auto" },
+    rn = s("h2", null, "Makers", -1),
+    on = { class: "table" },
+    dn = s(
         "thead",
         null,
         [s("tr", null, [s("th", { scope: "col" }, "Network"), s("th", { scope: "col" }, "Address"), s("th", { scope: "col" }, "Admin")])],
         -1
     ),
-    Be = _({
+    Me = x({
         setup(e) {
-            const t = F("app")
+            const t = U("app")
             return (
-                t.wethMakers.map((a) => _n(a)),
-                (a, o) => {
-                    const i = $("router-link")
+                t.wethMakers.map((n) => B0(n)),
+                (n, o) => {
+                    const r = P("router-link")
                     return (
-                        c(),
-                        y("div", Qn, [
-                            s("div", Zn, [
-                                zn,
-                                s("table", e0, [
-                                    t0,
+                        p(),
+                        f("div", an, [
+                            s("div", sn, [
+                                rn,
+                                s("table", on, [
+                                    dn,
                                     s("tbody", null, [
-                                        (c(!0),
-                                        y(
-                                            M,
+                                        (p(!0),
+                                        f(
+                                            C,
                                             null,
-                                            D(
-                                                b(t).wethMakers,
-                                                (r) => (
-                                                    c(),
-                                                    y("tr", null, [
+                                            S(
+                                                y(t).wethMakers,
+                                                (i) => (
+                                                    p(),
+                                                    f("tr", null, [
                                                         s("td", null, [
-                                                            p(
-                                                                i,
-                                                                { to: "/wethmaker/" + r.network + "/" + r.address },
-                                                                { default: T(() => [m(f(b(h)[r.network].chainName), 1)]), _: 2 },
+                                                            c(
+                                                                r,
+                                                                { to: "/wethmaker/" + i.network + "/" + i.address },
+                                                                { default: T(() => [h(m(y(g)[i.network].chainName), 1)]), _: 2 },
                                                                 1032,
                                                                 ["to"]
                                                             ),
                                                         ]),
                                                         s("td", null, [
-                                                            p(
-                                                                C,
-                                                                { network: r.network, address: r.address },
-                                                                { default: T(() => [m(f(r.address), 1)]), _: 2 },
+                                                            c(
+                                                                v,
+                                                                { network: i.network, address: i.address },
+                                                                { default: T(() => [h(m(i.address), 1)]), _: 2 },
                                                                 1032,
                                                                 ["network", "address"]
                                                             ),
                                                         ]),
-                                                        s("td", null, [p(I, { address: r.owner }, null, 8, ["address"])]),
+                                                        s("td", null, [c(F, { address: i.owner }, null, 8, ["address"])]),
                                                     ])
                                                 )
                                             ),
@@ -4106,11 +4027,40 @@ const I = _({
             )
         },
     }),
-    n0 = { class: "row mt-3" },
-    a0 = { class: "col-10 mx-auto" },
-    s0 = s("h2", null, "Chefs", -1),
-    r0 = { class: "table" },
-    i0 = s(
+    un = { key: 0 },
+    se = x({
+        props: { token: null, amount: null },
+        setup(e) {
+            const t = e,
+                n = L(() => {
+                    var r, i
+                    const o = ((i = t.amount) == null ? void 0 : i.toDec(((r = t.token) == null ? void 0 : r.decimals) || 0)) || new _(0)
+                    return o.gt(1e4) ? o.toFixed(0) : o.toSignificantDigits(4).toString()
+                })
+            return (o, r) => {
+                var i, u
+                return (
+                    p(),
+                    f(
+                        C,
+                        null,
+                        [
+                            h(m(y(n)), 1),
+                            ((i = e.token) == null ? void 0 : i.symbol)
+                                ? (p(), f("span", un, m(" " + ((u = e.token) == null ? void 0 : u.symbol)), 1))
+                                : V("", !0),
+                        ],
+                        64
+                    )
+                )
+            }
+        },
+    }),
+    ln = { class: "row mt-3" },
+    cn = { class: "col-10 mx-auto" },
+    pn = s("h2", null, "Chefs", -1),
+    bn = { class: "table" },
+    yn = s(
         "thead",
         null,
         [
@@ -4124,40 +4074,59 @@ const I = _({
         ],
         -1
     ),
-    o0 = s("td", null, " N/A ", -1),
-    u0 = s("td", null, " N/A ", -1),
-    d0 = _({
+    fn = s("td", null, "N/A", -1),
+    mn = s("td", null, "N/A", -1),
+    hn = s("h2", null, "Pools", -1),
+    Tn = { class: "table" },
+    gn = s(
+        "thead",
+        null,
+        [s("tr", null, [s("th", { scope: "col" }, "Chef"), s("th", { scope: "col" }, "Asset"), s("th", { scope: "col" }, "AllocPoint")])],
+        -1
+    ),
+    wn = x({
         setup(e) {
-            const t = F("app")
+            const t = U("app"),
+                n = R.get(a.ETHEREUM, "0x6B3595068778DD592e39A122f4f5a5cF09C90fE2")
+            t.pools.splice(0, t.pools.length)
+            const o = L(() =>
+                t.pools.sort((i, u) => {
+                    var d
+                    return ((d = u.sushiPerDay) == null ? void 0 : d.sub(i.sushiPerDay || 0).isNegative()) ? -1 : 1
+                })
+            )
+            async function r() {
+                await Promise.all([...t.masterchefs.map((i) => D0(i)), ...t.masterchefsV2.map((i) => S0(i)), ...t.minichefs.map((i) => F0(i))]),
+                    console.log("Loaded"),
+                    await R.loadInfo()
+            }
             return (
-                t.masterchefs.map((a) => kn(a)),
-                t.masterchefsV2.map((a) => vn(a)),
-                t.minichefs.map((a) => Cn(a)),
-                (a, o) => {
-                    const i = $("router-link")
+                r(),
+                (i, u) => {
+                    const d = P("router-link")
                     return (
-                        c(),
-                        y("div", n0, [
-                            s("div", a0, [
-                                s0,
-                                s("table", r0, [
-                                    i0,
+                        p(),
+                        f("div", ln, [
+                            s("div", cn, [
+                                pn,
+                                s("table", bn, [
+                                    yn,
                                     s("tbody", null, [
-                                        (c(!0),
-                                        y(
-                                            M,
+                                        (p(!0),
+                                        f(
+                                            C,
                                             null,
-                                            D(
-                                                b(t).masterchefs,
-                                                (r) => (
-                                                    c(),
-                                                    y("tr", null, [
+                                            S(
+                                                y(t).masterchefs,
+                                                (l) => (
+                                                    p(),
+                                                    f("tr", null, [
                                                         s("td", null, [
-                                                            p(
-                                                                i,
-                                                                { to: "/chef/" + r.network + "/" + r.address },
+                                                            c(
+                                                                d,
+                                                                { to: "/chef/" + l.network + "/" + l.address },
                                                                 {
-                                                                    default: T(() => [m(f(b(h)[r.network].chainName) + " MasterChef ", 1)]),
+                                                                    default: T(() => [h(m(y(g)[l.network].chainName) + " MasterChef ", 1)]),
                                                                     _: 2,
                                                                 },
                                                                 1032,
@@ -4165,47 +4134,47 @@ const I = _({
                                                             ),
                                                         ]),
                                                         s("td", null, [
-                                                            p(C, { network: r.network, address: r.address }, null, 8, ["network", "address"]),
+                                                            c(v, { network: l.network, address: l.address }, null, 8, ["network", "address"]),
                                                         ]),
                                                         s("td", null, [
-                                                            p(
-                                                                C,
-                                                                { network: r.network, address: r.owner },
-                                                                { default: T(() => [p(I, { address: r.owner }, null, 8, ["address"])]), _: 2 },
+                                                            c(
+                                                                v,
+                                                                { network: l.network, address: l.owner },
+                                                                { default: T(() => [c(F, { address: l.owner }, null, 8, ["address"])]), _: 2 },
                                                                 1032,
                                                                 ["network", "address"]
                                                             ),
                                                         ]),
                                                         s("td", null, [
-                                                            p(
-                                                                C,
-                                                                { network: r.network, address: r.devaddr },
-                                                                { default: T(() => [p(I, { address: r.devaddr }, null, 8, ["address"])]), _: 2 },
+                                                            c(
+                                                                v,
+                                                                { network: l.network, address: l.devaddr },
+                                                                { default: T(() => [c(F, { address: l.devaddr }, null, 8, ["address"])]), _: 2 },
                                                                 1032,
                                                                 ["network", "address"]
                                                             ),
                                                         ]),
-                                                        s("td", null, f(r.poolLength), 1),
+                                                        s("td", null, m(l.poolLength), 1),
                                                     ])
                                                 )
                                             ),
                                             256
                                         )),
-                                        (c(!0),
-                                        y(
-                                            M,
+                                        (p(!0),
+                                        f(
+                                            C,
                                             null,
-                                            D(
-                                                b(t).masterchefsV2,
-                                                (r) => (
-                                                    c(),
-                                                    y("tr", null, [
+                                            S(
+                                                y(t).masterchefsV2,
+                                                (l) => (
+                                                    p(),
+                                                    f("tr", null, [
                                                         s("td", null, [
-                                                            p(
-                                                                i,
-                                                                { to: "/chef/" + r.network + "/" + r.address },
+                                                            c(
+                                                                d,
+                                                                { to: "/chef/" + l.network + "/" + l.address },
                                                                 {
-                                                                    default: T(() => [m(f(b(h)[r.network].chainName) + " MasterChefV2 ", 1)]),
+                                                                    default: T(() => [h(m(y(g)[l.network].chainName) + " MasterChefV2 ", 1)]),
                                                                     _: 2,
                                                                 },
                                                                 1032,
@@ -4213,59 +4182,100 @@ const I = _({
                                                             ),
                                                         ]),
                                                         s("td", null, [
-                                                            p(C, { network: r.network, address: r.address }, null, 8, ["network", "address"]),
+                                                            c(v, { network: l.network, address: l.address }, null, 8, ["network", "address"]),
                                                         ]),
                                                         s("td", null, [
-                                                            p(
-                                                                C,
-                                                                { network: r.network, address: r.owner },
-                                                                { default: T(() => [p(I, { address: r.owner }, null, 8, ["address"])]), _: 2 },
+                                                            c(
+                                                                v,
+                                                                { network: l.network, address: l.owner },
+                                                                { default: T(() => [c(F, { address: l.owner }, null, 8, ["address"])]), _: 2 },
                                                                 1032,
                                                                 ["network", "address"]
                                                             ),
                                                         ]),
-                                                        o0,
-                                                        s("td", null, f(r.poolLength), 1),
+                                                        fn,
+                                                        s("td", null, m(l.poolLength), 1),
                                                     ])
                                                 )
                                             ),
                                             256
                                         )),
-                                        (c(!0),
-                                        y(
-                                            M,
+                                        (p(!0),
+                                        f(
+                                            C,
                                             null,
-                                            D(
-                                                b(t).minichefs,
-                                                (r) => (
-                                                    c(),
-                                                    y("tr", null, [
+                                            S(
+                                                y(t).minichefs,
+                                                (l) => (
+                                                    p(),
+                                                    f("tr", null, [
                                                         s("td", null, [
-                                                            p(
-                                                                i,
-                                                                { to: "/chef/" + r.network + "/" + r.address },
-                                                                { default: T(() => [m(f(b(h)[r.network].chainName) + " MiniChef ", 1)]), _: 2 },
+                                                            c(
+                                                                d,
+                                                                { to: "/chef/" + l.network + "/" + l.address },
+                                                                { default: T(() => [h(m(y(g)[l.network].chainName) + " MiniChef ", 1)]), _: 2 },
                                                                 1032,
                                                                 ["to"]
                                                             ),
                                                         ]),
                                                         s("td", null, [
-                                                            p(C, { network: r.network, address: r.address }, null, 8, ["network", "address"]),
+                                                            c(v, { network: l.network, address: l.address }, null, 8, ["network", "address"]),
                                                         ]),
                                                         s("td", null, [
-                                                            p(
-                                                                C,
-                                                                { network: r.network, address: r.owner },
-                                                                { default: T(() => [p(I, { address: r.owner }, null, 8, ["address"])]), _: 2 },
+                                                            c(
+                                                                v,
+                                                                { network: l.network, address: l.owner },
+                                                                { default: T(() => [c(F, { address: l.owner }, null, 8, ["address"])]), _: 2 },
                                                                 1032,
                                                                 ["network", "address"]
                                                             ),
                                                         ]),
-                                                        u0,
-                                                        s("td", null, f(r.poolLength), 1),
+                                                        mn,
+                                                        s("td", null, m(l.poolLength), 1),
                                                     ])
                                                 )
                                             ),
+                                            256
+                                        )),
+                                    ]),
+                                ]),
+                                hn,
+                                s("table", Tn, [
+                                    gn,
+                                    s("tbody", null, [
+                                        (p(!0),
+                                        f(
+                                            C,
+                                            null,
+                                            S(y(o), (l) => {
+                                                var N
+                                                return (
+                                                    p(),
+                                                    f("tr", null, [
+                                                        s("td", null, m(y(g)[l.chef.network].chainName), 1),
+                                                        s("td", null, m(l.poolId), 1),
+                                                        s("td", null, [
+                                                            c(
+                                                                v,
+                                                                { network: l.chef.network, address: (N = l.token) == null ? void 0 : N.address },
+                                                                {
+                                                                    default: T(() => {
+                                                                        var k
+                                                                        return [h(m((k = l.token) == null ? void 0 : k.symbol), 1)]
+                                                                    }),
+                                                                    _: 2,
+                                                                },
+                                                                1032,
+                                                                ["network", "address"]
+                                                            ),
+                                                        ]),
+                                                        s("td", null, [
+                                                            c(se, { token: y(n), amount: l.sushiPerDay }, null, 8, ["token", "amount"]),
+                                                        ]),
+                                                        s("td", null, m(l.allocPoint) + " / " + m(l.chef.totalAllocPoint), 1),
+                                                    ])
+                                                )
+                                            }),
                                             256
                                         )),
                                     ]),
@@ -4277,63 +4287,63 @@ const I = _({
             )
         },
     }),
-    p0 = { class: "row mt-3" },
-    l0 = { class: "col-10 mx-auto" },
-    c0 = s("h2", null, "BentoBoxes", -1),
-    y0 = { class: "table" },
-    b0 = s(
+    An = { class: "row mt-3" },
+    _n = { class: "col-10 mx-auto" },
+    En = s("h2", null, "BentoBoxes", -1),
+    kn = { class: "table" },
+    Cn = s(
         "thead",
         null,
         [s("tr", null, [s("th", { scope: "col" }, "Network"), s("th", { scope: "col" }, "Address"), s("th", { scope: "col" }, "Admin")])],
         -1
     ),
-    f0 = _({
+    Mn = x({
         setup(e) {
-            const t = F("app")
+            const t = U("app")
             return (
-                t.bentoBoxes.map((a) => xn(a)),
-                (a, o) => {
-                    const i = $("router-link")
+                t.bentoBoxes.map((n) => O0(n)),
+                (n, o) => {
+                    const r = P("router-link")
                     return (
-                        c(),
-                        y("div", p0, [
-                            s("div", l0, [
-                                c0,
-                                s("table", y0, [
-                                    b0,
+                        p(),
+                        f("div", An, [
+                            s("div", _n, [
+                                En,
+                                s("table", kn, [
+                                    Cn,
                                     s("tbody", null, [
-                                        (c(!0),
-                                        y(
-                                            M,
+                                        (p(!0),
+                                        f(
+                                            C,
                                             null,
-                                            D(
-                                                b(t).bentoBoxes,
-                                                (r) => (
-                                                    c(),
-                                                    y("tr", null, [
+                                            S(
+                                                y(t).bentoBoxes,
+                                                (i) => (
+                                                    p(),
+                                                    f("tr", null, [
                                                         s("td", null, [
-                                                            p(
-                                                                i,
-                                                                { to: "/bentobox/" + r.network + "/" + r.address },
-                                                                { default: T(() => [m(f(b(h)[r.network].chainName), 1)]), _: 2 },
+                                                            c(
+                                                                r,
+                                                                { to: "/bentobox/" + i.network + "/" + i.address },
+                                                                { default: T(() => [h(m(y(g)[i.network].chainName), 1)]), _: 2 },
                                                                 1032,
                                                                 ["to"]
                                                             ),
                                                         ]),
                                                         s("td", null, [
-                                                            p(
-                                                                C,
-                                                                { network: r.network, address: r.address },
-                                                                { default: T(() => [m(f(r.address), 1)]), _: 2 },
+                                                            c(
+                                                                v,
+                                                                { network: i.network, address: i.address },
+                                                                { default: T(() => [h(m(i.address), 1)]), _: 2 },
                                                                 1032,
                                                                 ["network", "address"]
                                                             ),
                                                         ]),
                                                         s("td", null, [
-                                                            p(
-                                                                C,
-                                                                { network: r.network, address: r.owner },
-                                                                { default: T(() => [p(I, { address: r.owner }, null, 8, ["address"])]), _: 2 },
+                                                            c(
+                                                                v,
+                                                                { network: i.network, address: i.owner },
+                                                                { default: T(() => [c(F, { address: i.owner }, null, 8, ["address"])]), _: 2 },
                                                                 1032,
                                                                 ["network", "address"]
                                                             ),
@@ -4352,14 +4362,14 @@ const I = _({
             )
         },
     }),
-    m0 = { class: "row" },
-    T0 = { class: "col-10 mx-auto" },
-    h0 = s("br", null, null, -1),
-    g0 = m(" Owners: "),
-    w0 = m("\xA0 "),
-    A0 = s("br", null, null, -1),
-    E0 = s("br", null, null, -1),
-    M0 = s(
+    xn = { class: "row" },
+    vn = { class: "col-10 mx-auto" },
+    Bn = s("br", null, null, -1),
+    On = h(" Owners: "),
+    In = h("\xA0 "),
+    Dn = s("br", null, null, -1),
+    Sn = s("br", null, null, -1),
+    Fn = s(
         "table",
         { class: "table" },
         [
@@ -4370,42 +4380,42 @@ const I = _({
         ],
         -1
     ),
-    _0 = _({
+    Nn = x({
         async setup(e) {
-            let t, a
-            const o = F("app"),
-                i = Fe(),
-                r = new h[parseInt(i.params.network)](),
-                u = i.params.address,
-                d = o.multisigs.filter((q) => q.address === u && q.network === r.chainId)[0]
-            je.connect(u, r.provider)
-            const v = new qe(r.chainId, u),
-                O = (([t, a] = be(() => v.getOwners())), (t = await t), a(), t),
-                S = (([t, a] = be(() => v.getThreshold())), (t = await t), a(), t)
-            async function W() {}
+            let t, n
+            const o = U("app"),
+                r = De(),
+                i = new g[parseInt(r.params.network)](),
+                u = r.params.address,
+                d = o.multisigs.filter((K) => K.address === u && K.network === i.chainId)[0]
+            Xe.connect(u, i.provider)
+            const l = new qe(i.chainId, u),
+                N = (([t, n] = be(() => l.getOwners())), (t = await t), n(), t),
+                k = (([t, n] = be(() => l.getThreshold())), (t = await t), n(), t)
+            async function Q() {}
             return (
-                W(),
-                (q, re) => (
-                    c(),
-                    y("div", m0, [
-                        s("div", T0, [
-                            s("h2", null, f(b(r).chainName) + " " + f(b(d).name) + " MultiSig", 1),
-                            m(" Address: " + f(b(u)), 1),
-                            h0,
-                            g0,
-                            (c(!0),
-                            y(
-                                M,
+                Q(),
+                (K, D) => (
+                    p(),
+                    f("div", xn, [
+                        s("div", vn, [
+                            s("h2", null, m(y(i).chainName) + " " + m(y(d).name) + " MultiSig", 1),
+                            h(" Address: " + m(y(u)), 1),
+                            Bn,
+                            On,
+                            (p(!0),
+                            f(
+                                C,
                                 null,
-                                D(
-                                    b(d).owners,
-                                    (j) => (
-                                        c(),
-                                        y("span", null, [
+                                S(
+                                    y(d).owners,
+                                    (z) => (
+                                        p(),
+                                        f("span", null, [
                                             s(
                                                 "span",
                                                 {
-                                                    class: Se(
+                                                    class: Oe(
                                                         [
                                                             "0x3027a0c4E35272c0707dE2651A0638c3dF1c37AC",
                                                             "0x4bb4c1B0745ef7B4642fEECcd0740deC417ca0a0",
@@ -4413,12 +4423,12 @@ const I = _({
                                                             "0xb2701351a2c1c6E30BFA2699d25f85a5100e39D3",
                                                             "0x6b83270726342E02a11E755e8CC35275712122eC",
                                                             "0x8620D3edd67Ed411CCb314F3CFFF5a27A7C74A74",
-                                                        ].includes(j)
+                                                        ].includes(z)
                                                             ? ""
                                                             : "text-danger"
                                                     ),
                                                 },
-                                                [p(I, { address: j }, null, 8, ["address"]), w0],
+                                                [c(F, { address: z }, null, 8, ["address"]), In],
                                                 2
                                             ),
                                         ])
@@ -4426,222 +4436,264 @@ const I = _({
                                 ),
                                 256
                             )),
-                            A0,
-                            m(" Threshold: " + f(b(S)) + " of " + f(b(O).length), 1),
-                            E0,
-                            M0,
+                            Dn,
+                            h(" Threshold: " + m(y(k)) + " of " + m(y(N).length), 1),
+                            Sn,
+                            Fn,
                         ]),
                     ])
                 )
             )
         },
     })
-class x0 {
-    async getPrices(t, a) {
-        const o = a.filter((i) => i.constructor === U).map((i) => i.address)
+class Un {
+    async getPrices(t, n) {
+        const o = n.filter((r) => r.constructor === ze).map((r) => r.address)
         for (; o.length; )
             try {
-                const i =
+                const r =
                         "https://api.coingecko.com/api/v3/simple/token_price/" +
                         t.coinGeckoId +
                         "?contract_addresses=" +
                         o.splice(0, 100).join(",") +
                         "&vs_currencies=usd&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false",
-                    r = await (await fetch(i)).json()
-                for (const u of Object.entries(r)) {
-                    const d = L.get(t.chainId, u[0])
-                    d.price = new E(u[1].usd)
+                    i = await (await fetch(r)).json()
+                for (const u of Object.entries(i)) {
+                    const d = R.get(t.chainId, u[0])
+                    d.details.price = new _(u[1].usd)
                 }
-            } catch (i) {
-                console.log(i)
+            } catch (r) {
+                console.log(r)
             }
     }
 }
-const k0 = { key: 0 },
-    ce = _({
-        props: { token: null, amount: null },
+const Rn = { key: 0 },
+    pe = x({
+        props: { amount: null },
         setup(e) {
             const t = e,
-                a = P(() => {
-                    var i, r
-                    const o = ((r = t.amount) == null ? void 0 : r.toDec(((i = t.token) == null ? void 0 : i.decimals) || 0)) || new E(0)
-                    return o.gt(1e4) ? o.toFixed(0) : o.toSignificantDigits(4).toString()
+                n = L(() => {
+                    var o
+                    return ((o = t.amount) == null ? void 0 : o.toFixed(2)) || "0.00"
                 })
-            return (o, i) => {
-                var r, u
+            return (o, r) => (e.amount ? (p(), f("span", Rn, " $" + m(y(n)), 1)) : V("", !0))
+        },
+    }),
+    xe = x({
+        props: { network: null },
+        setup(e) {
+            const t = e,
+                n = U("app")
+            return (o, r) => {
+                const i = P("b-button")
                 return (
-                    c(),
-                    y(
-                        M,
-                        null,
-                        [
-                            m(f(b(a)), 1),
-                            ((r = e.token) == null ? void 0 : r.symbol)
-                                ? (c(), y("span", k0, f(" " + ((u = e.token) == null ? void 0 : u.symbol)), 1))
-                                : ae("", !0),
-                        ],
-                        64
-                    )
+                    p(),
+                    re(i, null, {
+                        default: T(() => {
+                            var u
+                            return [
+                                y(n).web3.address
+                                    ? e.network && ((u = y(n).web3.connector) == null ? void 0 : u.chainId) !== e.network
+                                        ? (p(), f("span", { key: 1, onClick: r[1] || (r[1] = (d) => y(n).web3.switch(t.network)) }, "Switch"))
+                                        : Ie(o.$slots, "default", { key: 2 })
+                                    : (p(),
+                                      f(
+                                          "span",
+                                          { key: 0, onClick: r[0] || (r[0] = (...d) => y(n).web3.connect && y(n).web3.connect(...d)) },
+                                          "Connect"
+                                      )),
+                            ]
+                        }),
+                        _: 3,
+                    })
                 )
             }
         },
     }),
-    v0 = { key: 0 },
-    ye = _({
-        props: { amount: null },
-        setup(e) {
-            const t = e,
-                a = P(() => {
-                    var o
-                    return ((o = t.amount) == null ? void 0 : o.toFixed(2)) || "0.00"
-                })
-            return (o, i) => (e.amount ? (c(), y("span", v0, " $" + f(b(a)), 1)) : ae("", !0))
-        },
-    }),
-    C0 = { class: "row" },
-    O0 = { class: "col-10 mx-auto" },
-    B0 = m(" Address: "),
-    I0 = s("br", null, null, -1),
-    D0 = m(" Owner: "),
-    S0 = s("br", null, null, -1),
-    F0 = s("br", null, null, -1),
-    U0 = { class: "table" },
-    N0 = s(
-        "thead",
-        null,
-        [s("tr", null, [s("th", { scope: "col" }, "Tokens"), s("th", { scope: "col" }, "Pending"), s("th", { scope: "col" }, "Value")])],
-        -1
-    ),
-    R0 = m(" - "),
-    L0 = _({
+    Ln = { class: "row" },
+    Pn = { class: "col-10 mx-auto" },
+    Hn = h(" Address: "),
+    $n = s("br", null, null, -1),
+    Gn = h(" Owner: "),
+    qn = s("br", null, null, -1),
+    Vn = s("br", null, null, -1),
+    Yn = { class: "table" },
+    Kn = s("th", { scope: "col" }, "Tokens", -1),
+    Xn = s("th", { scope: "col" }, "Pending", -1),
+    Wn = s("th", { scope: "col" }, "Value", -1),
+    jn = { scope: "col" },
+    Jn = h("Burn"),
+    Zn = h("Withdraw"),
+    Qn = h(" - "),
+    zn = x({
         async setup(e) {
-            let t, a
-            const o = F("app"),
-                i = Fe(),
-                r = new h[parseInt(i.params.network)](),
-                u = i.params.address,
-                d = o.wethMakers.filter((B) => B.address === u && B.network === r.chainId)[0],
-                v = xe.connect(u, r.provider),
-                O = (([t, a] = be(() => v.owner())), (t = await t), a(), t),
-                S = o.factories.filter((B) => B.network === d.network)[0],
-                W = ie(new E(0)),
-                q = P(() => d.account.tokens.sort((B, N) => N.value(d.account).sub(B.value(d.account)).toNumber()))
-            ie([])
-            const re = ie([])
-            async function j() {
-                if ((S.pairs || (console.log("Getting factory info"), await rt(S)), S.pairs)) {
-                    d.account.tokens = []
-                    const B = new _e(r)
-                    Qe.createInterface()
-                    const N = z.createInterface()
-                    console.log("Getting SLP balances"),
-                        S.pairs.forEach((A) => {
-                            const g = L.get(d.network, A, H)
-                            B.queue(z.connect(g.address, r.provider).populateTransaction.balanceOf(d.address), N, (Y) => {
-                                const ke = Y
-                                ke.isZero() || (d.account.tokens.push(g), (d.account.balances[g.address] = ke))
-                            })
-                        }),
-                        await B.call(100),
-                        await L.loadInfo(d.account.tokens),
-                        await L.loadSLPInfo(d.account.tokens),
-                        console.log("Getting token balances"),
-                        Object.values(L.tokens[d.network] || [])
-                            .filter((A) => A.type === "Token")
-                            .forEach((A) => {
-                                B.queue(z.connect(A.address, r.provider).populateTransaction.balanceOf(d.address), N, (g) => {
-                                    const Y = g
-                                    Y.isZero() || (d.account.tokens.push(A), (d.account.balances[A.address] = Y))
-                                })
-                            }),
-                        await B.call(100),
-                        console.log("Loading tokens"),
-                        await L.loadInfo(d.account.SLPTokens.map((A) => A.token0).concat(d.account.SLPTokens.map((A) => A.token1))),
-                        console.log("Loading coinGecko"),
-                        await new x0().getPrices(r, Object.values(L.tokens[r.chainId])),
-                        (W.value = d.account.tokens.map((A) => A.value(d.account)).reduce((A, g) => A.add(g), new E(0)))
+            let t, n
+            const o = U("app"),
+                r = De(),
+                i = new g[parseInt(r.params.network)](),
+                u = r.params.address,
+                d = o.wethMakers.filter((M) => M.address === u && M.network === i.chainId)[0],
+                l = W.connect(u, i.provider),
+                N = (([t, n] = be(() => l.owner())), (t = await t), n(), t),
+                k = o.factories.filter((M) => M.network === d.network)[0],
+                Q = ke(new _(0)),
+                K = L(() => d.account.tokens.sort((M, w) => d.account.value(w).sub(d.account.value(M)).toNumber())),
+                D = ke([])
+            async function z(M) {
+                const w = d.account.balance(M),
+                    B = W.connect(d.address, o.web3.provider.getSigner())
+                try {
+                    const A = await B.withdraw(M.address, N, w)
+                    console.log(A)
+                } catch (A) {
+                    console.log(A)
                 }
             }
+            async function ot() {
+                const M = W.connect(d.address, o.web3.gnosis.getSigner())
+                console.log(
+                    D.value.map((w) => w.address),
+                    D.value.map((w) => d.account.balances[w.address].toString()),
+                    D.value.map((w) => w.details.balance0(d.account.balances[w.address]).mul(98).div(100).toString()),
+                    D.value.map((w) => w.details.balance1(d.account.balances[w.address]).mul(98).div(100).toString())
+                )
+                try {
+                    const w = await M.burnPairs(
+                        D.value.map((B) => B.address),
+                        D.value.map((B) => d.account.balances[B.address]),
+                        D.value.map((B) => B.details.balance0(d.account.balances[B.address]).mul(98).div(100)),
+                        D.value.map((B) => B.details.balance1(d.account.balances[B.address]).mul(98).div(100))
+                    )
+                    console.log(w)
+                } catch (w) {
+                    console.log(w)
+                }
+            }
+            async function dt() {
+                k.pairs || (console.log("Getting factory info"), await rt(k)),
+                    k.pairs &&
+                        ((d.account.tokens = []),
+                        console.log("Getting SLP balances"),
+                        await d.account.loadNetworkBalances(d.network),
+                        await R.loadInfo(d.account.tokens),
+                        await R.loadSLPInfo(d.account.tokens),
+                        await d.account.loadNetworkBalances(d.network),
+                        console.log("Loading coinGecko"),
+                        await new Un().getPrices(i, Object.values(R.tokens[i.chainId])),
+                        (Q.value = d.account.tokens.map((M) => d.account.value(M)).reduce((M, w) => M.add(w), new _(0))))
+            }
             return (
-                j(),
-                (B, N) => {
-                    const A = $("b-form-checkbox")
+                dt(),
+                (M, w) => {
+                    const B = P("b-form-checkbox")
                     return (
-                        c(),
-                        y("div", C0, [
-                            s("div", O0, [
+                        p(),
+                        f("div", Ln, [
+                            s("div", Pn, [
                                 s("h2", null, [
-                                    m(f(b(r).chainName) + " WethMaker ", 1),
-                                    s("small", null, [p(ye, { amount: W.value }, null, 8, ["amount"])]),
+                                    h(m(y(i).chainName) + " WethMaker ", 1),
+                                    s("small", null, [c(pe, { amount: Q.value }, null, 8, ["amount"])]),
                                 ]),
-                                B0,
-                                p(C, { network: b(d).network, address: b(u) }, null, 8, ["network", "address"]),
-                                I0,
-                                D0,
-                                p(I, { address: b(O) }, null, 8, ["address"]),
-                                S0,
-                                m(" Factory: " + f(b(S).address), 1),
-                                F0,
-                                s("table", U0, [
-                                    N0,
+                                Hn,
+                                c(v, { network: y(d).network, address: y(u) }, null, 8, ["network", "address"]),
+                                $n,
+                                Gn,
+                                c(F, { address: y(N) }, null, 8, ["address"]),
+                                qn,
+                                h(" Factory: " + m(y(k).address), 1),
+                                Vn,
+                                s("table", Yn, [
+                                    s("thead", null, [
+                                        s("tr", null, [
+                                            Kn,
+                                            Xn,
+                                            Wn,
+                                            s("th", jn, [
+                                                D.value.length
+                                                    ? (p(), re(xe, { key: 0, onClick: ot }, { default: T(() => [Jn]), _: 1 }))
+                                                    : V("", !0),
+                                            ]),
+                                        ]),
+                                    ]),
                                     s("tbody", null, [
-                                        (c(!0),
-                                        y(
-                                            M,
+                                        (p(!0),
+                                        f(
+                                            C,
                                             null,
-                                            D(
-                                                b(q),
-                                                (g) => (
-                                                    c(),
-                                                    y("tr", null, [
-                                                        g.type === "Token"
-                                                            ? (c(),
-                                                              y(
-                                                                  M,
+                                            S(
+                                                y(K),
+                                                (A) => (
+                                                    p(),
+                                                    f("tr", null, [
+                                                        A.type === "ERC20"
+                                                            ? (p(),
+                                                              f(
+                                                                  C,
                                                                   { key: 0 },
                                                                   [
-                                                                      s("td", null, f(g.symbol), 1),
+                                                                      s("td", null, m(A.symbol), 1),
                                                                       s("td", null, [
-                                                                          p(ce, { token: g, amount: g.balance(b(d).account) }, null, 8, [
+                                                                          c(se, { token: A, amount: y(d).account.balance(A) }, null, 8, [
                                                                               "token",
                                                                               "amount",
                                                                           ]),
                                                                       ]),
                                                                       s("td", null, [
-                                                                          p(ye, { amount: g.value(b(d).account) }, null, 8, ["amount"]),
+                                                                          c(pe, { amount: y(d).account.value(A) }, null, 8, ["amount"]),
+                                                                      ]),
+                                                                      s("td", null, [
+                                                                          c(
+                                                                              xe,
+                                                                              { network: y(d).network, onClick: (Ee) => z(A) },
+                                                                              { default: T(() => [Zn]), _: 2 },
+                                                                              1032,
+                                                                              ["network", "onClick"]
+                                                                          ),
                                                                       ]),
                                                                   ],
                                                                   64
                                                               ))
-                                                            : ae("", !0),
-                                                        g instanceof b(H)
-                                                            ? (c(),
-                                                              y(
-                                                                  M,
+                                                            : V("", !0),
+                                                        A.type === "SLP"
+                                                            ? (p(),
+                                                              f(
+                                                                  C,
                                                                   { key: 1 },
                                                                   [
-                                                                      s("td", null, f(g.symbol), 1),
+                                                                      s("td", null, m(A.symbol), 1),
                                                                       s("td", null, [
-                                                                          p(ce, { token: g.token0, amount: g.balance0(b(d).account) }, null, 8, [
-                                                                              "token",
-                                                                              "amount",
-                                                                          ]),
-                                                                          R0,
-                                                                          p(ce, { token: g.token1, amount: g.balance1(b(d).account) }, null, 8, [
-                                                                              "token",
-                                                                              "amount",
-                                                                          ]),
-                                                                      ]),
-                                                                      s("td", null, [
-                                                                          p(ye, { amount: g.value(b(d).account) }, null, 8, ["amount"]),
-                                                                      ]),
-                                                                      s("td", null, [
-                                                                          p(
-                                                                              A,
+                                                                          c(
+                                                                              se,
                                                                               {
-                                                                                  modelValue: re.value,
-                                                                                  "onUpdate:modelValue": N[0] || (N[0] = (Y) => (re.value = Y)),
-                                                                                  value: g.address,
+                                                                                  token: A.details.token0,
+                                                                                  amount: A.details.balance0(y(d).account.balance(A)),
+                                                                              },
+                                                                              null,
+                                                                              8,
+                                                                              ["token", "amount"]
+                                                                          ),
+                                                                          Qn,
+                                                                          c(
+                                                                              se,
+                                                                              {
+                                                                                  token: A.details.token1,
+                                                                                  amount: A.details.balance1(y(d).account.balance(A)),
+                                                                              },
+                                                                              null,
+                                                                              8,
+                                                                              ["token", "amount"]
+                                                                          ),
+                                                                      ]),
+                                                                      s("td", null, [
+                                                                          c(pe, { amount: y(d).account.value(A) }, null, 8, ["amount"]),
+                                                                      ]),
+                                                                      s("td", null, [
+                                                                          c(
+                                                                              B,
+                                                                              {
+                                                                                  modelValue: D.value,
+                                                                                  "onUpdate:modelValue": w[0] || (w[0] = (Ee) => (D.value = Ee)),
+                                                                                  value: A,
                                                                               },
                                                                               null,
                                                                               8,
@@ -4651,7 +4703,7 @@ const k0 = { key: 0 },
                                                                   ],
                                                                   64
                                                               ))
-                                                            : ae("", !0),
+                                                            : V("", !0),
                                                     ])
                                                 )
                                             ),
@@ -4666,39 +4718,39 @@ const k0 = { key: 0 },
             )
         },
     })
-E.config({ precision: 36 })
-E.config({ toExpNeg: -1e3 })
-E.config({ toExpPos: 1e3 })
-E.prototype.toInt = function (e) {
-    return V.from(this.times(new E("10").pow(new E(e.toString()))).todp(0))
+_.config({ precision: 36 })
+_.config({ toExpNeg: -1e3 })
+_.config({ toExpPos: 1e3 })
+_.prototype.toInt = function (e) {
+    return Y.from(this.times(new _("10").pow(new _(e.toString()))).todp(0))
 }
-V.prototype.toDec = function (e) {
-    return new E(this.toString()).dividedBy(new E(10).toPower((e || 0).toString()))
+Y.prototype.toDec = function (e) {
+    return new _(this.toString()).dividedBy(new _(10).toPower((e || 0).toString()))
 }
-async function H0() {
-    const e = bt(Gt)
-    await le.web3.setup(),
-        (window.data = le),
-        (e.config.globalProperties.app = ne(le)),
+async function ea() {
+    const e = Tt(Xt)
+    await ce.web3.setup(),
+        (window.data = ce),
+        (e.config.globalProperties.app = j(ce)),
         e.provide("app", e.config.globalProperties.app),
         e.use(
-            ft({
-                history: mt(),
+            gt({
+                history: wt(),
                 routes: [
-                    { path: "/", component: Kt },
-                    { path: "/multisigs", component: Nn },
-                    { path: "/makers", component: Be },
-                    { path: "/factories", component: Jn },
-                    { path: "/chefs", component: d0 },
-                    { path: "/bentoboxes", component: f0 },
-                    { path: "/kashimasters", component: Be },
-                    { path: "/routers", component: Vn },
-                    { path: "/multisig/:network/:address", component: _0 },
-                    { path: "/wethmaker/:network/:address", component: L0 },
+                    { path: "/", component: Zt },
+                    { path: "/multisigs", component: G0 },
+                    { path: "/makers", component: Me },
+                    { path: "/factories", component: nn },
+                    { path: "/chefs", component: wn },
+                    { path: "/bentoboxes", component: Mn },
+                    { path: "/kashimasters", component: Me },
+                    { path: "/routers", component: J0 },
+                    { path: "/multisig/:network/:address", component: Nn },
+                    { path: "/wethmaker/:network/:address", component: zn },
                 ],
             })
         ),
-        e.use(Tt),
+        e.use(At),
         e.mount("#app")
 }
-H0()
+ea()
