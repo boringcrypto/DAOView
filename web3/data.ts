@@ -38,7 +38,7 @@ export type FactoryInfo = {
     pairCount?: number
     feeTo?: string
     feeToSetter?: string
-    pairs?: string[]
+    pairs?: Token[]
 }
 
 export type MasterChefInfo = {
@@ -257,14 +257,16 @@ export async function updateFactory(factory: FactoryInfo) {
     factory.feeTo = await contract.feeTo()
     factory.feeToSetter = await contract.feeToSetter()
 
-    factory.pairs = JSON.parse(localStorage.getItem(storageKey) || "[]") as string[]
+    factory.pairs = (JSON.parse(localStorage.getItem(storageKey) || "[]") as string[]).map((pair) => tokens.get(factory.network, pair))
     if (factory.pairs.length < factory.pairCount) {
         for (let i = factory.pairs.length; i < factory.pairCount; i++) {
-            connector.queue(contract.populateTransaction.allPairs(i), contract.interface, (result) => factory.pairs?.push(result))
+            connector.queue(contract.populateTransaction.allPairs(i), contract.interface, (result) =>
+                factory.pairs?.push(tokens.get(factory.network, result))
+            )
         }
         await connector.call(250)
 
-        localStorage.setItem(storageKey, JSON.stringify(factory.pairs))
+        localStorage.setItem(storageKey, JSON.stringify(factory.pairs.map((token) => token.address)))
     }
 }
 

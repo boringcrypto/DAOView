@@ -74,6 +74,8 @@ async function load() {
         await updateFactory(factory)
     }
 
+    console.log(maker, factory)
+
     if (factory.pairs) {
         maker.account.tokens = []
 

@@ -30,7 +30,7 @@ export class Account {
     }
 
     async loadNetworkBalances(network: Network) {
-        console.log("Getting token balances")
+        console.log("Getting token balances", network, tokens.tokens[network])
         const connector = new connectors[network]()
         const IERC20 = IERC20__factory.createInterface()
         Object.values(tokens.tokens[network] || []).forEach((token) => {
