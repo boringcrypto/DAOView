@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { inject, ref, computed, Ref } from "vue"
+import { Signer } from "ethers"
 import { connectors } from "../classes/Web3"
 import Data, { FactoryInfo, updateFactory } from "../data"
 import SmartAddress from "../components/SmartAddress.vue"
@@ -29,9 +30,9 @@ const sorted = computed(() => {
 })
 const selectedSLPs: Ref<Token[]> = ref([])
 
-async function withdraw(token: Token) {
+async function withdraw(token: Token, signer: Signer) {
     const amount = maker.account.balance(token)
-    const contract = IWethMaker__factory.connect(maker.address, app.web3.provider!.getSigner())
+    const contract = IWethMaker__factory.connect(maker.address, signer)
 
     // Withdraw full balance of token to owner (should be multisig)
     try {
@@ -42,8 +43,8 @@ async function withdraw(token: Token) {
     }
 }
 
-async function burn() {
-    const contract = IWethMaker__factory.connect(maker.address, app.web3.gnosis!.getSigner())
+async function burn(signer: Signer) {
+    const contract = IWethMaker__factory.connect(maker.address, signer)
     console.log(
         selectedSLPs.value.map((token) => token.address),
         selectedSLPs.value.map((token) => maker.account.balances[token.address].toString()),
@@ -111,7 +112,10 @@ load()
                         <th scope="col">Pending</th>
                         <th scope="col">Value</th>
                         <th scope="col">
-                            <Web3Button v-if="selectedSLPs.length" @click="burn">Burn</Web3Button>
+                            <Web3Button v-if="selectedSLPs.length" @click="burn(app.web3.provider!.getSigner())">Burn</Web3Button>
+                            <Web3Button v-if="selectedSLPs.length && app.web3.gnosis" @click="burn(app.web3.gnosis!.getSigner())"
+                                >Safe</Web3Button
+                            >
                         </th>
                     </tr>
                 </thead>
@@ -126,7 +130,15 @@ load()
                                 <USDAmount :amount="maker.account.value(token)" />
                             </td>
                             <td>
-                                <Web3Button :network="maker.network" @click="withdraw(token)">Withdraw</Web3Button>
+                                <Web3Button :network="maker.network" @click="withdraw(token, app.web3.provider!.getSigner())"
+                                    >Withdraw</Web3Button
+                                >
+                                <Web3Button
+                                    v-if="app.web3.gnosis"
+                                    :network="maker.network"
+                                    @click="withdraw(token, app.web3.gnosis!.getSigner())"
+                                    >Safe</Web3Button
+                                >
                             </td>
                         </template>
                         <template v-if="token.type === 'SLP'">
