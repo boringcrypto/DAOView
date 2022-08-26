@@ -146,6 +146,7 @@ const bentoBoxes = [
     { network: Network.AVALANCHE, address: "0x0711B6026068f736bae6B213031fCE978D48E026" },
     { network: Network.HUOBI, address: "0xF5BCE5077908a1b7370B9ae04AdC565EBd643966" },
     { network: Network.CELO, address: "0x0711B6026068f736bae6B213031fCE978D48E026" },
+    { network: Network.OPTIMISM, address: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4" }
 ] as BentoBoxInfo[]
 
 const pools = reactive([]) as PoolInfo[]
@@ -230,6 +231,45 @@ export const known_addresses = {
     "0xCc159BCb6a466DA442D254Ad934125f05DAB66b5": "Matt Deployer (Ledger)",
     "0xe94B5EEC1fA96CEecbD33EF5Baa8d00E4493F4f3": "Treasury Multisig",
     "0x9a8541Ddf3a932a9A922B607e9CF7301f1d47bD1": "Timelock",
+    "0xf87BC5535602077d340806D71f805EA9907a843D": "Matt Deployer 2",
+    "0xC3598d91844B061195136600AD243b077Cc164e2": "0xMaki",
+    "0x3FE28138BbDc87E1F8Fe7C1b4A49fC41555B7791": "Omakase",
+    "0x5F43Cd8B5Eead549de4444a644B4Cb425A4ea5b2": "Joe",
+    "0xFeECD74F40E0500853610e9439E8160FB5C6E670": "Chester",
+    "0x6dD76c57fa2cdD027C4dCE8b62ffBBBB08F01849": "Kaystre",
+    "0xBf23B4890E09490a798d6B9be8Bd25B4e5Ce27Ff": "Nori",
+    "0x1C0Aa8cCD568d90d61659F060D1bFb1e6f855A20": "Ross",
+    "0xd367684EB3a052968b7A14059620E044959916D1": "Naim",
+    "0x80e8Db48b7828bd3ef5789636d3dE6f6c250bad5": "Rachel",
+    "0xC9341295fd754D829a5B5f272F644A257042323c": "AG",
+    "0x897A80273Ae5a5D27698A178697965bAb57bf5a3": "Amanda",
+    "0xCc0BbCBEd192A708bb7f0Ce69051D326291e171F": "Gasper",
+    "0xc3B45647F996c4c50C7aD453e5c0D71Aa7316D29": "Gasper",
+    "0x10e978bA1aCCA998543aEdeB5F15D0d3481B9053": "Cabbage",
+    "0x7a5f66Eb194F629dB12F25bd0695819CB690fcc7": "Ramin",
+    "0x5F6062048ea59943195E57D52DF79ea382f913bF": "Ilya",
+    "0x2Af3FD08C57C075f6Ff6Cd3B1B297368D9f1F3Bc": "Tangle",
+    "0x131Ee3bE2E3803Bf9E8976dDf0306236f001B7F2": "N00bie",
+    "0x5434289767bb094DaDbb8D1E5D58b47Ca5729063": "HHK (Samurai)",
+    "0xB0707a3Ba4D6b16cbc7d197F4061Ec2D1C77b16E": "Maka (Samurai)",
+    "0x95B6da6a8dF9Eeb0152b89697fAb420b87e7af49": "Pegbit (Samurai)",
+    "0xBAe1169E1DfEaD21EbAadd4576680274f018C368": "Porlix (Samurai)",
+    "0x10589146F49fDeca15Fe484cd879531D2eC96A92": "RSK (Samurai)",
+    "0x93b15B016627FB2a2500870a78a413302BD7D457": "Truda (Samurai)",
+    "0x0B191F7F5b007c71E5118A0C7dF36fF0b2c4193b": "Zapa (Samurai)",
+    "0xc8494cEd5eE8a14C31dCAe3945c099961c6023ff": "ME9",
+    "0xb463B8AE371E677A3A921aF8AF9821C0784dE5D7": "Gabe",
+    "0x0425517c5Adadde5c9f93F9988F089Aa68716F0F": "Mudit",
+    "0x02499B7B592820C7889e9dBE15A15d314c811CE7": "Sarang",
+    "0xad3537445290b89aef571e4f0f9dc77376fb5571": "LufyCZ",
+    "0x5edf621bc259b7bf920e1bd24ccd6dc01811b2f2": "Matthew",
+    "0xb9491CD0Ff07569AD33865E032eAE48Dd5Bb5AFF": "Orage (contractor)",
+    "0x79BF8bBaC596794f1489e94bF4C15Fbf51EA70B5": "Voltron (contractor)",
+    "0x737Bc0FC76Ade91a6c280ab6D216f659201853A6": "Pintha (contractor)",
+    "0xf0A3da0E045FdAC0FFEc2285d360e706586809e6": "Pinky Bell (contractor)",
+    "0x9b85a4Fc0F9BeE1C0199C8792E93863Bf92fDD91": "h0rst (contractor)",
+    "0x9D5B6f5Fb48a62dCe3bede64576E2b5844AaA0c0": "Jack Clancy (contractor)",
+    "0x29259c062E62a33DDA1a491FD67A48ebe0A092d5": "Athcrypt (contractor)"
 } as { [address: string]: string }
 
 multisigs.forEach((wallet) => {

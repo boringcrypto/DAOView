@@ -670,6 +670,27 @@ class TelosConnector extends NetworkConnector {
     }
 }
 
+class OptimismConnector extends NetworkConnector {
+    static get chainId() {
+        return Network.OPTIMISM
+    }
+    static get chainName() {
+        return "Optimism"
+    }
+    static get nativeCurrency() {
+        return { name: "Ether", symbol: "ETH", decimals: 18 }
+    }
+    static get rpcUrls() {
+        return ["https://mainnet.optimism.io/"]
+    }
+    static get blockExplorerUrls() {
+        return ["https://optimistic.etherscan.io/"]
+    }
+    static get multiCallAddress() {
+        return "0x1F98415757620B543A52E61c46B32eB19261F984"
+    }
+}
+
 export const connectors: { [network: string]: typeof NetworkConnector } = {
     [Network.NONE]: NetworkConnector,
     [Network.ETHEREUM]: EthereumConnector,
@@ -704,4 +725,5 @@ export const connectors: { [network: string]: typeof NetworkConnector } = {
     [Network.OKEX_TEST]: OKExTestConnector,
     [Network.PALM]: PalmConnector,
     [Network.TELOS]: TelosConnector,
+    [Network.OPTIMISM]: OptimismConnector
 }

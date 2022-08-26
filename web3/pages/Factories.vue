@@ -36,7 +36,9 @@ app.factories.map((factory) => updateFactory(factory))
                             {{ factory.pairCount }}
                         </td>
                         <td>
-                            <SmartAddress :address="factory.feeTo" />
+                            <ExplorerAddress :network="factory.network" :address="factory.feeTo">
+                                <SmartAddress :address="factory.feeTo" />
+                            </ExplorerAddress>
                         </td>
                         <td>
                             <SmartAddress :address="factory.feeToSetter" />
